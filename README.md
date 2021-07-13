@@ -8,6 +8,8 @@ Teachers and students can use this tutorial to learn about these concepts throug
 
 ## Components
 
+P25 recievers on the market, such as the Bluetail Technolgies P25rx, typically cost $250 or more. This can be prohibitively expensive for individuals 
+
 ### Portable Model
 
 These components provide a portable Rasbperry Pi based radio including a case, battery, built-in speaker, small utility screen, SDR dongle, and antenna. Bluetooth and audio jacks from the Pi provide audio output, and wifi allows configuration via secure shell (ssh) from any computer.
@@ -26,6 +28,13 @@ If you simply want to plug your Pi radio into a car (or other USB power source a
 - [Samsung EVO 32 GB micro SD card](https://www.amazon.com/dp/B06XWN9Q99?psc=1&smid=ATVPDKIKX0DER&ref_=chk_typ_imgToDp) $7.49
 - [Raspberry Pi 4 Case iUniker] (https://www.amazon.com/iUniker-Raspberry-Aluminium-Heatsink-Supply/dp/B07D3S4KBK/) $10.95
 - [RTL-SDR Blog V3 Dongle and Antenna Kit](https://www.amazon.com/RTL-SDR-Blog-RTL2832U-Software-Defined/dp/B011HVUEME/) $39.95 
-- **Total $ 153.38 not including tax, $50.90 with existing Pi and SD card**
+- **Total $153.38 not including tax, $50.90 with existing Pi and SD card**
+
+### Minimum Required Hardware
+
+With an existing computer running Linux you simply need and SDR dongle and antenna to begin monitoring P25 radio communications. 
+
+- [RTL-SDR Blog V3 Dongle and Antenna Kit](https://www.amazon.com/RTL-SDR-Blog-RTL2832U-Software-Defined/dp/B011HVUEME/) $39.95 (in the tutorial below [this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $ 19.99 SDR dongle was used instead. The reccommended dongle should provide better radio reception, and require no deviation from the tutorial)
+- **Total $19.99-39.99 not including tax**
 
 
