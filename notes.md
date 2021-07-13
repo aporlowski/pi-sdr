@@ -9,3 +9,10 @@
 - [IN NOAA Weather Radio Channels](https://www.weather.gov/nwr/stations?State=IN)
 - Bloomington is 162.450 MHz, narrow FM demod
 
+## FM
+
+- Found harmonics for 96.7 (31.94 MHz) and B 96.1 (32.5)
+
+## DMR
+
+- UK equiavlant of P25 (Europe?) fully encrypted in BBC, so not able to listen to it.
