@@ -124,16 +124,22 @@ sudo reboot
 
 ### Scan for Signals using GQRX
 
-We will use Bloomington, Indiana our example scanning location. Indiana 
+First we will manually scan and tune FM nad NOAA Weather radio using GQRX to become familiar with SDR. We will use Bloomington, Indiana our example scanning location. 
 
-Launch GQRX
+1. Launch GQRX at the command line.
+
+```
 gqrx
-pick device RTL2838UHIDIR
-OK
+```
 
-step 1 listen to fm radio
-96700 kHz
-mode WFM (mono) or WFM (stereo)
+2. Pick device RTL2838UHIDIR > OK
+
+3. We will start with an easy signal to capture. FM radio, the same radio stations you listen to in your car. For our example we will use Bloomington's B96.7 WBWB found at 96.7 FM MHz. If you are not in Bloomgington you can substitute a channel from yourbroadcast area. Because FM is a widebandwidth transmission, it will be easier to find and tune correctly.  
+
+4. GQRX takes all frequency inputs in kHz. So to get from 96.7 MHz to kHZ we need to multiply 96.7 by 1000 to get 96700 kHz. Input this number in the Frequency box under the Reciever tab. This is the target frequency the SDR will center its reception on.
+
+5. Next Select mode WFM (mono) or WFM (stereo). This mode selection that tells GQRX how to demondulate the radio signal. For example AM and FM are different modulation techniques and you won't hear hte correct audio output if you don't select the correct mode. You will notice that stereo provides two channels of sound whereas mono provides one channel. Depending on your reception quality one mode may sound better than the other.
+6. 
 
 search for red control channel listed here https://www.radioreference.com/apps/db/?sid=8084
 in this case it appears to be 858.4875c
