@@ -200,6 +200,7 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 4. Verify it works
 5. Setup talk groups
 6. Make the command autolaunch on boot
+7. Video demo
 
 **EXPLAIN OPTIONS HERER**
 
