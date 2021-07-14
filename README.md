@@ -196,13 +196,14 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 ```
 ./rx.py --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 28 -o 28000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
 ```
+**EXPLAIN OPTIONS HERER**
 
 4. Verify it works
 5. Setup talk groups
 6. Make the command autolaunch on boot
 7. Video demo
 
-**EXPLAIN OPTIONS HERER**
+
 
 ## SDR
 
