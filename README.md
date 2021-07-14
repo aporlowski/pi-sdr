@@ -107,7 +107,7 @@ This creates a congiuration file to `$HOME/.volk/volk_config` that contains the 
 sudo apt install git
 ```
 
-2. Next we clone the [boatbod branch](https://github.com/boatbod/op25.git) of the OP25 software
+2. Next we clone the [boatbod fork](https://github.com/boatbod/op25.git) of the [OP25 software](http://osmocom.org/projects/op25/wiki)
 
 ```
 cd Documents
