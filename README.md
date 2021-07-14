@@ -146,6 +146,9 @@ gqrx
 
 6. Push the `play` button in the top left corner. You should hear start to hear the radio station. You will see in the top half of hte screen a specturm analyzer, and in the bottom half a time plot of the signal strength for the sampled frequency range. The specturem analyzer measures the signal strength in dB. You will see a noise floor across the entire frequency range (probably between -70 to -100 depending on your reciever). Where there is a signal broadcast, you should see peaks of signals rise above the noise floor(probably between -80 and -20), these are broadcast radios signals.
 
+
+**Picture**
+
 In this plot time runs up and down along the y-axis, and frequency is the x-axis. The colors show the signal strehnth blue:low, yellow:medium, red:high. Yellow is typically suficient.
 
 7. Next we will try a slightly more difficult signal to tune, NOAA Weatherradio. 
@@ -164,17 +167,29 @@ In this plot time runs up and down along the y-axis, and frequency is the x-axis
 16. Keep the mode on `Narrow FM`
 17. This channel is significantly harder to tune, as there is no voice audio to guid us. P25 is a digital broadcast, so the control channel is a consisting broadcast of what sounds like digital noise. See this [youtube video](https://www.youtube.com/watch?v=KtWhSuAL1_Q&t=5s) to get an idea of the sound we are looking for. Mine sounds similar to the video but with less of the screeching and a slower paced rhtymic thudding.
 18. Also at this higher frequency your reciver error will be amplified. I have to tune -23.1 kHz to center on the true signal. This is quite far due to my cheap reciever, and in my case happens to be a slight less strong signal than the one that appears at the true frequency. Do not be tricked if you have a strong signal but not the correct noise. Investigatge all peaks nearby. 
-19. Once you have identified the signal return the offset to zero and use the `ppm`found on the `Input` tab to align the correct signal on the center frequency. This will be a number we use later. In my case it is 27 ppm. Better SDR dongles should be significantly smaller. Tthe sound may no longer be the same digital noise, that is okay. Jot down this number for use later. 
+19. Once you have identified the signal return the offset to zero and use the `ppm`found on the `Input` tab to align the correct signal on the center frequency. This will be a number we use later. In my case it is 28 ppm. Better SDR dongles should be significantly smaller. Tthe sound may no longer be the same digital noise, that is okay. Jot down this number for use later. 
 
-**Picture**
+### Configure and Launch OP25 Software to Listen to P25 Commuincation
 
+1. Change to the op25 reciver application directory
 
+```
+$ cd Documents/op25/op25/gr-op25_repeater/apps/
+```
 
+2. Set the control channel frequency
 
+```
 ./setTrunkFreq.sh 858.4875    (this modiefies op25.sh, but we may need to modify further for -q and -o)
+```
 
+3. Launch OP25 using the command below. Substitue your correct `ppm` offset after the `-q` option. In my example it is 28.
+
+```
 ./rx.py --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 28 -o 28000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
+```
 
+**EXPLAIN OPTIONS HERER**
 							
 
 
