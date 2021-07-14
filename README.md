@@ -43,31 +43,63 @@ With an existing computer running Linux you simply need and SDR dongle and anten
 
 ## Setup
 
-raspi imager
-ubuntu desktop 21.04
+### Install Operating System on Raspberry Pi
 
-sudo apt update
-sudo apt full-upgrade
-sudo reboot
+1. Download the Raspberyy Pi Imager [software](https://www.raspberrypi.org/software/)
+2. Insert your micro SD card into an SD card reader and plug into your laptop
+3. Launch the Pi Imager software
+4. `Choose OS` > `Other General Purpose OS` > `Ubuntu` > `Ubuntu Desktop 21.04 (RPI 4/400)`
+5. `Choose Storage` > select your SD card
+6. `Write`
 
-install gqrx SDR
-https://gqrx.dk/download/install-ubuntu
+You know have Ubuntu Desktop installed on your Pi. Insert the SD card into the Pi and connect a keyboard, mouse, monitor, and finally the power supply.
 
-sudo apt-get purge --auto-remove gqrx      (did n)
-sudo apt-get purge --auto-remove gqrx-sdr    (did n)
-sudo apt-get purge --auto-remove libgnuradio*   (did n)
+### Update and Upgrade your OS
 
+We need to update the software and software repositories to ensure we have the latest software on our OS. Run the commands below to update and reboot.
+
+```sudo apt update```
+
+`sudo apt full-upgrade`
+
+`sudo reboot`
+
+### Install the [GQRX](https://gqrx.dk/) Open Source SDR Reciever Software
+
+1. Follow the GQRX [installation instructions](https://gqrx.dk/download/install-ubuntu) repeated below
+2. First we need to remove existing installations of the software. There should be none so you can skip these commands or answer `n` to these commands if using a fresh OS.
+
+```
+sudo apt-get purge --auto-remove gqrx      
+sudo apt-get purge --auto-remove gqrx-sdr    
+sudo apt-get purge --auto-remove libgnuradio*   
+```
+
+3. Next we need to add multip Personal Package Archive to install the software. GQRX and its required components are distributed by its authors in PPA instead of using standard Ubuntu repositories. This gives the authors more control over the software repository, but requires we add the repositories to our OS so the software can be located.
+
+```
 sudo add-apt-repository -y ppa:bladerf/bladerf
 sudo add-apt-repository -y ppa:myriadrf/drivers
 sudo add-apt-repository -y ppa:myriadrf/gnuradio
 sudo add-apt-repository -y ppa:gqrx/gqrx-sdr
 sudo apt-get update
+```
 
+4. We can now install the GQRX software using apt-get
+
+```
 sudo apt-get install gqrx-sdr
+```
+5. Next we will install the libvolk2-bin profiler to optimize our machines radio processing 
 
+```
 sudo apt-get install libvolk2-bin   (replaced libvolk1-bin)
 volk_profile
+```
 
+This creates a congiuration file to `$HOME/.volk/volk_config` that contains the best architecture and function to process radio signals on your computer.
+
+6. 
 
 Install OP25
 sudo apt install git
