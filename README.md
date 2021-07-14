@@ -124,6 +124,8 @@ sudo reboot
 
 ### Scan for Signals using GQRX
 
+We will use Bloomington, Indiana our example scanning location. Indiana 
+
 Launch GQRX
 gqrx
 pick device RTL2838UHIDIR
