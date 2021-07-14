@@ -128,6 +128,8 @@ sudo reboot
 
 First we will manually scan and tune FM nad NOAA Weather radio using GQRX to become familiar with SDR. We will use Bloomington, Indiana our example scanning location. 
 
+#### FM Radio
+
 1. Launch GQRX at the command line.
 
 ```
@@ -155,19 +157,25 @@ In this plot time runs up and down along the y-axis, and frequency is the x-axis
 
 8. Push the `play` button again to stop the reception.
 
-9. Change the frequency to your local NOAA Weather radio channel. In Bloomington, this is 162.450 MHz or 162450 kHz. You can find your local frequency from the [NOAA site](https://www.weather.gov/nwr/station_listing). 
+#### NOAA Weather Radio
 
-10. Change the mode to `Narrow FM`. You will notice the grey bars on either side of the center frequency will shirnk. Narrow FM uses less bandwidth to broadcast thier signals. This allows more radio stations to share the spectrum, however, it decreases the quality of audio. This smaller bandwidth is still suitable for talking based audio, but would not perform well for music found on typical FM radio stations.
+1. Change the frequency to your local NOAA Weather radio channel. In Bloomington, this is 162.450 MHz or 162450 kHz. You can find your local frequency from the [NOAA site](https://www.weather.gov/nwr/station_listing). 
 
-11. Push the `play` button. You should see a signal peak near your center frequency (red line). However, depending on your reciever, you may find it is not completely centered on the peak. This is due to slight inaccuracies that can exist in your reciever. As frequency increase, you will notice this inaccuracy will also become more sever. You can tune the frequency by hovering over the red bar until you have a bi-directional horizontal arrow and then drag the center frequency until you get a clear signal. You can also use the frequency input text box or arrows, or click the numbers in the black box under `Reciever Options`. Notice the audio quality of the NOAA radio is significantly less that the FM radio, this is due to the reduced bandwidth.
-12. Notice much you have to move the frequency to get a clear signal. For example I have to move my frequency -3.5 kHz. This will not be a static number that works for all frequencies, as it will increaes as frequency does. Negative imples less (left) of the center frequency and a positive number imples greater (right).
-13. Next, we will search for the P25 control channel for Bloomington.
-14. Locate your P25 control channel by the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) databse. The control channels are colored red. Search for bloomington and identify the control channel as `858.4875c` MHz. The channels in blue are alternate control channels, and hte other channels are voice channels used by the trunked radio stations.
-15. Input the frequency as 858487.500 kHz
-16. Keep the mode on `Narrow FM`
-17. This channel is significantly harder to tune, as there is no voice audio to guid us. P25 is a digital broadcast, so the control channel is a consisting broadcast of what sounds like digital noise. See this [youtube video](https://www.youtube.com/watch?v=KtWhSuAL1_Q&t=5s) to get an idea of the sound we are looking for. Mine sounds similar to the video but with less of the screeching and a slower paced rhtymic thudding.
-18. Also at this higher frequency your reciver error will be amplified. I have to tune -23.1 kHz to center on the true signal. This is quite far due to my cheap reciever, and in my case happens to be a slight less strong signal than the one that appears at the true frequency. Do not be tricked if you have a strong signal but not the correct noise. Investigatge all peaks nearby. 
-19. Once you have identified the signal return the offset to zero and use the `ppm`found on the `Input` tab to align the correct signal on the center frequency. This will be a number we use later. In my case it is 28 ppm. Better SDR dongles should be significantly smaller. Tthe sound may no longer be the same digital noise, that is okay. Jot down this number for use later. 
+2. Change the mode to `Narrow FM`. You will notice the grey bars on either side of the center frequency will shirnk. Narrow FM uses less bandwidth to broadcast thier signals. This allows more radio stations to share the spectrum, however, it decreases the quality of audio. This smaller bandwidth is still suitable for talking based audio, but would not perform well for music found on typical FM radio stations.
+
+3. Push the `play` button. You should see a signal peak near your center frequency (red line). However, depending on your reciever, you may find it is not completely centered on the peak. This is due to slight inaccuracies that can exist in your reciever. As frequency increase, you will notice this inaccuracy will also become more sever. You can tune the frequency by hovering over the red bar until you have a bi-directional horizontal arrow and then drag the center frequency until you get a clear signal. You can also use the frequency input text box or arrows, or click the numbers in the black box under `Reciever Options`. Notice the audio quality of the NOAA radio is significantly less that the FM radio, this is due to the reduced bandwidth.
+4. Notice much you have to move the frequency to get a clear signal. For example I have to move my frequency -3.5 kHz. This will not be a static number that works for all frequencies, as it will increaes as frequency does. Negative imples less (left) of the center frequency and a positive number imples greater (right).
+
+#### P25 control channel
+
+Next, we will search for the P25 control channel for Bloomington.
+
+1. Locate your P25 control channel by the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) databse. The control channels are colored red. Search for bloomington and identify the control channel as `858.4875c` MHz. The channels in blue are alternate control channels, and hte other channels are voice channels used by the trunked radio stations.
+2. Input the frequency as 858487.500 kHz
+3. Keep the mode on `Narrow FM`
+4. This channel is significantly harder to tune, as there is no voice audio to guid us. P25 is a digital broadcast, so the control channel is a consisting broadcast of what sounds like digital noise. See this [youtube video](https://www.youtube.com/watch?v=KtWhSuAL1_Q&t=5s) to get an idea of the sound we are looking for. Mine sounds similar to the video but with less of the screeching and a slower paced rhtymic thudding.
+5. Also at this higher frequency your reciver error will be amplified. I have to tune -23.1 kHz to center on the true signal. This is quite far due to my cheap reciever, and in my case happens to be a slight less strong signal than the one that appears at the true frequency. Do not be tricked if you have a strong signal but not the correct noise. Investigatge all peaks nearby. 
+6. Once you have identified the signal return the offset to zero and use the `ppm`found on the `Input` tab to align the correct signal on the center frequency. This will be a number we use later. In my case it is 28 ppm. Better SDR dongles should be significantly smaller. Tthe sound may no longer be the same digital noise, that is okay. Jot down this number for use later. 
 
 ### Configure and Launch OP25 Software to Listen to P25 Commuincation
 
@@ -190,6 +198,12 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 ```
 
 **EXPLAIN OPTIONS HERER**
+
+## SDR
+
+## P25
+
+
 							
 
 
