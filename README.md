@@ -97,16 +97,32 @@ sudo apt-get install libvolk2-bin   (replaced libvolk1-bin)
 volk_profile
 ```
 
-This creates a congiuration file to `$HOME/.volk/volk_config` that contains the best architecture and function to process radio signals on your computer.
+This creates a congiuration file to `$HOME/.volk/volk_config` that contains the best architecture and function to process radio signals on your computer. 
 
-6. 
+### Install OP25 Software
 
-Install OP25
+1. First we need to install Git so we can download the software.
+
+```
 sudo apt install git
+```
+
+2. Next we clone the [boatbod branch](https://github.com/boatbod/op25.git) of the OP25 software
+
+```
+cd Documents
 git clone https://github.com/boatbod/op25.git
+```
+
+3. Now we install the software using the provided script
+
+```
 cd op25
 ./install.sh
 sudo reboot
+```
+
+### Scan for Signals using GQRX
 
 Launch GQRX
 gqrx
