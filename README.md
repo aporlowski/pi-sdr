@@ -183,7 +183,7 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 ./setTrunkFreq.sh 858.4875    (this modiefies op25.sh, but we may need to modify further for -q and -o)
 ```
 
-3. Launch OP25 using the command below. Substitue your correct `ppm` offset after the `-q` option. In my example it is 28. Also replace the `-o` option with the ppm x 1000 as seen below.
+3. Launch OP25 using the command below. Substitue your correct `ppm` offset after the `-q` option. In my example it is 28. Also replace the `-o` argument with the `ppm x 1000` as seen as 28000 below.
 
 ```
 ./rx.py --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 28 -o 28000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
