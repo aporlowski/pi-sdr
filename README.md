@@ -54,9 +54,11 @@ With an existing computer running Linux you simply need and SDR dongle and anten
 
 You know have Ubuntu Desktop installed on your Pi. Insert the SD card into the Pi and connect a keyboard, mouse, monitor, and finally the power supply.
 
-### Update and Upgrade your OS
+### Setup, Update and Upgrade your OS
 
-We need to update the software and software repositories to ensure we have the latest software on our OS. Run the commands below to update and reboot.
+Setup the OS using the GUI guide to select a username, passworkd, etc.
+
+Once you are logged into your desktop we first need to update the software and software repositories to ensure we have the latest software on our OS. Run the commands below to update and reboot.
 
 ```sudo apt update```
 
@@ -138,8 +140,25 @@ gqrx
 
 4. GQRX takes all frequency inputs in kHz. So to get from 96.7 MHz to kHZ we need to multiply 96.7 by 1000 to get 96700 kHz. Input this number in the Frequency box under the Reciever tab. This is the target frequency the SDR will center its reception on.
 
-5. Next Select mode WFM (mono) or WFM (stereo). This mode selection that tells GQRX how to demondulate the radio signal. For example AM and FM are different modulation techniques and you won't hear hte correct audio output if you don't select the correct mode. You will notice that stereo provides two channels of sound whereas mono provides one channel. Depending on your reception quality one mode may sound better than the other.
-6. 
+5. Next Select `mode WFM (mono)` or `WFM (stereo)`. This mode selection that tells GQRX how to demondulate the radio signal. For example AM and FM are different modulation techniques and you won't hear hte correct audio output if you don't select the correct mode. You will notice that stereo provides two channels of sound whereas mono provides one channel. Depending on your reception quality one mode may sound better than the other.
+
+> See [this page](https://gqrx.dk/doc/practical-tricks-and-tips#use) for more description of the various settings.
+
+6. Push the `play` button in the top left corner. You should hear start to hear the radio station. You will see in the top half of hte screen a specturm analyzer, and in the bottom half a time plot of the signal strength for the sampled frequency range. The specturem analyzer measures the signal strength in dB. You will see a noise floor across the entire frequency range (probably between -70 to -100 depending on your reciever). Where there is a signal broadcast, you should see peaks of signals rise above the noise floor(probably between -80 and -20), these are broadcast radios signals.
+
+In this plot time runs up and down along the y-axis, and frequency is the x-axis. The colors show the signal strehnth blue:low, yellow:medium, red:high. Yellow is typically suficient.
+
+7. Next we will try a slightly more difficult signal to tune, NOAA Weatherradio. 
+
+8. Push the `play` button again to stop the reception.
+
+9. Change the frequency to your local NOAA Weather radio channel. In Bloomington, this is 162.450 MHz or 162450 kHz. You can find your local frequency from the [NOAA site](https://www.weather.gov/nwr/station_listing). 
+
+10. Change the mode to `Narrow FM`. You will notice the grey bars on either side of the center frequency will shirtnk. Narrow FM uses less bandwidth to broadcast thier signals. This allows more radio stations to share the spectrum, however, it decreases the quality of audio.
+
+11. Push the `play` button. You should see a signal peak near your center frequency (red line). However, depending on your reciever, you may find it is not completely centered on the peak. This is due to slight inaccuracies that can exist in your reciever. As frequency increase, you will notice this inaccuracy will also become more sever. You can tune the frequency by hovering over the red bar until you have a bi-directional horizontal arrow and then drag the center frequency until you get a clear signal. You can also use the frequency input text box or arrows, or click the numbers in the black box under `Reciever Options`. Notice the audio quality of the NOAA radio is significantly less that the FM radio, this is due to the reduced bandwidth. However this smaller bandwidth is still suitable for talking based audio, but would not perform well for music.
+
+**Picture**
 
 search for red control channel listed here https://www.radioreference.com/apps/db/?sid=8084
 in this case it appears to be 858.4875c
