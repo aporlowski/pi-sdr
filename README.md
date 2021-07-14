@@ -41,4 +41,82 @@ With an existing computer running Linux you simply need and SDR dongle and anten
 - [RTL-SDR Blog V3 Dongle and Antenna Kit](https://www.amazon.com/RTL-SDR-Blog-RTL2832U-Software-Defined/dp/B011HVUEME/) $39.95 (in the tutorial below [this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $ 19.99 SDR dongle was used instead. The reccommended dongle should provide better radio reception, and require no deviation from the tutorial)
 - **Total $19.99-39.99 not including tax**
 
+## Setup
+
+raspi imager
+ubuntu desktop 21.04
+
+sudo apt update
+sudo apt full-upgrade
+sudo reboot
+
+install gqrx SDR
+https://gqrx.dk/download/install-ubuntu
+
+sudo apt-get purge --auto-remove gqrx      (did n)
+sudo apt-get purge --auto-remove gqrx-sdr    (did n)
+sudo apt-get purge --auto-remove libgnuradio*   (did n)
+
+sudo add-apt-repository -y ppa:bladerf/bladerf
+sudo add-apt-repository -y ppa:myriadrf/drivers
+sudo add-apt-repository -y ppa:myriadrf/gnuradio
+sudo add-apt-repository -y ppa:gqrx/gqrx-sdr
+sudo apt-get update
+
+sudo apt-get install gqrx-sdr
+
+sudo apt-get install libvolk2-bin   (replaced libvolk1-bin)
+volk_profile
+
+
+Install OP25
+sudo apt install git
+git clone https://github.com/boatbod/op25.git
+cd op25
+./install.sh
+sudo reboot
+
+Launch GQRX
+gqrx
+pick device RTL2838UHIDIR
+OK
+
+step 1 listen to fm radio
+96700 kHz
+mode WFM (mono) or WFM (stereo)
+
+search for red control channel listed here https://www.radioreference.com/apps/db/?sid=8084
+in this case it appears to be 858.4875c
+input freq and press "play" e.g. start dsp
+
+
+the freq may be off (mine was off by 24 khz) 
+on narrow fm it should sound like digital noize (see youtube video)
+ppm or khz offset
+
+
+./setTrunkFreq.sh 858.4875    (this modiefies op25.sh, but we may need to modify further for -q and -o)
+
+./rx.py --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 28 -o 28000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
+
+
+#########################OBSOLETE###################
+
+cd ./op25/op25/gr-op25_repeater/apps
+./rx.py --args 'rtl' -N 'LNA:47' -S 2500000 -x 2 -f 858.4875e6 -o 17e3 -q 2
+
+
+maybe this 858463.900 (tuned in gqrx)
+or 858983.100 (labeled as hardware freq) 
+
+
+anthony@anthony-pi:~/Documents/op25/op25/gr-op25_repeater/apps$ ./op25.sh
+./op25.sh: line 1:  2677 Aborted                 (core dumped) ./rx.py --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 0 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
+
+
+this is the new way
+./setTrunkFreq.sh 858.4875									
+./op25.sh
+										
+
 
