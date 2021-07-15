@@ -182,12 +182,12 @@ gqrx
 
 Next, we will search for the P25 control channel for Bloomington.
 
-1. Locate your P25 control channel by using the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) databse. The control channels are colored red. Search for bloomington and identify the control channel as `858.4875c` MHz. The channels in blue are alternate control channels, and the other channels are voice channels used by the trunked radio stations. This is a user updated database, so it may not be accurate. If the control channel doesnt work after following all instructions below, try the alternate control channels, or even the voice channels. I found the Merer, WI was using the alternate control channel listed in the database.
+1. Locate your P25 control channel by using the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) databse. The control channels are colored red. Search for bloomington and identify the control channel as `858.4875c` MHz. The channels in blue are alternate control channels, and the other channels are voice channels used by the trunked radio stations. This is a user updated database, so it may not be accurate. If the control channel does not work after following all instructions below, try the alternate control channels, or even the voice channels. I found that the Merer, WI P25 system was using the alternate control channel that was listed in the database.
 2. Input the frequency as 858487.500 kHz
 3. Keep the mode on `Narrow FM`
-4. This channel is significantly harder to tune, as there is no voice audio to guide us. P25 is a digital broadcast, so the control channel is a consistent broadcast of what sounds like digital noise. See this [youtube video](https://www.youtube.com/watch?v=KtWhSuAL1_Q&t=5s) to get an idea of the sound we are looking for. Mine sounds similar to the video but with less of the screeching, chirping, and a slower paced rhtymic thudding.
-5. Also, at this higher frequency your reciver error will be amplified. I have to tune approximately -23.1 kHz to center on the true signal. This is quite far due to my cheap reciever, and in my case the corrected peak happens to be a slightly less than the peak that appears at the true frequency. Do not be tricked if you have a strong signal at the true frequency but not the correct noise. Investigatge all peaks nearby. 
-6. Once you have identified the signal return the offset to zero, thus returning to the true frequency, and use the `ppm`found on the `Input` tab to align the corrected signal onto the true frequency. This will be a number we use later. In my case it is 28 ppm. Better SDR dongles should be significantly smaller. The sound may no longer be the same digital noise, that is okay. Jot down this number for use later. 
+4. This channel is significantly harder to tune, as there is no voice audio to guide us. P25 is a digital broadcast, so the control channel is a consistent peak of what sounds like digital noise. See this [youtube video](https://www.youtube.com/watch?v=KtWhSuAL1_Q&t=5s) to get an idea of the sound we are looking for. Mine sounds similar to the video but with less of the screeching, chirping, and a slower paced rhtymic thudding, so do not be concerned if it only sounds similar, but not exact to the video.
+5. Also, at this higher frequency your reciver error will be amplified. I have to tune approximately -23.1 kHz to center on the signal (corrected signal). This is quite far due to my cheap reciever, and in my case the corrected peak happens to be a slightly lower than the peak that appears at the center frequency. Do not be tricked if you have a strong signal at the center frequency but not the correct noise. Investigatge all peaks nearby. The peak at the center frequency can be caused by DC bias. Audio sounds better the closer it is to the center frequency, and conversely SDR do not handle audio at the edge of the sample range as well. However, there is some DC bias introduced at the center frequency, so it is best for us to tune to a center frequency that is close to, but not exactl the target frequency. We will handle this with an tuning offset later on. 
+6. Once you have identified the corrected signal return the offset to zero, thus returning to the center frequency, and use the `ppm`found on the `Input` tab to align the corrected signal onto the center frequency. This will be a number we use later. In my case it is 28 ppm. Better SDR dongles should be significantly smaller. Jot down this number for use later. The sound may no longer be the same digital noise, that is okay, it is getting washed out by the DC bias at the center frequency. 
 
 ### Configure and Launch OP25 Software to Listen to P25 Commuincation
 
@@ -205,12 +205,43 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 ./setTrunkFreq.sh 858.4875    (this modiefies op25.sh, but we may need to modify further for -q and -o)
 ```
 
-3. Launch OP25 using the command below. Substitue your correct `ppm` offset after the `-q` option. In my example it is 28. Also replace the `-o` argument with the `ppm value x 1000` as seen as 28000 below.
+3. Launch OP25 using the command below. Substitue your correct `ppm` offset after the `-q` option. In my example it is 28.
 
 ```
 ./rx.py --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 28 -o 28000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
 ```
-**EXPLAIN OPTIONS HERER**
+
+There are many options include to the `rx.py` program, that I will desribe below.
+
+`--nocrypt`: some P25 signals are encrypted, this will filter out encrypted communication as they will only come across sounding like noise.
+
+`--args "rtl`: this tells the OP25 software that you are using an rtl-sdr type dongle
+
+`--gains 'lna:36` this controls the low noise amplifier to increase the strenth of hte signal (and also the noise) I believe this value is 3.6 dB
+
+`-S 960000` this is the sample range. Our SDR will monitor 960,000 kHz of bandwidth. 
+
+> The dongle is likely capable of more, however, I found with a value closer to the dongles reported capability (2,400,000) I was recieving many `OOOOOOOOO` errors in the stderr.2 file. This is indicative that the SDR is overworked, or the computer can not keep up with the sample size.
+
+`-X` The OP25 software will attempt to auto-tune to the frequency. It only works if you are close. You will see a number such as `Frequency 858.487500(-266)` at the bottom of the terminal. This shows it has autotuned -266 hz to center on the signal.
+
+`-q 28` This is the frequency correction in `ppm`. Better SDR dongles should be significantly lower (+- 2). 
+
+`-o 28000` The is the offset from the center frequency to avoid DC bias. I found 28000 Hz to work well for my dongle, however, this may be higher than is actually needed. This is not related to the `-q` option. 
+
+`-v 1` Sets the verbosity level of the info and errors logged to stderr.2. Increase this for more information.
+
+`-2` Enables phase 2 TDMA decoding. 
+
+`-V`  Enables the voice codec. I've notived this appears to improve the sound of voice transmissions.
+
+`-U` Enables the built in UDP audio player.
+
+`-T trunk.tsv` Tells rx.py which file to use for the trunk configuration. This was modified with the `./setTrunkFrequency` command earlier.
+
+`2> stderr.2` This redirects error ouput to a file named `stderr.2` This prevents the text console display from getting messed up. If things are not working, it is worth taking a look at the file `cat stderr.2` to read the message log.
+
+
 
 4. If the configuration options are correct (the frequency as set by the ./setTrunkFreq.sh program, the offset set by the -o, and the frequency correction as set by the -q) and the reception is acceptable then you should see a line similar to the following:
 
@@ -278,6 +309,10 @@ The world of SDR and radio waves is vast and complex. In this background section
 #### Recieve Range:
 
 #### Temperature Drift:
+
+#### Center Frequency
+
+#### DC Bias
 
 #### PPM:
 
