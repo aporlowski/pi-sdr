@@ -235,7 +235,7 @@ There are many options include to the `rx.py` program, that I will desribe below
 
 `-V`  Enables the voice codec. I've notived this appears to improve the sound of voice transmissions.
 
-`-U` Enables the built in UDP audio player.
+`-U` Enables the built in UDP audio player. This allows you to hear the audio.
 
 `-T trunk.tsv` Tells rx.py which file to use for the trunk configuration. This was modified with the `./setTrunkFrequency` command earlier.
 
