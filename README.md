@@ -231,16 +231,15 @@ There are many options include to the `rx.py` program, that I will desribe below
 
 `-v 1` Sets the verbosity level of the info and errors logged to stderr.2. Increase this for more information.
 
-`-2` Enables phase 2 TDMA decoding. 
+`-2` Enables phase 2 TDMA decoding. Indiana SAFE-T network is reportedly all phase 1 according to radioreference.com, however it does not appear hurt to enable this.
 
 `-V`  Enables the voice codec. I've notived this appears to improve the sound of voice transmissions.
 
-`-U` Enables the built in UDP audio player. This allows you to hear the audio.
+`-U` Enables the built in UDP audio player. This allows you to hear the audio from your speakers, and capture it on a specific UDP port.
 
 `-T trunk.tsv` Tells rx.py which file to use for the trunk configuration. This was modified with the `./setTrunkFrequency` command earlier.
 
 `2> stderr.2` This redirects error ouput to a file named `stderr.2` This prevents the text console display from getting messed up. If things are not working, it is worth taking a look at the file `cat stderr.2` to read the message log.
-
 
 
 4. If the configuration options are correct (the frequency as set by the ./setTrunkFreq.sh program, the offset set by the -o, and the frequency correction as set by the -q) and the reception is acceptable then you should see a line similar to the following:
