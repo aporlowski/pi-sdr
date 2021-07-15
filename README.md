@@ -221,7 +221,8 @@ The world of SDR and radio waves is vast and complex. In this background section
 
 ### Radio
 
-**Frequency:**
+#### Frequency:
+a definition
 
 ### SDR
 
