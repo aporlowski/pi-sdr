@@ -219,38 +219,42 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 
 The world of SDR and radio waves is vast and complex. In this background section we provide a glossary of terms used in this tutorial that may be new to you. We explain them by describing where in the tutorial the term applies.
 
+
 ### Radio
 
+
 #### Frequency:
-a definition
+
+#### Spectrum:
+
 
 ### SDR
 
-**Dongle**
 
-**PPM**
+#### Dongle:
 
-**Offset**
+#### Sample Rate
+
+#### Recieve Range
+
+#### PPM:
+
+#### Frequency Offset:
 
 
 ### P25
 
 
+#### Digital Radio:
 
-**Digital Radio:**
+#### Trunking:
 
-**Trunking:**
+#### Control Channel:
 
-**Control Channel:**
+#### Voice Channel:
 
-**Voice Channel:** 
+#### TalkGroup:
 
-**TalkGroup:**
+#### Phase 1: 
 
-**Phase 1:**
-
-**Phase 2:**
-
-							
-
-
+#### Phase 2:	
