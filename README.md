@@ -217,8 +217,7 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 
 ## Background
 
-The world of SDR and radio waves is vast and complex. In this background section we provide a glossary of terms used in this tutorial that may be new to you. We explain them by describing where in the tutorial the term applies.
-
+The world of SDR and radio waves is vast and complex. In this background section we provide a glossary of terms used in this tutorial that may be new to you. We explain them by describing where in the tutorial the term applies. We strive to provide the basics needed for you to understand the linked materials and bootstrap your knowledge as you explore the field.
 
 ### Radio
 
