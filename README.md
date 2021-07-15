@@ -130,6 +130,8 @@ cd Documents
 git clone https://github.com/boatbod/op25.git
 ```
 
+This will download the software into a the directory `~/Documents/op25`
+
 3. Now we install the software using the provided script
 
 ```
