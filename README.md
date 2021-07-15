@@ -64,7 +64,7 @@ You know have Ubuntu Desktop installed on your Pi. Insert the SD card into the P
 
 ### Setup, Update and Upgrade your OS
 
-As the Pi is booting your will be presented a GUI setup menu. Setup the OS using the GUI guide to select a username, password, etc.
+As the Pi is booting your will be presented a GUI setup menu. Setup the OS using the GUI guide to select a username, password, wifi, etc.
 
 Once you are logged into your desktop we first need to update the software and software repositories to ensure we have the latest software on our OS. Run the commands below to update and reboot.
 
