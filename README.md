@@ -49,9 +49,9 @@ If you are building the radio with the `pi-top[4]` case we recommend you use the
 
 If not using the pi-top[4] case we recommend you install Ubuntu Desktop 21.04 on your Pi.
 
-### Option 1: Install pi-topOS on Raspberry Pi when using pi-top[4] case
+#### Option 1: Install pi-topOS on Raspberry Pi when using pi-top[4] case
 
-### Option 2: Install Ubuntu Desktop 21.04 on Raspberry Pi when not using pi-top[4] case
+#### Option 2: Install Ubuntu Desktop 21.04 on Raspberry Pi when not using pi-top[4] case
 
 1. Download the Raspberyy Pi Imager [software](https://www.raspberrypi.org/software/)
 2. Insert your micro SD card into an SD card reader and plug into your laptop
