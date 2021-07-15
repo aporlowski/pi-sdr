@@ -47,11 +47,15 @@ With an existing computer running Linux you simply need an SDR dongle and antenn
 
 ### Choose your OS
 
-If you are building the radio with the `pi-top[4]` case we recommend you use the pi-topOS so all functions of the case (screen, buttons, fan, etc.) have the required software to work correctly without any additional software installation.
+If you are building the radio with the `pi-top[4]` case we recommend you use the pi-topOS so all functions of the case (screen, buttons, fan, etc.) have the required software to work correctly without any additional software installation. 
 
-If not using the pi-top[4] case we recommend you install Ubuntu Desktop 21.04 on your Pi.
+If not using the pi-top[4] case we recommend you install Ubuntu Desktop 21.04 on your Pi. The `pi-top[4] diy` case was reccommended becuase it is assumed many users will already have a Raspberry Pi to begin with. It is also cheaper.
 
 #### Option 1: Install pi-topOS on Raspberry Pi when using pi-top[4] case
+
+1. First you need to install your Pi into your pi-top[4] case if not already done so. See this [youtube video](https://www.youtube.com/watch?v=38BCTsGrdiU) for instructions. 
+
+> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from thier website. See the `pi-top[4] complete` kit.
 
 #### Option 2: Install Ubuntu Desktop 21.04 on Raspberry Pi when not using pi-top[4] case
 
