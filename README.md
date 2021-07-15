@@ -24,6 +24,8 @@ These components provide a portable Rasbperry Pi based radio including a case, b
 - [RTL-SDR Blog V3 Dongle and Antenna Kit](https://www.amazon.com/RTL-SDR-Blog-RTL2832U-Software-Defined/dp/B011HVUEME/) $39.95 (in the tutorial below [this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $ 19.99 SDR dongle was used instead. The reccommended dongle should provide better radio reception with less manual frequency corerection and less frequency drift compared to a cheaper dongle. It should also require no deviation from the tutorial)
 - **Total $242.38 not including tax, or $139.9 with existing Pi and SD card** (You can redudece the price by $40 or more by using cheaper Raspberry Pi's and SDR dongles)
 
+The pi-top[4] case is a well designed case for use in education or project settings, such as building robots, sensors, and more. It has the added benefit of exposing all GPIO pins and ports of the raspberry pi, so you can extend your pi to do multiple other projects if desired.
+
 ### Car Plug in Model
 
 If you simply want to plug your Pi radio into a car (or other USB power source and bluetooth speaker), then you will only need your Pi, the SDR dongle and antenna kit, and an inexpensive case.
@@ -210,10 +212,31 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 ```
 **EXPLAIN OPTIONS HERER**
 
-4. Verify it works
-5. Setup talk groups
-6. Make the command autolaunch on boot
-7. Video demo
+4. If the configuration options are correct (the frequency as set by the ./setTrunkFreq.sh program, the offset set by the -o, and the frequency correction as set by the -q) and the reception is acceptable then you should see a line similar to the following:
+
+```
+NAC 0x6b1 WACN 0xbee00 SYSID 0x6bd 858.487500/813.487500 tsbks 702
+```
+
+You can use this line at the top of the terminal to verify that you are recieving and correctly decoding data from the control channel. For the P25 system, the NAC is the network access code, the WACN is the wide area communications network ID and the SYSID is the system ID withing the WACN. If the WACN and SYSID numbers match those found in the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) databse then you know you have tuned into the correct P25 communication channel.
+
+If your reception or options are incorrect then you will see a line similar to the following:
+
+```
+NAC 0x00 WACN 0x-1 SYSID 0x-1 0.000000/0.000000 tsbks 0
+```
+
+6. Verify the center frequency is ontop of the control channel peak. `Press the number 1` to bring up the `fft plot`. This plot will show you the sampled specturm and the power of the signals recieved. You should see the peak of the control channel frequency line up with the black bar indicating the tuned frequey.
+
+If this number is off, then you will need to change you ppm `-q` option and your offset `-o` option until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on this dongle. This is the most difficult part of tuning in the P25 signal, but fortunately once you find the correct number, it will hopefully not deviate much. It should deviate less with higher quality dongles.
+
+
+7. Press `q` to quit the program
+
+
+7. Setup talk groups
+8. Make the command autolaunch on boot
+9. Video demo
 
 ## Background
 
@@ -268,10 +291,13 @@ The world of SDR and radio waves is vast and complex. In this background section
 
 ### P25
 
-
 #### Digital Radio:
 
 #### Trunking:
+
+#### NAC:
+
+#### WACN:
 
 #### Control Channel:
 
