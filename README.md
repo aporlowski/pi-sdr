@@ -215,12 +215,40 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 6. Make the command autolaunch on boot
 7. Video demo
 
+## Background
+
+The world of SDR and radio waves is vast and complex. In this background section we provide a glossary of terms used in this tutorial that may be new to you. We explain them by describing where in the tutorial the term applies.
+
+### Radio
+
+**Frequency:**
+
+### SDR
+
+**Dongle**
+
+**PPM**
+
+**Offset**
 
 
-## SDR
+### P25
 
-## P25
 
+
+**Digital Radio:**
+
+**Trunking:**
+
+**Control Channel:**
+
+**Voice Channel:** 
+
+**TalkGroup:**
+
+**Phase 1:**
+
+**Phase 2:**
 
 							
 
