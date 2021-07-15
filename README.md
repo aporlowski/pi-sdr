@@ -2,6 +2,8 @@
 
 Turn your Raspberry Pi into a portable P25 radio reciever using software defined radio (SDR). We demonstrate its use to listen to FM radio, NOAA Weather Radio, and Project 25 (P25) emergency-use radio channels.
 
+## Introduction
+
 This tutorial will be a comprehensive introduction to Raspberry Pi single-board computers (SBC), software defined radio, and P25 radio.
 
 Teachers and students can use this tutorial to learn about these concepts through an hands-on project. Concerned citizens, journalists, and Virtual Operations Support Team (VOST) members can use this tutorial to setup a radio to monitor emergency radio traffic in their area.
