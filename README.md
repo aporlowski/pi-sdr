@@ -302,6 +302,8 @@ The world of SDR and radio waves is vast and complex. In this background section
 
 #### Trunking:
 
+#### Indiana SAFE-T
+
 #### NAC:
 
 #### WACN:
