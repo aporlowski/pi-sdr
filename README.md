@@ -234,11 +234,7 @@ The world of SDR and radio waves is vast and complex. In this background section
 
 #### NOAA Weather Radio
 
-#### Modulation / Demodulation
 
-##### FM
-
-##### AM
 
 
 
@@ -258,6 +254,14 @@ The world of SDR and radio waves is vast and complex. In this background section
 #### Frequency Offset:
 
 #### SDR Reciever Software (GQRX)
+
+#### Filter
+
+#### Modulation / Demodulation / Mode
+
+##### FM
+
+##### AM
 
 #### OP25 Software
 
