@@ -142,7 +142,7 @@ sudo reboot
 
 ### Scan for Signals using GQRX
 
-Now we can begin to use our SDR radio. Connect the SDR dongle. We will first manually scan and tune FM and NOAA Weatherradio using GQRX to become familiar with SDR. We will use Bloomington, Indiana our example scanning location. Next, we will find the P25 control channel in your area using GQRX, and finally setup the OP25 software to demodulate the P25 radio communication.
+Now we can begin to use our SDR radio. Connect the SDR dongle. We will first manually scan and tune FM and NOAA Weather radio using GQRX to become familiar with SDR. We will use Bloomington, Indiana as our example location. Next, we will find the P25 control channel used by emergency services personnel in GQRX, and finally setup the OP25 software to demodulate the P25 radio communication.
 
 #### FM Radio
 
