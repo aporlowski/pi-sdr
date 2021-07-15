@@ -232,19 +232,34 @@ The world of SDR and radio waves is vast and complex. In this background section
 
 #### Antenna:
 
+#### NOAA Weather Radio
+
+#### Modulation / Demodulation
+
+##### FM
+
+##### AM
+
+
 
 ### SDR
 
 
 #### Dongle:
 
-#### Sample Rate
+#### Sample Rate:
 
-#### Recieve Range
+#### Recieve Range:
+
+#### Temperature Drift:
 
 #### PPM:
 
 #### Frequency Offset:
+
+#### SDR Reciever Software (GQRX)
+
+#### OP25 Software
 
 
 ### P25
