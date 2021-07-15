@@ -186,7 +186,7 @@ Next, we will search for the P25 control channel for Bloomington.
 2. Input the frequency as 858487.500 kHz
 3. Keep the mode on `Narrow FM`
 4. This channel is significantly harder to tune, as there is no voice audio to guide us. P25 is a digital broadcast, so the control channel is a consistent broadcast of what sounds like digital noise. See this [youtube video](https://www.youtube.com/watch?v=KtWhSuAL1_Q&t=5s) to get an idea of the sound we are looking for. Mine sounds similar to the video but with less of the screeching, chirping, and a slower paced rhtymic thudding.
-5. Also, at this higher frequency your reciver error will be amplified. I have to tune -23.1 kHz to center on the true signal. This is quite far due to my cheap reciever, and in my case the corrected peak happens to be a slightly less than the peak that appears at the true frequency. Do not be tricked if you have a strong signal at the true frequency but not the correct noise. Investigatge all peaks nearby. 
+5. Also, at this higher frequency your reciver error will be amplified. I have to tune approximately -23.1 kHz to center on the true signal. This is quite far due to my cheap reciever, and in my case the corrected peak happens to be a slightly less than the peak that appears at the true frequency. Do not be tricked if you have a strong signal at the true frequency but not the correct noise. Investigatge all peaks nearby. 
 6. Once you have identified the signal return the offset to zero, thus returning to the true frequency, and use the `ppm`found on the `Input` tab to align the corrected signal onto the true frequency. This will be a number we use later. In my case it is 28 ppm. Better SDR dongles should be significantly smaller. The sound may no longer be the same digital noise, that is okay. Jot down this number for use later. 
 
 ### Configure and Launch OP25 Software to Listen to P25 Commuincation
@@ -218,7 +218,7 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 NAC 0x6b1 WACN 0xbee00 SYSID 0x6bd 858.487500/813.487500 tsbks 702
 ```
 
-You can use this line at the top of the terminal to verify that you are recieving and correctly decoding data from the control channel. For the P25 system, the NAC is the network access code, the WACN is the wide area communications network ID and the SYSID is the system ID withing the WACN. If the WACN and SYSID numbers match those found in the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) databse then you know you have tuned into the correct P25 communication channel.
+You can use this line at the top of the terminal to verify that you are recieving and correctly decoding data from the control channel. For the P25 system, the NAC is the network access code, the WACN is the wide area communications network ID and the SYSID is the system ID withing the WACN. If the WACN and SYSID numbers match those found in the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) databse then you know you have tuned into the correct P25 control channel.
 
 If your reception or options are incorrect then you will see a line similar to the following:
 
@@ -226,9 +226,16 @@ If your reception or options are incorrect then you will see a line similar to t
 NAC 0x00 WACN 0x-1 SYSID 0x-1 0.000000/0.000000 tsbks 0
 ```
 
-6. Verify the center frequency is ontop of the control channel peak. `Press the number 1` to bring up the `fft plot`. This plot will show you the sampled specturm and the power of the signals recieved. You should see the peak of the control channel frequency line up with the black bar indicating the tuned frequey.
+Continue trobleshooting by changing your input options and using hte steps below.
 
-If this number is off, then you will need to change you ppm `-q` option and your offset `-o` option until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on this dongle. This is the most difficult part of tuning in the P25 signal, but fortunately once you find the correct number, it will hopefully not deviate much. It should deviate less with higher quality dongles.
+6. Verify the center frequency is on top of the control channel peak. `Press the number 1` to bring up the `fft plot`. This plot will show you the sampled specturm and the power of the signals recieved. You should see the peak of the control channel frequency line up with the black bar indicating the tuned frequey.
+
+If this number is off, then you will need to change you ppm `-q` option and your offset `-o` option until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on this dongle. This is the most difficult part of tuning in the P25 signal, but that is why we first started in GQRX to get a good starting point. Fortunately once you find the correct `ppmn` number, it will hopefully not deviate much. It should deviate less with higher quality dongles. Cheap dongles may increase in temperature overtime and cause additional drift. Interference from nearby electronics or USB devices can also cause signal loss due to increased noise.
+
+7. Verify the constellation plot is showing good decoding of the `CQPSK` signal. `CQPSK` or Compatible Differential Offset Quadrature Phase Shift Keying is the modulation technique used by P25 Phase II FDMA systems. You should see 4 distinct circles in your graph that represent hte 4 possible digital symbol values transmitted by the signal. If you see a ring or one large circle, then OP25 is not able to demodulate the `CQPSK` signal correctly and you will need to improve your reception or confirm your settings.
+
+8. Verify the Mixer:balance plot is showing an even mix of the signal. If your signal is not dead on center then you may see one side of hte signal peak higher than the other. Ideally this plot is showing a low number (less than 10).  As long as you are close enough the `-X` option should autotune to achieve a good balance. For example, my auto tune is showing  XXX hertz correction in the below image. You can tune manyually using the `<` `>` and `,` `.` keys
+
 
 
 7. Press `q` to quit the program
