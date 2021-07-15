@@ -234,7 +234,7 @@ If this number is off, then you will need to change you ppm `-q` option and your
 
 7. Verify the constellation plot is showing good decoding of the `CQPSK` signal. `CQPSK` or Compatible Differential Offset Quadrature Phase Shift Keying is the modulation technique used by P25 Phase II FDMA systems. You should see 4 distinct circles in your graph that represent hte 4 possible digital symbol values transmitted by the signal. If you see a ring or one large circle, then OP25 is not able to demodulate the `CQPSK` signal correctly and you will need to improve your reception or confirm your settings.
 
-8. Verify the Mixer:balance plot is showing an even mix of the signal. If your signal is not dead on center then you may see one side of hte signal peak higher than the other. Ideally this plot is showing a low number (less than 10).  As long as you are close enough the `-X` option should autotune to achieve a good balance. For example, my auto tune is showing  XXX hertz correction in the below image. You can tune manyually using the `<` `>` and `,` `.` keys
+8. Verify the Mixer:balance plot is showing an even mix of the signal. If your signal is not dead on center then you may see one side of hte signal peak higher than the other. Ideally this plot is showing a low number (less than 10).  As long as you are close enough the `-X` option should autotune to achieve a good balance. For example, my auto tune is showing  XXX hertz correction in the below image. You can tune manyually using the `<` `>` (1200 hz) and `,` `.` (100 hz) keys
 
 
 
