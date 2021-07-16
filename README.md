@@ -36,6 +36,8 @@ If you simply want to plug your Pi radio into a car (or other USB power source a
 - [RTL-SDR Blog V3 Dongle and Antenna Kit](https://www.amazon.com/RTL-SDR-Blog-RTL2832U-Software-Defined/dp/B011HVUEME/) $39.95 
 - **Total $153.38 not including tax, $50.90 with existing Pi and SD card**
 
+> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from thier website. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was reccommended becuase it is assumed many users will already have a Raspberry Pi to begin with, it allows you the option to use an 8GB RAM model, and it is cheaper.
+
 ### Minimum Required Hardware
 
 With an existing computer running Linux you simply need an SDR dongle and antenna to begin monitoring P25 radio communications. 
@@ -54,9 +56,6 @@ If not using the pi-top[4] case we recommend you install Ubuntu Desktop 21.04 on
 #### Option 1: Install pi-topOS on Raspberry Pi when using pi-top[4] case
 
 1. First you need to install your Pi into your pi-top[4] case if not already done so. See this [youtube video](https://www.youtube.com/watch?v=38BCTsGrdiU) for instructions. 
-
-> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from thier website. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was reccommended becuase it is assumed many users will already have a Raspberry Pi to begin with, it allows you the option to use an GB RAM model, and it is cheaper.
-
 2. Now we can install the OS. Download the pi-topOS from [here](https://www.pi-top.com/products/os)
 3. Extract the image from the zip file.
 3. Download the Raspberyy Pi Imager [software](https://www.raspberrypi.org/software/)
