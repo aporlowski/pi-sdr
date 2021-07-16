@@ -183,6 +183,8 @@ gqrx
 
 6. Push the `play` button in the top left corner. You should hear start to hear the radio station. You will see in the top half of the screen a specturm analyzer, and in the bottom half a time plot of the signal strength for the sampled frequency range. The specturem analyzer measures the signal strength in dB. You will see a noise floor across the entire frequency range (probably between -70 to -100 dB depending on your reciever and gain settings). Where there is a signal broadcast, you should see peaks of signals rise above the noise floor(probably between -80 and -20 dB), these are broadcast radios signals. In the lower plot, time runs up and down along the y-axis, and frequency is the x-axis. The colors show the signal strength blue:low, yellow:medium, red:high. Yellow is typically suficient.
 
+If your signal is not well define from the noise floor you may need to adjust your LNA `input tab` > `LNA`> I have mine set at 3.6 dB. You may also adjust your gain `reciever tab` > `Gain` > I have mine at -3.6 dB.
+
 7. Push the `play` button again to stop the reception after you finish exploring the software. Next, we will try a slightly more difficult signal to tune, NOAA Weather radio.
 
 #### NOAA Weather Radio
