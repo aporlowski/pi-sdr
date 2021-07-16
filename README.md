@@ -79,9 +79,11 @@ You know have Ubuntu Desktop installed on your Pi. Insert the SD card into the P
 
 ### Setup, Update and Upgrade your OS
 
-As the Pi is booting your will be presented a GUI setup menu. Setup the OS using the GUI guide to select a username, password, wifi, etc.
+As the Pi is booting your will be presented a GUI setup menu. Setup the OS using the GUI guide to setup the computer. 
 
-Once you are logged into your desktop we first need to update the software and software repositories to ensure we have the latest software on our OS. Run the commands below to update and reboot.
+##TODO figure out how to boot linux without login
+
+Once you are at your desktop we first need to update the software and software repositories to ensure we have the latest software on our OS. Run the commands below to update and reboot. If you are using `pi-topOS` this was completed in the GUI and you can skip to the next section.
 
 ```sudo apt update```
 
@@ -102,7 +104,7 @@ sudo apt-get purge --auto-remove gqrx-sdr
 sudo apt-get purge --auto-remove libgnuradio*   
 ```
 
-3. Next we need to add multiple Personal Package Archive to install the software. GQRX and its required components are distributed by its authors in PPA instead of using standard built-in Ubuntu repositories. This gives the authors more control over the software repository, but requires we add the repositories to our OS so the software can be located.
+3. **Ubunt only, pi-topOS skip:** Next we need to add multiple Personal Package Archive to install the software. GQRX and its required components are distributed by its authors in PPA instead of using standard built-in Ubuntu repositories. This gives the authors more control over the software repository, but requires we add the repositories to our OS so the software can be located.
 
 ```
 sudo add-apt-repository -y ppa:bladerf/bladerf
