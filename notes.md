@@ -16,3 +16,11 @@
 ## DMR
 
 - UK equiavlant of P25 (Europe?) fully encrypted in BBC, so not able to listen to it.
+
+
+## Unorganized
+
+- change the sample rate on gqrx for improved performance
+- relook LNA and gain description was not the same for recommended dongle
+- noaa weather coverage maps
+- 
