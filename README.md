@@ -236,7 +236,7 @@ There are many options include to the `rx.py` program, that I will desribe below
 
 `--args "rtl`: this tells the OP25 software that you are using an rtl-sdr type dongle
 
-`--gains 'lna:36` this controls the low noise amplifier to increase the strenth of hte signal (and also the noise) I believe this value is 3.6 dB
+`--gains 'lna:36` this controls the low noise amplifier to increase the strenth of hte signal (and also the noise) I believe this value is 36 dB, similar to the LNA option in the `input tab` of GQRX.
 
 `-S 960000` this is the sample range. Our SDR will monitor 960,000 kHz of bandwidth. 
 
