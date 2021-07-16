@@ -55,7 +55,17 @@ If not using the pi-top[4] case we recommend you install Ubuntu Desktop 21.04 on
 
 1. First you need to install your Pi into your pi-top[4] case if not already done so. See this [youtube video](https://www.youtube.com/watch?v=38BCTsGrdiU) for instructions. 
 
-> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from thier website. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was reccommended becuase it is assumed many users will already have a Raspberry Pi to begin with. It is also cheaper.
+> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from thier website. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was reccommended becuase it is assumed many users will already have a Raspberry Pi to begin with, it allows you the option to use an GB RAM model, and it is cheaper.
+
+2. Now we can install the OS. Download the pi-topOS from [here](https://www.pi-top.com/products/os)
+3. Extract the image from the zip file.
+3. Download the Raspberyy Pi Imager [software](https://www.raspberrypi.org/software/)
+4. Insert your micro SD card into an SD card reader and plug it into your laptop
+5. Launch the Pi Imager software
+6. `Choose OS` > `Custom Image` > `Use the .img file you extracted e.g. XXXX-pi-topOS-sirius.img`
+7. `Choose Storage` > select your SD card
+8. `Write`
+
 
 #### Option 2: Install Ubuntu Desktop 21.04 on Raspberry Pi when not using pi-top[4] case
 
