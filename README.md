@@ -61,7 +61,7 @@ If not using the pi-top[4] case we recommend you install Ubuntu Desktop 21.04 on
 3. Download the Raspberyy Pi Imager [software](https://www.raspberrypi.org/software/)
 4. Insert your micro SD card into an SD card reader and plug it into your laptop
 5. Launch the Pi Imager software
-6. `Choose OS` > `Custom Image` > `Use the .img file you extracted e.g. XXXX-pi-topOS-sirius.img`
+6. `Choose OS` > `Use Custom` > `Use the .img file you extracted e.g. XXXX-pi-topOS-sirius.img`
 7. `Choose Storage` > select your SD card
 8. `Write`
 
