@@ -23,4 +23,5 @@
 - change the sample rate on gqrx for improved performance
 - relook LNA and gain description was not the same for recommended dongle
 - noaa weather coverage maps
-- most recently 162.500 weather (georgia, south of bedford) was working not 162.45 
+- most recently 162.500 weather (georgia, south of bedford) was working not 162.45
+- get what you pay for when it comes to SDR and perhaps antennas
