@@ -333,6 +333,9 @@ The world of SDR and radio waves is vast and complex. In this background section
 
 #### OP25 Software
 
+#### Interference
+usb
+
 
 ### P25
 
