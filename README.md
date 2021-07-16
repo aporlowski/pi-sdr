@@ -122,8 +122,8 @@ sudo apt-get install gqrx-sdr
 5. Next we will install the libvolk2-bin profiler to optimize our machines radio processing 
 
 ```
-sudo apt-get install libvolk2-bin   (replaced libvolk1-bin)
-volk_profile
+sudo apt-get install libvolk2-bin   (Ubuntu only, if using older ubuntu use libvolk1-bin)
+volk_profile (ubuntu and pi-topOS)
 ```
 
 Running this program creates a congiuration file in `$HOME/.volk/volk_config` that contains the best architecture and function calls to process radio signals on your computer. 
