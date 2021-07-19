@@ -352,7 +352,7 @@ Ensure you save as a tab delimited file using [these instructions repeated below
 
 ![RR TGIDS](/images/rr-tgids.png)
 
-Now edit the trunk.tsv file in the Libre calc app. Under `tgid_tags_file` input `bloomington.tsv`. This tells the software to youse `bloomington.tsv` to translate the tgids.
+Now edit the trunk.tsv file in the Libre calc app. Under `tgid_tags_file` input `bloomington.tsv`. This tells the software to youse `bloomington.tsv` to translate the tgids. When saving use hte `Use Text CSV format` to keep the file as a tabbed separated file.
 
 11. Relaunch the program with the same command as in `3.` You will now see the tags at the bottom of the terminal during voice transmissions. In this case `DOT-52-SUB`. You can yous the descriptions if you prefer.
 
@@ -445,3 +445,7 @@ usb
 #### Phase 1: 
 
 #### Phase 2:	
+
+## Acknoledgements
+
+I would like to ackknowledge John for his useful OP5 [tutorial](https://www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies/) that this tutorial extends and updates. 
