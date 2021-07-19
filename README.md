@@ -448,4 +448,4 @@ usb
 
 ## Acknoledgements
 
-I would like to ackknowledge John for his useful OP5 [tutorial](https://www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies/) that this tutorial extends and updates. 
+I would like to ackknowledge John for his useful OP25 [tutorial](https://www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies/) that this tutorial extends and updates. 
