@@ -393,6 +393,13 @@ sudo systemctl start radio-start.service
 sudo systemctl enable autossh-red001.service
 ```
 
+save command in radio-start.sh
+chmod 777 radio-start.sh
+./radio-start.sh to test that it works
+crontab-e
+select editor
+
+
 ### Video Demo
 
 ## Background
