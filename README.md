@@ -12,6 +12,8 @@ P25 recievers on the market, such as the [Bluetail Technolgies P25rx](https://bl
 
 > See this [site](https://wiki.radioreference.com/index.php/APCO_Project_25#Scanner_Support_FDMA_and_TDMA) for a list of P25 scanners and thier supported technology (phase I, II, etc) 
 
+## Video Demo
+
 ## Components
 
 In the sections below we provide components recommended to build a Raspberry Pi based radio with different use-cases in mind.
@@ -382,8 +384,6 @@ Comment=
 ```
 
 Now on boot, the radio application will automatically be launched.
-
-### Video Demo
 
 ## Background
 
