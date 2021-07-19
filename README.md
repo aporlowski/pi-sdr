@@ -366,6 +366,8 @@ We will now setup the radio to automatically launch the op25 software on boot, s
 
 Create the file `~/.config/autostart/radio-start.desktop`.
 
+`mkdir ~/.config/autostart`
+
 `nano ~/.config/autostart/radio-start.desktop`
 
 Write this into the file. Be sure the username, directory, and command options are correct in the `Exec` field.
