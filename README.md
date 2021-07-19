@@ -312,13 +312,13 @@ Continue trobleshooting by changing your input options and using hte steps below
 
 6. Verify the center frequency is on top of the control channel peak. `Press the number 1` to bring up the `fft plot`. This plot will show you the sampled specturm and the power of the signals recieved. You should see the peak of the control channel frequency line up with the black bar indicating the tuned frequey.
 
-![FFT Plot](/images/fft-plot.png)
+![FFT Plot](/images/fft-plot)
 
 If this number is off, then you will need to change you ppm `-q` option until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on the cheap dongle. This is the most difficult part of tuning in the P25 signal, but that is why we first started in GQRX, to get a good starting point. Fortunately once you find the correct `ppmn` number, it will hopefully not deviate much. It should deviate less with higher quality dongles. Cheap dongles may increase in temperature overtime and cause additional drift. Interference from nearby electronics or USB devices can also cause signal loss due to increased noise. DC bias can also affect reception if tuning directly on the cneter frequency (i.e. you set `-o` to 0)
 
 7. Verify the constellation plot is showing good decoding of the `CQPSK` signal. `Press the number 2` to bring up the `constellation plot`. `CQPSK` or Compatible Differential Offset Quadrature Phase Shift Keying is the modulation technique used by P25 Phase II FDMA systems. You should see 4 distinct circles in your graph that represent the 4 possible digital symbol values transmitted by the signal. If you see a ring or one large circle, then OP25 is not able to demodulate the `CQPSK` signal correctly and you will need to improve your reception or confirm your settings.
 
-![Constellation Plot](/images/constellation-plot-good.png)
+![Constellation Plot](/images/constellation-plot-good)
 
 8. Verify the Mixer:balance plot is showing an even mix of the signal. `Press the number 5` to bring up the `Mixer:balance plot`.  If your signal is not dead on center then you may see one side of hte signal peak higher than the other. Ideally this plot is showing a low number (less than 10).  As long as you are close enough the `-X` option should autotune to achieve a good balance. For example, my auto tune is showing  XXX hertz correction in the below image. You can tune manyually using the `<` `>` (1200 hz) and `,` `.` (100 hz) keys
 
