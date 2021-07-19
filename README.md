@@ -364,6 +364,35 @@ We will now setup the radio to automatically launch the op25 software on boot, s
 
 We will setup a systemd service to do this.
 
+`sudo gedit`
+
+Write this file being sure to double check the username and directories (this example should work unchanged for pi-topOS).
+
+```
+[Unit]
+Description=Autostart the OP25 Radio Scanner
+After=multi-user.target
+
+[Service]
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/Documents/op25/op25/gr-op25_repeater/apps/
+ExecStart=/home/pi/Documents/op25/op25/gr-op25_repeater/apps/rx.py  --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 0 -o 28000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Save as `/etc/systemd/system/radio-start.service`
+
+To get the service to start and be enabled on system restart we need to run the following commands.
+
+```
+sudo systemctl daemon-reload
+sudo systemctl start radio-start.service
+sudo systemctl enable autossh-red001.service
+```
+
 ### Video Demo
 
 ## Background
