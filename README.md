@@ -200,7 +200,7 @@ gqrx
 
 6. Push the `play` button in the top left corner. You should hear start to hear the radio station. You will see in the top half of the screen a specturm analyzer, and in the bottom half a time plot of the signal strength for the sampled frequency range. The specturem analyzer measures the signal strength in dB. You will see a noise floor across the entire frequency range (probably between -60 to -100 dB depending on your reciever and GQRX settings). Where there is a signal broadcast, you should see peaks of signals rise above the noise floor(probably between -80 and -20 dB), these are broadcast radios signals. In the lower plot, time runs up and down along the y-axis, and frequency is the x-axis. The colors show the signal strength blue:low, yellow:medium, red:high. Yellow is typically suficient.
 
-If your signal is not well define from the noise floor you may need to adjust your LNA `input tab` > `LNA`> I have mine set at 36 dB. You may also adjust your gain `reciever tab` > `Gain` > I have mine at -3.7 dB. The  `LNA` is a software low noise amplifier that attempts to amplify the power of the signal while not affecting the signal-to-noise (SNR) ratio. The `gain` will increase the power (read as volume) of the signal. You will notice as you increase the `gain` the volume output increases, but as you increase the `LNA` the signal may become more clear.
+If your signal is not well define from the noise floor you may need to adjust your LNA `input tab` > `LNA`> I have mine set at 3.6 dB. You may also adjust your gain `reciever tab` > `Gain` > I have mine at -3.7 dB. The  `LNA` is a software low noise amplifier that attempts to amplify the power of the signal while not affecting the signal-to-noise (SNR) ratio. The `gain` will increase the power (read as volume) of the signal. You will notice as you increase the `gain` the volume output increases, but as you increase the `LNA` the signal may become more clear. Increasing the `LNA` will increase the power consumption, so you ideally want to use as little as possible while still recieving a clear signal.
 
  ![FM Tuning](/images/fm-tuning.png)
 
@@ -208,13 +208,19 @@ If your signal is not well define from the noise floor you may need to adjust yo
 
 #### NOAA Weather Radio
 
-1. Change the frequency to your local NOAA Weather radio channel. In Bloomington, this is 162.450 MHz or 162450 kHz. You can find your local frequency from the [NOAA site](https://www.weather.gov/nwr/station_listing). 
+1. Change the frequency to your local NOAA Weather radio channel. In Bloomington, this is currently 162.50 MHz or 162500 kHz. You can find your local frequency from the [NOAA site](https://www.weather.gov/nwr/station_listing). 
 
 2. Change the mode to `Narrow FM`. You will notice the grey bars on either side of the center frequency will shirnk. Narrow FM uses less bandwidth to broadcast the signals. This allows more radio stations to fit into the specturm, however, it decreases the quality of audio. This smaller bandwidth is still suitable for talking based audio like two-way radio and news, but it would not perform well for music found on typical FM radio stations.
 
-3. Push the `play` button. You should see a signal peak near your center frequency (red line). However, depending on your reciever, you may find it is not completely centered on the peak. This is due to slight inaccuracies that can exist in your reciever. As frequency increase, you will notice this inaccuracy will also become more severe. You can tune the frequency by hovering over the red bar until you have a bi-directional horizontal arrow and then drag the center frequency until you get a clear signal. You can also use the frequency input text box or arrows, or click the numbers in the black box under `Reciever Options`. Notice the audio quality of the NOAA radio is significantly less that the FM radio, this is due to the reduced bandwidth.
+3. Push the `play` button.
 
-4. Notice how much you have to move the frequency to get a clear signal. For example, I have to move my frequency -3.5 kHz. This will not be a static number that works for all frequencies, as it will increaes as frequency does. Negative imples less (left) of the center frequency and a positive number imples greater (right). Fortunately there is a correction method that does scales with the frequency called parts-per-million `ppm`. We will discuss how to find this correction number below.
+4. For the NOAA Weather Radio I had to increase the `LNA` from 3.6 dB to 36 dB to hear the voice transmission.   
+
+4. You should see a signal peak near your center frequency (red line). However, depending on your reciever, you may find it is not completely centered on the peak. This is due to slight inaccuracies that can exist in your reciever. As frequency increase, you will notice this inaccuracy will also become more severe. You can tune the frequency by hovering over the red bar until you have a bi-directional horizontal arrow and then drag the center frequency until you get a clear signal. You can also use the frequency input text box or arrows, or click the numbers in the black box under `Reciever Options`. Notice the audio quality of the NOAA radio is significantly less that the FM radio, this is due to the reduced bandwidth.
+
+5. Notice how much you have to move the frequency to get a clear signal. For example, using a cheaper dongle, I have to move my frequency -3.5 kHz. On my purpose-built dongle, I do not need to adjust. This will not be a static number that works for all frequencies, as it will increaes as frequency does. Negative imples less (left) of the center frequency and a positive number imples greater (right). Fortunately there is a correction method that does scales with the frequency called parts-per-million `ppm`. We will discuss how to find this correction number below.
+
+ ![NOAA Tuning](/images/noaa-tuning.png)
 
 #### P25 control channel
 
