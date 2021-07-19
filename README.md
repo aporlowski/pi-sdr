@@ -8,11 +8,13 @@ This tutorial will be a introduction to Raspberry Pi single-board computers, sof
 
 Teachers and students can use this tutorial to learn about these concepts through an hands-on project. Concerned citizens, journalists, and Virtual Operations Support Team (VOST) members can use this tutorial to setup a radio to monitor emergency radio traffic, NOAA weather radio, or other FM radio in their area.
 
-P25 recievers on the market, such as the [Bluetail Technolgies P25rx](https://bluetailtechnologies.com/products/p25rx-digital-police-receiver), typically cost $250 or more and are relatively single use. This can be prohibitively expensive for individuals interested in monitoring emergency radio communication. Some webistes, such as [openmhz.com](https://openmhz.com/systems) provide real-time and recorded P25 communications traffic, however coverage for your area is not guaranteed. With a cheap SDR dongle and a computer such as the Raspberry Pi, you can set up your own P25 scanner. Building your own P25 scanner is a fun hands-on project to learn about P25, SDR, and single-board computers. This tutorial can enable and encourage more people to implement P25 trunk recording such as that found on openmhz.com to make emergency communications more acessbile to the public.
+P25 recievers on the market, such as the [Bluetail Technolgies P25rx](https://bluetailtechnologies.com/products/p25rx-digital-police-receiver), typically cost $250 or more and are relatively single use. This can be prohibitively expensive for individuals interested in monitoring emergency radio communication. Some webistes, such as [openmhz.com](https://openmhz.com/systems) provide real-time and recorded P25 communications traffic, however coverage for your area is not guaranteed. With a cheap SDR dongle and a computer such as the Raspberry Pi, you can set up your own P25 scanner. This tutorial can enable and encourage more people to implement P25 trunk recording such as that found on openmhz.com to make emergency communications more acessbile to the public. Building your own P25 scanner is a fun hands-on project to learn about P25, SDR, and single-board computers.
 
 > See this [site](https://wiki.radioreference.com/index.php/APCO_Project_25#Scanner_Support_FDMA_and_TDMA) for a list of P25 scanners and thier supported technology (phase I, II, etc) 
 
 ## Components
+
+In the sections below we provide components recommended to build a Raspberry Pi based radio with different use-cases in mind.
 
 ### Portable Model
 
@@ -21,30 +23,31 @@ These components provide a portable Rasbperry Pi based radio including a case, b
 - [Raspberry Pi 4 Model B Starter Kit 8GB](https://www.amazon.com/dp/B08DJ9MLHV?psc=1&smid=A30ZYR2W3VAJ0A&ref_=chk_typ_imgToDp) $94.99 (cheaper, smaller RAM models should work as well)
 - [Samsung EVO 32 GB micro SD card](https://www.amazon.com/dp/B06XWN9Q99?psc=1&smid=ATVPDKIKX0DER&ref_=chk_typ_imgToDp) $7.49
 - [PI-TOP [4] DIY Edition Case](https://www.amazon.com/dp/B08N6B8M1H) $99.95
-- [RTL-SDR Blog V3 Dongle and Antenna Kit](https://www.amazon.com/RTL-SDR-Blog-RTL2832U-Software-Defined/dp/B011HVUEME/) $39.95 (in the tutorial below [this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $ 19.99 SDR dongle was used instead. The reccommended dongle should provide better radio reception with less manual frequency corerection and less frequency drift compared to a cheaper dongle. It should also require no deviation from the tutorial)
-- **Total $242.38 not including tax, or $139.9 with existing Pi and SD card** (You can redudece the price by $40 or more by using cheaper Raspberry Pi's and SDR dongles)
+- [USB-C PD power supply](https://www.amazon.com/ZMI-zPower-Turbo-Power-Adapter/dp/B07D64QLQ1/) $19.99 capable of 12v or 15v 3A output. 
+- [Nooelec NESDR Smart v4 Bundle](https://www.amazon.com/gp/product/B01GDN1T4S/) $41.95 ([this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $19.99 SDR dongle was validated with the tutorial below (althout it is significantly more difficult to tune; see notes in tutorial) . The reccommended dongle should provide better radio reception with less manual frequency corerection and less frequency drift compared to the cheaper dongle.
+- [LM YN LTE 4G Omnidirectional Antenna](https://www.amazon.com/gp/product/B01N6GO584/). $6.99 This provides a more portable form factor antenna for 800 Mhz P25 scanning demonstrated below, but is not required since the Nooelec comes with antenns.
+- **Total $271.36 not including tax, or $168.86 with existing Pi and SD card** (You can redudece the price by $40 or more by using cheaper Raspberry Pi's and SDR dongles)
 
-Wihle it is near the top-end of the price range for Pi cases, the pi-top[4] is a good fit for this project becuase it includes a battery, speaker, OS soft-shutdown via button press (to prevent SD card corruption without needing keyboard, monitor, or mouse), and a utility screen that provides battery level and CPU monitoring. The pi-top[4] case is a well designed case for use in education or project settings, such as building robots, sensors, and more. It has the added benefit of exposing all GPIO pins and ports of the raspberry pi, so you can extend your pi to do multiple other projects if desired. It also has an attachable touch screen and keyboard that you can add to make your pi-radio fully configurable in a stand-alone manner. 
+Wihle it is near the top-end of the price range for Pi cases, the pi-top[4] is a good fit for this project becuase it includes a battery, speaker, OS soft-shutdown via button press (to prevent SD card corruption without needing keyboard, monitor, or mouse to shutdown), and a utility screen that provides battery level and CPU monitoring. The pi-top[4] case is a well designed case for use in education or project settings, such as building robots, sensors, and more. It has the added benefit of exposing all GPIO pins and ports of the raspberry pi, so you can extend your pi to do multiple other projects if desired. It also has an attachable touch screen and keyboard that you can add to make your pi-radio fully configurable in a stand-alone manner. 
 
-> Note the DIY edition does not come with the required USB-C PD 12v or 15v power supply. These are the type used for a modern laptop charger. Your 5v phone charger or Raspberry Pi charger will not work. Something like this [$20 charger](https://www.amazon.com/ZMI-zPower-Turbo-Power-Adapter/dp/B07D64QLQ1/) should work. I found a Nintendo Switch power supply works as well.
+> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from thier website. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was reccommended becuase it is assumed many users will already have a Raspberry Pi to begin with, it allows you the option to use an 8GB RAM model, and it is cheaper. Note the DIY edition does not come with the required USB-C PD 12v or 15v power supply. These are the type used for a modern laptop charger. Your 5v phone charger or Raspberry Pi charger will not work. I found a Nintendo Switch power supply works as well.
 
 ### Car Plug in Model
 
-If you simply want to plug your Pi radio into a car (or other USB power source and bluetooth speaker), then you will only need your Pi, the SDR dongle and antenna kit, and an inexpensive case.
+If you simply want to plug your Pi radio into a car (or other USB power source and bluetooth accessible speaker), then you will only need your Pi, the SDR dongle and antenna kit, and an inexpensive case.
 
 - [Raspberry Pi 4 Model B Starter Kit 8GB](https://www.amazon.com/dp/B08DJ9MLHV?psc=1&smid=A30ZYR2W3VAJ0A&ref_=chk_typ_imgToDp) $94.99 (cheaper, smaller RAM models should work as well)
 - [Samsung EVO 32 GB micro SD card](https://www.amazon.com/dp/B06XWN9Q99?psc=1&smid=ATVPDKIKX0DER&ref_=chk_typ_imgToDp) $7.49
 - [Raspberry Pi 4 Case iUniker](https://www.amazon.com/iUniker-Raspberry-Aluminium-Heatsink-Supply/dp/B07D3S4KBK/) $10.95
-- [RTL-SDR Blog V3 Dongle and Antenna Kit](https://www.amazon.com/RTL-SDR-Blog-RTL2832U-Software-Defined/dp/B011HVUEME/) $39.95 
-- **Total $153.38 not including tax, $50.90 with existing Pi and SD card**
+- [Nooelec NESDR Smart v4 Bundle](https://www.amazon.com/gp/product/B01GDN1T4S/) $41.95 ([this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $19.99 SDR dongle was validated with the tutorial below (althout it is significantly more difficult to tune; see notes in tutorial) . The reccommended dongle should provide better radio reception with less manual frequency corerection and less frequency drift compared to the cheaper dongle.
+- **Total $155.38 not including tax, $52.90 with existing Pi and SD card**
 
-> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from thier website. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was reccommended becuase it is assumed many users will already have a Raspberry Pi to begin with, it allows you the option to use an 8GB RAM model, and it is cheaper.
 
 ### Minimum Required Hardware
 
 With an existing computer running Linux you simply need an SDR dongle and antenna to begin monitoring P25 radio communications. 
 
-- [RTL-SDR Blog V3 Dongle and Antenna Kit](https://www.amazon.com/RTL-SDR-Blog-RTL2832U-Software-Defined/dp/B011HVUEME/) $39.95 (in the tutorial below [this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $ 19.99 SDR dongle was used instead. The reccommended dongle should provide better radio reception, and require no deviation from the tutorial)
+- [Nooelec NESDR Smart v4 Bundle](https://www.amazon.com/gp/product/B01GDN1T4S/) $41.95 ([this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $19.99 SDR dongle was validated with the tutorial below (althout it is significantly more difficult to tune; see notes in tutorial) . The reccommended dongle should provide better radio reception with less manual frequency corerection and less frequency drift compared to the cheaper dongle.
 - **Total $19.99-39.99 not including tax**
 
 ## Setup
