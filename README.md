@@ -372,6 +372,23 @@ Create the file `~/.config/autostart/radio-start.desktop`.
 
 Write this into the file. Be sure the username, directory, and command options are correct in the `Exec` field.
 
+**pi-topOS Version**
+
+```
+[Desktop Entry]
+Type=Application
+Exec=lxterminal -e bash -c 'cd /home/pi/Documents/op25/op25/gr-op25_repeater/apps; ./rx.py --nocrypt --args "rtl" --gains "lna:36" -S 960000 -X -q 0 -o 20000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2'
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=radio-start
+Name=radio-start
+Comment[en_US]=
+Comment=
+```
+
+**Ubuntu Version**
+
 ```
 [Desktop Entry]
 Type=Application
