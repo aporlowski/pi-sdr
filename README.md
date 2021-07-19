@@ -50,6 +50,19 @@ With an existing computer running Linux you simply need an SDR dongle and antenn
 - [Nooelec NESDR Smart v4 Bundle](https://www.amazon.com/gp/product/B01GDN1T4S/) $41.95 ([this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $19.99 SDR dongle was validated with the tutorial below (althout it is significantly more difficult to tune; see notes in tutorial . The reccommended dongle should provide better radio reception with less manual frequency corerection and less frequency drift compared to the cheaper dongle.)
 - **Total $19.99-39.99 not including tax**
 
+### Antenna Purposes
+
+Antennas vary in thier phyical properties, such as length and shape, to optimize reception of a specific section of radio spectrum. Length typically decreaes as frequency increases. 
+
+The Nooelec bundle comes with three antennas, and we reccommend LM YN LTE 4G Omnidirectional Antenna for more portable 800 Mhz reception when compared to the cable and base setup that comes with the Nooelec.
+
+The shorter fixed length antenna (~12cm) is for generic UHF, 300 MHz to 3 GHz.
+
+The longer fixed length antenna is optimized specifically for 433 Mhz which includes the ISM radio band.
+
+The variable length antenna can be tuned for a range of frequencies by varying its extended length. You can use various [calculators](http://www.csgnetwork.com/antennagenericfreqlencalc.html) do determine this. For example, to get a 1/2 wavelength antenna for 162.45 Mhz NOAA Weather Radio that we demonstrate later on, we determine we need to extend the antenna to ~34.57 inches. Whereas an equivalent 1/2 wavelenth for 858 Mhz P25 radio would be ~6.5 inches.
+
+
 ## Setup
 
 ### Choose your OS
@@ -175,9 +188,9 @@ gqrx
 
 2. Pick device RTL2838UHIDIR > OK
 
-3. We will start with an easy signal to capture, FM radio; the same radio stations you listen to in a car. For our example we will use Bloomington's B96.7 WBWB found at 96.7 MHz FM. If you are not in Bloomgington you can substitute a channel from your broadcast area. Because FM is a wide bandwidth transmission, it will be easier to find and tune correctly.  
+3. We will start with an easy signal to capture, FM radio; the same radio stations you listen to in a car. For our example we will use Bloomington's B96.7 WBWB found at 96.7 MHz. If you are not in Bloomgington you can substitute a channel from your broadcast area. Because FM is a wide bandwidth transmission, it will be easier to find and tune correctly.  
 
-4. GQRX takes all frequency inputs in kHz. So to get from 96.7 MHz to kHZ we need to multiply 96.7 by 1000 to get 96700 kHz. Input this number in the Frequency box under the Reciever tab. This is the target frequency the SDR will center its reception on.
+4. GQRX takes all frequency inputs in kHz. So to get from 96.7 MHz to kHZ we need to multiply 96.7 MHz by 1000 to get 96700 kHz. Input this number in the Frequency box under the Reciever tab. This is the target frequency the SDR will center its reception on.
 
 5. Next Select `mode WFM (mono)` or `WFM (stereo)`. This mode selection that tells GQRX how to demondulate the radio signal. For example, AM and FM are different modulation techniques and you won't hear the correct audio output if you do not select the correct mode. You will notice that the stereo demodulation provides two channels of sound whereas the mono demodulation provides only one channel. Depending on your reception quality one mode may sound better than the other.
 
