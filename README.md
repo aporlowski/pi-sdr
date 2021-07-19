@@ -216,9 +216,11 @@ If your signal is not well define from the noise floor you may need to adjust yo
 
 4. For the NOAA Weather Radio I had to increase the `LNA` from 3.6 dB to 36 dB to hear the voice transmission.   
 
-4. You should see a signal peak near your center frequency (red line). However, depending on your reciever, you may find it is not completely centered on the peak. This is due to slight inaccuracies that can exist in your reciever. As frequency increase, you will notice this inaccuracy will also become more severe. You can tune the frequency by hovering over the red bar until you have a bi-directional horizontal arrow and then drag the center frequency until you get a clear signal. You can also use the frequency input text box or arrows, or click the numbers in the black box under `Reciever Options`. Notice the audio quality of the NOAA radio is significantly less that the FM radio, this is due to the reduced bandwidth.
+5. You should see a signal peak near your center frequency (red line). However, depending on your reciever, you may find it is not completely centered on the peak. This is due to slight inaccuracies that can exist in your reciever. As frequency increase, you will notice this inaccuracy will also become more severe. You can tune the frequency by hovering over the red bar until you have a bi-directional horizontal arrow and then drag the center frequency until you get a clear signal. You can also use the frequency input text box or arrows, or click the numbers in the black box under `Reciever Options`. Notice the audio quality of the NOAA radio is significantly less that the FM radio, this is due to the reduced bandwidth.
 
-5. Notice how much you have to move the frequency to get a clear signal. For example, using a cheaper dongle, I have to move my frequency -3.5 kHz. On my purpose-built dongle, I do not need to adjust. This will not be a static number that works for all frequencies, as it will increaes as frequency does. Negative imples less (left) of the center frequency and a positive number imples greater (right). Fortunately there is a correction method that does scales with the frequency called parts-per-million `ppm`. We will discuss how to find this correction number below.
+6. Notice how much you have to move the frequency to get a clear signal. For example, using a cheaper dongle, I have to move my frequency -3.5 kHz. On my purpose-built dongle, I do not need to adjust. This will not be a static number that works for all frequencies, as it will increaes as frequency does. Negative imples less (left) of the center frequency and a positive number imples greater (right). Fortunately there is a correction method that does scales with the frequency called parts-per-million `ppm`. We will discuss how to find this correction number below.
+
+7.  With this narrower signal you may run into a form of interference known as DC bias. This affects the reciever only at the center frequency (e.g. the frequency you input into GQRX). If your reception is poor, you may find that the DC bias drowns out the signal. If you are having trouble getting clear reception, try offsetting the center frequency 20 kHz or so, and then tuning to the channel by dragging the red bar back onto the signal. Also, you can investigate the `DC remove` option on the `input tab`. 
 
  ![NOAA Tuning](/images/noaa-tuning.png)
 
@@ -227,6 +229,10 @@ If your signal is not well define from the noise floor you may need to adjust yo
 Next, we will search for the P25 control channel for Bloomington.
 
 1. Locate your P25 control channel by using the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) databse. The control channels are colored red. Search for bloomington and identify the control channel as `858.4875c` MHz. The channels in blue are alternate control channels, and the other channels are voice channels used by the trunked radio stations. This is a user updated database, so it may not be accurate. If the control channel does not work after following all instructions below, try the alternate control channels, or even the voice channels. I found that the Merer, WI P25 system was using the alternate control channel that was listed in the database.
+
+ ![Radio Reference](/images/radio-reference.png)
+
+
 2. Input the frequency as 858487.500 kHz
 3. Keep the mode on `Narrow FM`
 4. This channel is significantly harder to tune, as there is no voice audio to guide us. P25 is a digital broadcast, so the control channel is a consistent peak of what sounds like digital noise. See this [youtube video](https://www.youtube.com/watch?v=KtWhSuAL1_Q&t=5s) to get an idea of the sound we are looking for. Mine sounds similar to the video but with less of the screeching, chirping, and a slower paced rhtymic thudding, so do not be concerned if it only sounds similar, but not exact to the video.
