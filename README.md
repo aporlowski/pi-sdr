@@ -364,6 +364,25 @@ We will now setup the radio to automatically launch the op25 software on boot, s
 
 Create the file `~/.config/autostart/radio-start.desktop`.
 
+`nano ~/.config/autostart/radio-start.desktop`
+
+Write this into the file. Be sure the username, directory, and command options are correct in the `Exec` field.
+
+```
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/gnome-terminal -- bash -c 'cd /home/pi/Documents/op25/op25/gr-op25_repeater/apps; ./rx.py --nocrypt --args "rtl" --gains "lna:36" -S 960000 -X -q 0 -o 20000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2'
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=radio-start
+Name=radio-start
+Comment[en_US]=
+Comment=
+```
+
+Now on boot, the radio application will automatically be launched.
+
 ### Video Demo
 
 ## Background
