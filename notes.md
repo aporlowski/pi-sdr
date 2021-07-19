@@ -26,4 +26,4 @@
 - most recently 162.500 weather (georgia, south of bedford) was working not 162.45
 - get what you pay for when it comes to SDR and perhaps antennas
 - update components and add antenna https://www.amazon.com/LM-YN-Omnidirectional-Compatible-Frequency/dp/B01N6GO584/
--  
+-  remove small antenna recommendation (doesn't work well with pi-top, too much noise)
