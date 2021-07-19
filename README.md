@@ -257,10 +257,10 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 ./setTrunkFreq.sh 858.4875    (this modiefies op25.sh, but we may need to modify further for -q and -o)
 ```
 
-3. Launch OP25 using the command below. Substitue your correct `ppm` offset after the `-q` option. In my example it is 28.
+3. Launch OP25 using the command below. Substitue your correct `ppm` offset after the `-q` option. With my purpose-built dongle it is 0. For my cheap dongle it is 28.
 
 ```
-./rx.py --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 28 -o 28000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
+./rx.py --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 0 -o 28000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
 ```
 
 There are many options include to the `rx.py` program, that I will desribe below.
@@ -269,7 +269,7 @@ There are many options include to the `rx.py` program, that I will desribe below
 
 `--args "rtl`: this tells the OP25 software that you are using an rtl-sdr type dongle
 
-`--gains 'lna:36` this controls the low noise amplifier to increase the strenth of hte signal (and also the noise) I believe this value is 36 dB, similar to the LNA option in the `input tab` of GQRX.
+`--gains 'lna:36` this controls the low noise amplifier to increase the strenth of the signal (and also some of the noise) I believe this value is 36 dB, similar to the LNA option in the `input tab` of GQRX.
 
 `-S 960000` this is the sample range. Our SDR will monitor 960,000 kHz of bandwidth. 
 
@@ -277,9 +277,9 @@ There are many options include to the `rx.py` program, that I will desribe below
 
 `-X` The OP25 software will attempt to auto-tune to the frequency. It only works if you are close. You will see a number such as `Frequency 858.487500(-266)` at the bottom of the terminal. This shows it has autotuned -266 hz to center on the signal.
 
-`-q 28` This is the frequency correction in `ppm`. Better SDR dongles should be significantly lower (+- 2). 
+`-q 28` This is the frequency correction in `ppm`. Better SDR dongles should be significantly lower (<= +- 2). 
 
-`-o 28000` The is the offset from the center frequency to avoid DC bias. I found 28000 Hz to work well for my dongle, however, this may be higher than is actually needed. This is not related to the `-q` option. 
+`-o 28000` The is the offset from the center frequency to avoid DC bias. I found 28000 Hz to work well for both of my dongles, however, this may be higher than is actually needed. This is not related to the `-q` option. 
 
 `-v 1` Sets the verbosity level of the info and errors logged to stderr.2. Increase this for more information.
 
@@ -312,12 +312,23 @@ Continue trobleshooting by changing your input options and using hte steps below
 
 6. Verify the center frequency is on top of the control channel peak. `Press the number 1` to bring up the `fft plot`. This plot will show you the sampled specturm and the power of the signals recieved. You should see the peak of the control channel frequency line up with the black bar indicating the tuned frequey.
 
-If this number is off, then you will need to change you ppm `-q` option and your offset `-o` option until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on this dongle. This is the most difficult part of tuning in the P25 signal, but that is why we first started in GQRX to get a good starting point. Fortunately once you find the correct `ppmn` number, it will hopefully not deviate much. It should deviate less with higher quality dongles. Cheap dongles may increase in temperature overtime and cause additional drift. Interference from nearby electronics or USB devices can also cause signal loss due to increased noise.
+![FFT Plot](/images/fft-plot.png)
 
-7. Verify the constellation plot is showing good decoding of the `CQPSK` signal. `CQPSK` or Compatible Differential Offset Quadrature Phase Shift Keying is the modulation technique used by P25 Phase II FDMA systems. You should see 4 distinct circles in your graph that represent hte 4 possible digital symbol values transmitted by the signal. If you see a ring or one large circle, then OP25 is not able to demodulate the `CQPSK` signal correctly and you will need to improve your reception or confirm your settings.
+If this number is off, then you will need to change you ppm `-q` option until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on the cheap dongle. This is the most difficult part of tuning in the P25 signal, but that is why we first started in GQRX, to get a good starting point. Fortunately once you find the correct `ppmn` number, it will hopefully not deviate much. It should deviate less with higher quality dongles. Cheap dongles may increase in temperature overtime and cause additional drift. Interference from nearby electronics or USB devices can also cause signal loss due to increased noise. DC bias can also affect reception if tuning directly on the cneter frequency (i.e. you set `-o` to 0)
 
-8. Verify the Mixer:balance plot is showing an even mix of the signal. If your signal is not dead on center then you may see one side of hte signal peak higher than the other. Ideally this plot is showing a low number (less than 10).  As long as you are close enough the `-X` option should autotune to achieve a good balance. For example, my auto tune is showing  XXX hertz correction in the below image. You can tune manyually using the `<` `>` (1200 hz) and `,` `.` (100 hz) keys
+7. Verify the constellation plot is showing good decoding of the `CQPSK` signal. `Press the number 2` to bring up the `constellation plot`. `CQPSK` or Compatible Differential Offset Quadrature Phase Shift Keying is the modulation technique used by P25 Phase II FDMA systems. You should see 4 distinct circles in your graph that represent the 4 possible digital symbol values transmitted by the signal. If you see a ring or one large circle, then OP25 is not able to demodulate the `CQPSK` signal correctly and you will need to improve your reception or confirm your settings.
 
+![Constellation Plot](/images/constellation-plot-good.png)
+
+8. Verify the Mixer:balance plot is showing an even mix of the signal. `Press the number 5` to bring up the `Mixer:balance plot`.  If your signal is not dead on center then you may see one side of hte signal peak higher than the other. Ideally this plot is showing a low number (less than 10).  As long as you are close enough the `-X` option should autotune to achieve a good balance. For example, my auto tune is showing  XXX hertz correction in the below image. You can tune manyually using the `<` `>` (1200 hz) and `,` `.` (100 hz) keys
+
+![Balance Plot](/images/balance-plot.png)
+
+9. When there is a voice communication you will see the frequency, active talk-group ID (tgids) , a last seen timer, and a transmission count in the terminal.
+
+Notice in the image below that in periods of high talking traffic, you will see many voice frequencies being used. Even the alternate control channel for Bloomington was used at some point for a voice transmission. If simultaneous transmissions are executed on frequences separated by more bandwidth than the sample rate (in our case 960,000 kHz) you may not recieve one of those communications. You can setup multiple SDR dongles to ensure you have enough bandwidth to recieve all traffic. (outside the scope of this tutorial)
+
+![Voice-6-Freq](/images/voice-6-freq.png)
 
 
 7. Press `q` to quit the program
