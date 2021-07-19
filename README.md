@@ -326,7 +326,7 @@ If this number is off, then you will need to change you ppm `-q` option until th
 
 9. When there is a voice communication you will see the frequency, active talk-group ID (tgids) , a last seen timer, and a transmission count in the terminal.
 
-Notice in the image below that in periods of high talking traffic, you will see many voice frequencies being used. Even the alternate control channel for Bloomington was used at some point for a voice transmission. If simultaneous transmissions are executed on frequences separated by more bandwidth than the sample rate (in our case 960,000 kHz) you may not recieve one of those communications. You can setup multiple SDR dongles to ensure you have enough bandwidth to recieve all traffic. (outside the scope of this tutorial)
+Notice in the image below that in periods of high talking traffic, you will see many voice frequencies being used. Even the alternate control channel for Bloomington was used at some point for a voice transmission. If simultaneous transmissions are executed on frequences separated by more bandwidth than the sample rate (in our case 960,000 kHz) you may not recieve one of those communications. You can setup multiple SDR dongles to ensure you have enough bandwidth and recorders to recieve all traffic. (outside the scope of this tutorial)
 
 ![Voice-6-Freq](/images/voice-6-freq.png)
 
@@ -334,7 +334,9 @@ Notice in the image below that in periods of high talking traffic, you will see 
 7. Press `q` to quit the program
 
 
-7. Setup talk groups
+7. We can now setup a file to automatically translate the talk-grou ids (tgids) into a named entity such as ` Bloomington Police Dispatch`. This allows you to get a better idea of who is communicating. Open the file `Documents/op25/op25/gr-op25_repeater/apps/tompkins.tsv` using a spreasheet program. We need to create a tsv with the tgids in column 1 and the nomenclature in column 2. You can find these back on [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084). Search for all Bloomington related tgids and input in the columns. Save when you complete. An example tsv is includd in our git repository.
+
+
 8. Make the command autolaunch on boot
 9. Video demo
 
