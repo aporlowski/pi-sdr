@@ -60,7 +60,9 @@ The shorter fixed length antenna (~12cm) is for generic UHF, 300 MHz to 3 GHz.
 
 The longer fixed length antenna is optimized specifically for 433 Mhz which includes the ISM radio band.
 
-The variable length antenna can be tuned for a range of frequencies by varying its extended length. You can use various [calculators](http://www.csgnetwork.com/antennagenericfreqlencalc.html) do determine this. For example, to get a 1/2 wavelength antenna for 162.45 Mhz NOAA Weather Radio that we demonstrate later on, we determine we need to extend the antenna to ~34.57 inches. Whereas an equivalent 1/2 wavelenth for 858 Mhz P25 radio would be ~6.5 inches.
+The variable length antenna can be tuned for a range of frequencies by varying its extended length. You can use various [calculators](http://www.csgnetwork.com/antennagenericfreqlencalc.html) do determine this. For example, to get a 1/4 wavelength antenna for 162.45 Mhz NOAA Weather Radio that we demonstrate later on, we determine we need to extend the antenna to ~17.29 inches. Whereas an 1/2 wavelenth for 858 Mhz P25 radio would be ~6.5 inches.
+
+Assuming reception is strong enough, you can likely use any of the three antennas for all instructions below, however, if you are having trouble getting a strong reception, then you can use this information to choose the correct antenna for your task.
 
 
 ## Setup
