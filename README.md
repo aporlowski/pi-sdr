@@ -66,6 +66,13 @@ The variable length antenna can be tuned for a range of frequencies by varying i
 
 Assuming reception is strong enough, you can likely use any of the three antennas for all instructions below, however, if you are having trouble getting a strong reception, then you can use this information to choose the correct antenna for your task. It is a good excercise to try different antennas to see how your reception changes.
 
+## P25
+
+describe
+
+## Software Defined Radio
+
+describe
 
 ## Setup
 
