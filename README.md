@@ -77,7 +77,7 @@ P25 can be used to create large radio networks such as the statewide Indiana SAF
 
 It is important to note for this tutorial that the Indiana P25 network is a trunked radio network. A trunked network includes a control channel and multiple voice channels. When a radio wants to send a message to a talk group it requests from the control channel a voice channel. After the voice channel is assigned, other radios programed to listen to that talkgroup will be automatically notified and tune to that channel to recieve the message. 
 
-If you are interested in learning the details of P25 radio, I highly recommend you take [this free short class](https://www.taitradioacademy.com/lessons/p25-standard/)) (1-3 hrs) by taitradioacademy.com.
+If you are interested in learning the details of P25 radio, I highly recommend you take [this free short class](https://www.taitradioacademy.com/lessons/p25-standard/) (1-3 hrs) by taitradioacademy.com.
 
 Further, if you are brand new to radio, you may be interested in this (introduction to radio)[https://www.taitradioacademy.com/lessons/introduction-to-radio-communications-principals/] class also offered by taitradioacademy.com. 
 
