@@ -434,6 +434,7 @@ Here we present some known limitations of this project and ideas for further exp
 - We have not detailed how to connect the radio to a speaker via bluetooh. Some use cases might include a connecting to a portable bluetooth speaker or a car audio system. This is likely possible becuase the Pi has a built in bluetooth radio.
 - The pi-top[4] case includes a small programmable OLED screen and buttons that can be controlled over the Raspberry Pi SPI link. It is likely possible to write software to display the named-entities of hte TGIDs on this screen. It can also be useful to display signal strenth information.
 - The pi-top[4] does not appeart to be able to connect to an HDMI screen if it booted unattached to one.
+- Volume is not adjustable without a keyboard and screen. Software for the pi-top[4] case could be implemented to allow this.
 
 ## Acknoledgements
 
