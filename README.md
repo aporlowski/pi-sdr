@@ -16,7 +16,7 @@ P25 capable recievers on the market, such as the [Bluetail Technolgies P25rx](ht
 
 ## Video Demo
 
-![Pi Radio Demo](https://youtu.be/avw6MLh7hUw)
+[![IPi Radio Demo](https://img.youtube.com/vi/avw6MLh7hUw/0.jpg)](https://www.youtube.com/watch?v=avw6MLh7hUw)
 
 ## Components
 
