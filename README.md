@@ -67,6 +67,8 @@ The variable length antenna can be tuned for a range of frequencies by varying i
 
 Assuming reception is strong enough, you can likely use any of the three antennas for all instructions below, however, if you are having trouble getting a strong reception, then you can use this information to choose the correct antenna for your task. It is a good excercise to try different antennas to see how your reception changes.
 
+> Note: if you are interested in a sturdier yet still cheap antenna upgrae, you may be interetested in [this kit](https://www.amazon.com/gp/product/B073JWDXMG/) from Nooelec.
+
 ## P25
 
 P25 is set of two-way radio standards designed to standardize radio networks and capabilities for use in public safety, public service and commercial applications. It provides a digital radio protocol that replace the analog radio networks previously used by these sectors. This allows it to support digital voice encoding, targeted messaging, texting, data, and encryption, and reduce bandwidth utilization increasing the ability to share radio specturm. Analog radio simply modulates analog radio signals with voice, however in a digitral system the voice is first encoded into a digital bitstream (similar to how data is passed over the internet), and then modulated onto the analog radio signal. This allows advanced features such as error correction and the transmission of data.
