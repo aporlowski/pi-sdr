@@ -16,6 +16,8 @@ P25 capable recievers on the market, such as the [Bluetail Technolgies P25rx](ht
 
 ## Video Demo
 
+![Pi Radio Demo](https://youtu.be/avw6MLh7hUw)
+
 ## Components
 
 In the sections below we provide components recommended to build a Raspberry Pi based radio with different use-cases in mind.
