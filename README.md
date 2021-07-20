@@ -434,6 +434,7 @@ The world of SDR and radio waves is vast and complex. In this background section
 
 
 #### Frequency:
+A frequency is a designation of a particular channel in the radio specturm measured in hertz. For example, we tune to the FM channel B967 on 96.7 Mhz, the NOAA Weather Channel WWG72 on 162.50 MHz and the P25 control channel on 858.5857 Mhz. The channels that frequency is the center frequency of the channel. Radio channels have various widths depending on ther mod/demodulation technique.
 
 #### Spectrum:
 
