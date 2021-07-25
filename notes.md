@@ -37,5 +37,8 @@
 - list running containers `sudo docker ps`
 - list available images `sudo docker images`
 - kill a specific container `sudo docker kill CONTID`
+- list rtl devices `rtl_eeprom -d 0` `rtl_eeprom -d 1`
+- change rtl serial device `rtl_eeprom -s 00000001`
+
 
 
