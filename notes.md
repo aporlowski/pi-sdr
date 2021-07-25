@@ -27,3 +27,15 @@
 - get what you pay for when it comes to SDR and perhaps antennas
 - update components and add antenna https://www.amazon.com/LM-YN-Omnidirectional-Compatible-Frequency/dp/B01N6GO584/
 -  remove small antenna recommendation (doesn't work well with pi-top, too much noise)
+
+## Docker Commands
+- launch trunk-recorder as docker container `sudo dockerun -it   --privileged   -v /home/anthony/trunk-recorder:/app   -v /var/run/dbus:/var/run/dbus   -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket   robotastic/trunk-recorder:latest`
+- shell to running container `sudo docker exec -it a22c638fb4cb bash`
+- commit and save new state as new image `sudo docker commit 7da2253ce59b trunk-recorder-sample`
+- launch new state image `sudo docker run -it   --privileged   -v /home/anthony/trunk-recorder:/app   -v /var/run/dbus:/var/run/dbus   -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket   trunk-recorder-sample`
+- copy file from container to host `sudo docker cp 7da2253ce59b:/home/anthony/trunk-recorder/bloom/2021/7/25/21256-1627238771_851962500.wav ./`
+- list running containers `sudo docker ps`
+- list available images `sudo docker images`
+- kill a specific container `sudo docker kill CONTID`
+
+
