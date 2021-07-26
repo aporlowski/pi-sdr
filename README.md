@@ -10,9 +10,9 @@ This tutorial will be a introduction to Raspberry Pi single-board computers [1],
 
 Teachers and students can use this tutorial to learn about these concepts through an hands-on project. Concerned citizens, journalists, and [Virtual Operations Support Team (VOST) members](https://www.govtech.com/em/disaster/virtual-operations-support-teams-social-media.html) [2] can use this tutorial to setup a radio to monitor emergency radio traffic, NOAA weather radio, or other FM radio in their area.
 
-P25 capable receivers on the market, such as the [Bluetail Technologies P25rx](https://bluetailtechnologies.com/products/p25rx-digital-police-receiver) [3], typically cost $250 or more and are relatively single use when compared to the Raspberry Pi which provides a full computer and can be repurposed for multiple projects. The initial cost of traditional radio receivers can be prohibitively expensive for individuals interested in monitoring emergency radio communication. Some websites, such as [openmhz.com](https://openmhz.com/systems) provide real-time and recorded P25 communications traffic, however coverage for your area is not guaranteed. With a cheap SDR dongle and a computer such as the Raspberry Pi, you can set up your own P25 scanner. By presenting a gentle introduction to the field of SDR, this tutorial can enable and encourage more people to implement P25 trunk recording, such as that found on openmhz.com and powered by the [trunk-recorder software](https://github.com/robotastic/trunk-recorder), to make emergency communications more accessible to the public. Building your own P25 scanner is a fun hands-on project to learn about P25, SDR, and single-board computers.
+P25 capable receivers on the market, such as the [Bluetail Technologies P25rx](https://bluetailtechnologies.com/products/p25rx-digital-police-receiver) [3], typically cost $250 or more and are relatively single use when compared to the Raspberry Pi which provides a full computer and can be repurposed for multiple projects. The initial cost of traditional radio receivers can be prohibitively expensive for individuals interested in monitoring emergency radio communication. Some websites, such as [openmhz.com](https://openmhz.com/systems) [4] provide real-time and recorded P25 communications traffic, however coverage for your area is not guaranteed. With a cheap SDR dongle and a computer such as the Raspberry Pi, you can set up your own P25 scanner. By presenting a gentle introduction to the field of SDR, this tutorial can enable and encourage more people to implement P25 trunk recording, such as that found on openmhz.com and powered by the [trunk-recorder software](https://github.com/robotastic/trunk-recorder) [5], to make emergency communications more accessible to the public. Building your own P25 scanner is a fun hands-on project to learn about P25, SDR, and single-board computers.
 
-> See this [site](https://wiki.radioreference.com/index.php/APCO_Project_25#Scanner_Support_FDMA_and_TDMA) for a list of P25 scanners and their supported technology (phase I, II, etc) 
+> See this [site](https://wiki.radioreference.com/index.php/APCO_Project_25#Scanner_Support_FDMA_and_TDMA) [6] for a list of P25 scanners and their supported technology (phase I, II, etc) 
 
 ## Video Demo
 
@@ -35,7 +35,7 @@ These components provide a portable Raspbperry Pi based radio including a case, 
 
 While it is near the top-end of the price range for Pi cases, the pi-top[4] is a good fit for this project because it includes a battery, speaker, OS soft-shutdown via button press (to prevent SD card corruption without needing keyboard, monitor, or mouse to shutdown), and a utility screen that provides battery level and CPU monitoring. The pi-top[4] case is a well designed case for use in education or project settings, such as building robots, sensors, and more. It has the added benefit of exposing all GPIO pins and ports of the raspberry pi, so you can extend your pi to do multiple other projects if desired. It also has an attachable touch screen and keyboard that you can add to make your pi-radio fully configurable in a stand-alone manner. 
 
-> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from their website. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was recommended because it is assumed many users will already have a Raspberry Pi to begin with, it allows you the option to use an 8GB RAM model, and it is cheaper. Note, the DIY edition does not come with the required USB-C PD 12v or 15v power supply. These are the type used for a modern laptop charger. Your 5v phone charger or Raspberry Pi charger will not work. However, I found a Nintendo Switch power supply works.
+> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from their website [7]. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was recommended because it is assumed many users will already have a Raspberry Pi to begin with, it allows you the option to use an 8GB RAM model, and it is cheaper. Note, the DIY edition does not come with the required USB-C PD 12v or 15v power supply. These are the type used for a modern laptop charger. Your 5v phone charger or Raspberry Pi charger will not work. However, I found a Nintendo Switch power supply works.
 
 ### Car Plug-in Model
 
@@ -59,13 +59,13 @@ With an existing computer running Linux you simply need an SDR dongle and antenn
 
 Antennas vary in their physical properties, such as length and shape, to optimize reception of a specific section of radio spectrum. Length typically decrease as frequency increases. 
 
-The Nooelec bundle comes with three antennas.
+The Nooelec bundle comes with three antennas [8].
 
 The shorter fixed length antenna (~12cm) is for generic UHF, 300 MHz to 3 GHz.
 
 The longer fixed length antenna is optimized specifically for 433 Mhz which includes the ISM (industrial, scientific and medical) radio band.
 
-The variable length antenna can be tuned for a range of frequencies by varying its extended length. You can use various [calculators](http://www.csgnetwork.com/antennagenericfreqlencalc.html) to determine this. Typically, we use 1/2 or 1/4 wavelength antennas, that is, the length of the antenna is that fraction of the radio waves physical size (from wave peak to peak). For example, to get a 1/4 wavelength antenna for 162.5 Mhz NOAA Weather Radio that we demonstrate later on, we determine we need to extend the antenna to ~17.28 inches. Whereas a 1/2 wavelength for 858 Mhz P25 radio would be ~6.5 inches.
+The variable length antenna can be tuned for a range of frequencies by varying its extended length. You can use various [calculators](http://www.csgnetwork.com/antennagenericfreqlencalc.html) [9] to determine this. Typically, we use 1/2 or 1/4 wavelength antennas, that is, the length of the antenna is that fraction of the radio waves physical size (from wave peak to peak). For example, to get a 1/4 wavelength antenna for 162.5 Mhz NOAA Weather Radio that we demonstrate later on, we determine we need to extend the antenna to ~17.28 inches. Whereas a 1/2 wavelength for 858 Mhz P25 radio would be ~6.5 inches.
 
 Assuming reception is strong enough, you can likely use any of the three antennas for all instructions below, however, if you are having trouble getting a strong reception, then you can use this information to choose the correct antenna for your task (it will vary based on the frequencies in your area). It is a good practice to try different antennas to see how your reception changes.
 
@@ -75,7 +75,7 @@ Assuming reception is strong enough, you can likely use any of the three antenna
 
 P25 is set of two-way radio standards designed to standardize radio networks and capabilities for use in public safety, public service and commercial applications. It provides a digital radio protocol that replace the analog radio networks previously used by these sectors. This allows it to support digital voice encoding, targeted messaging, texting, data transmission, encryption, and reduce bandwidth utilization increasing the ability to share radio spectrum. Analog radio simply modulates analog radio signals with a voice, signal, however, in a digital system the voice is first encoded into a digital bitstream (similar to how data is passed over the internet), and then modulated onto the analog radio signal. This allows advanced features such as error correction and the transmission of data.
 
-P25 can be used to create large radio networks such as the statewide Indiana SAFE-T network that we will use in this tutorial. [This link](http://mattnik.andropov.org/files/System_Map_Feb_2020.pdf) shows a map of the Indiana network in 2020. In this network each county has typically one to five repeaters that enable near statewide coverage. These repeaters are connected with T1 lines, microwave radio, and other IP backhaul, so in theory, a police officer in southern Indiana, can communicate with an emergency manager in northern Indiana if they use the same talkgroup. This coverage combined with the talk-group and message directing capabilities of P25 allow greater coordination of public servants. For example, police and EMS, who normally talk in separate groups, can reprogram their radios on the fly to create a mutual channel when coordinating on an emergency event. In a disaster event, when emergency service personnel from many outside districts are called in to assist, they can quickly be integrated into the response due to their interoperable radios.
+P25 can be used to create large radio networks such as the statewide Indiana SAFE-T network that we will use in this tutorial. [This link](http://mattnik.andropov.org/files/System_Map_Feb_2020.pdf) [10] shows a map of the Indiana network in 2020. In this network each county has typically one to five repeaters that enable near statewide coverage. These repeaters are connected with T1 lines, microwave radio, and other IP backhaul, so in theory, a police officer in southern Indiana, can communicate with an emergency manager in northern Indiana if they use the same talkgroup. This coverage combined with the talk-group and message directing capabilities of P25 allow greater coordination of public servants. For example, police and EMS, who normally talk in separate groups, can reprogram their radios on the fly to create a mutual channel when coordinating on an emergency event. In a disaster event, when emergency service personnel from many outside districts are called in to assist, they can quickly be integrated into the response due to their interoperable radios.
 
 It is important to note for this tutorial that the Indiana P25 network is a trunked radio network. A trunked network includes a control channel and multiple voice channels. When a radio wants to send a message to a talk group it requests from the control channel a voice channel. After the voice channel is assigned, other radios programed to listen to that talkgroup will be automatically notified and tune to that channel to receive the message. In this tutorial we are listening to all talkgroups at once, so it may sound as if many separate conversations are going on. This is not what the radio users hear, they only hear the messages directed to them via the talkgroups they are monitoring.
 
@@ -461,3 +461,20 @@ I would like to acknowledge John for his useful OP25 [tutorial](https://www.hage
 [2] Nadeau, Lauren Katims. "Virtual Operations Support Teams Harness Social Media." GovTech, 20 Apr. 2021, www.govtech.com/em/disaster/virtual-operations-support-teams-social-media.html.
 
 [3] Bluetail Technologies. "P25RX Digital Police Receiver With Bluetooth Audio Support." BlueTail Technologies, 26 July 2021, bluetailtechnologies.com/products/p25rx-digital-police-receiver.
+
+[4] OpenMHz.com. "OpenMHz." 20 July 2021, openmhz.com/systems.
+
+[5] robotastic. "trunk-recorder." GitHub, 26 July 2021, github.com/robotastic/trunk-recorder.
+
+[6] "APCO Project 25 - The RadioReference Wiki." 10 Feb. 2021, wiki.radioreference.com/index.php/APCO_Project_25#Scanner_Support_FDMA_and_TDMA.
+
+[7] pi-top. "pi-top [4]." 24 July 2021, www.pi-top.com/products/pi-top-4.
+
+[8] "Nooelec - Nooelec NESDR SMArt v4 Bundle - Premium RTL-SDR w/ Aluminum Enclosure, 0.5PPM TCXO, SMA Input & 3 Antennas. RTL2832U & R820T2-Based - SDR Receivers - Software Defined Radio." 20 July 2021, www.nooelec.com/store/sdr/sdr-receivers/nesdr-smart.html.
+
+[9] "Whip Antenna Length And Frequency Calculator." 26 July 2021, www.csgnetwork.com/antennagenericfreqlencalc.html.
+
+[10] Indiana Integrated Public Safety Comission. February 2020, http://mattnik.andropov.org/files/System_Map_Feb_2020.pdf.
+
+
+
