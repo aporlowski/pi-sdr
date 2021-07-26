@@ -443,13 +443,14 @@ Now on boot, the radio application will automatically be launched.
 
 Here we present some known limitations of this project and ideas for further expansion.
 
-- We have not detailed how to connect the radio to a speaker via Bluetooth. Some use cases might include a connecting to a portable Bluetooth speaker or a car audio system. This is likely possible because the Pi has a built in Bluetooth radio.
+- We have not detailed how to connect the radio to a speaker via Bluetooth. Some use cases might include connecting to a portable Bluetooth speaker or a car audio system. This is likely possible because the Pi has a built in Bluetooth radio. We leave this for users to integrate. Please contribute instructions to this tutorial if you do this.
 - The pi-top[4] case includes a small programmable OLED screen and buttons that can be controlled over the Raspberry Pi SPI link. It is likely possible to write software to display the named-entities of the TGIDs on this screen. It can also be useful to display signal strength information.
 - The pi-top[4] does not appear to be able to connect to an HDMI screen if it booted unattached to one.
 - Volume is not adjustable without a keyboard and screen. Software for the pi-top[4] case could be implemented to allow this.
+- The radio is not able to `scan` through different channels. A program could be written for the programmable buttons and OLED screen to allow a scanning function where the radio cycles through a large list of known control channels. This would support a non-local mobile radio, for example driving from Bloomington to Indianapolis. 
 
 ## Acknowledgements
 
-I would like to acknowledge  John for his useful OP25 [tutorial](https://www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies/) that this tutorial extends and updates. 
+I would like to acknowledge John for his useful OP25 [tutorial](https://www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies/) that this tutorial extends and updates. I would also like to acknowledge Dr. David Wild, Oscar Lemus, and the teaching staff of the Informatics for Disaster and Emergency Response Course at Indiana Univsersity for recommending the project and providing feedback as it was developed. 
 
 ## References
