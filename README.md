@@ -372,27 +372,27 @@ Now we will use the OP25 software to demodulate the digital P25 voice communicat
 
 10. We can now setup a file to automatically translate the talk-group ids (tgids) into a named entity such as ` Bloomington Police Dispatch`. This allows you to get a better idea of who is communicating. Open the file `Documents/op25/op25/gr-op25_repeater/apps/tompkins.tsv` using a spreadsheet program. We need to create a tsv with the tgids in column 1 and the nomenclature in column 2. You can find these back on [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084). Search for all Bloomington related tgids and input in the columns. Save as `bloomington.tsv` when you complete. An example tsv is included in our git repository.
 
-   Ensure you save as a tab delimited file using [these instructions repeated below](https://ask.libreoffice.org/en/question/57184/how-to-generate-calc-tab-delimited-output/)
+    Ensure you save as a tab delimited file using [these instructions repeated below](https://ask.libreoffice.org/en/question/57184/how-to-generate-calc-tab-delimited-output/)
 
-   `Use File > Save a Copy.`
+    `Use File > Save a Copy.`
 
-   `Go to the place, where you want to save the file.`
+    `Go to the place, where you want to save the file.`
 
-   `Choose the file type Text CSV (.csv) form the drop down list`
+    `Choose the file type Text CSV (.csv) form the drop down list`
 
-   `Check Edit filter settings. Click Save. Now you get a dialog for the settings.`
+    `Check Edit filter settings. Click Save. Now you get a dialog for the settings.`
 
-   `In the drop-down list field delimiter select the item {Tab}.`
+    `In the drop-down list field delimiter select the item {Tab}.`
 
-   `After saving change .csv to .tsv`
+    `After saving change .csv to .tsv`
 
-   ![RR TGIDS](/images/rr-tgids.png)
+    ![RR TGIDS](/images/rr-tgids.png)
 
-   Now edit the trunk.tsv file in the Libre calc app. Under `tgid_tags_file` input `bloomington.tsv`. This tells the software to use `bloomington.tsv` to translate the tgids. When saving use hte `Use Text CSV format` to keep the file as a tabbed separated file.
+    Now edit the trunk.tsv file in the Libre calc app. Under `tgid_tags_file` input `bloomington.tsv`. This tells the software to use `bloomington.tsv` to translate the tgids. When saving use hte `Use Text CSV format` to keep the file as a tabbed separated file.
 
 11. Relaunch the program with the same command as in `3.` You will now see the tags at the bottom of the terminal during voice transmissions. In this case `DOT-52-SUB`. You can use the descriptions if you prefer.
 
-   ![Tagged Voice](/images/tagged-voice.png)
+    ![Tagged Voice](/images/tagged-voice.png)
 
 ### Launch the OP25 software automatically on boot
 
