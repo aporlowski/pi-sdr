@@ -438,6 +438,7 @@ Comment=
 
 Now on boot, the radio application will automatically be launched.
 
+Enjoy your new radio :)
 
 ## Limitations	and Future Work
 
