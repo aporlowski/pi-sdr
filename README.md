@@ -79,17 +79,17 @@ P25 can be used to create large radio networks such as the statewide Indiana SAF
 
 It is important to note for this tutorial that the Indiana P25 network is a trunked radio network. A trunked network includes a control channel and multiple voice channels. When a radio wants to send a message to a talk group it requests from the control channel a voice channel. After the voice channel is assigned, other radios programed to listen to that talkgroup will be automatically notified and tune to that channel to receive the message. In this tutorial we are listening to all talkgroups at once, so it may sound as if many separate conversations are going on. This is not what the radio users hear, they only hear the messages directed to them via the talkgroups they are monitoring.
 
-If you are interested in learning the details of P25 radio, I highly recommend you take [this free short class](https://www.taitradioacademy.com/lessons/p25-standard/) (1-3 hrs) by taitradioacademy.com.
+If you are interested in learning the details of P25 radio, I highly recommend you take [this free short class](https://www.taitradioacademy.com/lessons/p25-standard/) (1-3 hrs) by taitradioacademy.com [11].
 
-Further, if you are brand new to radio, you may be interested in this [introduction to radio](https://www.taitradioacademy.com/lessons/introduction-to-radio-communications-principals/) class also offered by taitradioacademy.com. 
+Further, if you are brand new to radio, you may be interested in this [introduction to radio](https://www.taitradioacademy.com/lessons/introduction-to-radio-communications-principals/) class also offered by taitradioacademy.com [12]. 
 
 ## Software Defined Radio
 
-Historically the various components of a radio (mixer, amplifier, modulator/demodulator, etc) were implemented as dedicated circuits in hardware. This caused radios to be relatively purpose built, dedicated, and non-reconfigurable devices. Modern computing has enabled what is known as Software Defined Radio (SDR). Some of these components can now be implemented as software, such as on a typical desktop computer, or as reconfigurable circuits in field-programmable-arrays (FPGA). SDR enables more dynamic radio systems that can be reprogrammed on the fly to achieve a particular radio goal.
+Historically the various components of a radio (mixer, amplifier, modulator/demodulator, etc) were implemented as dedicated circuits in hardware [13]. This caused radios to be relatively purpose built, dedicated, and non-reconfigurable devices. Modern computing has enabled what is known as Software Defined Radio (SDR). Some of these components can now be implemented as software, such as on a typical desktop computer, or as reconfigurable circuits in field-programmable-arrays (FPGA). SDR enables more dynamic radio systems that can be reprogrammed on the fly to achieve a particular radio goal.
 
 In this project we will use a SDR known as the RTL-SDR. It is based on two chips that were originally designed to receive over-the-air HDTV broadcasts within a cheap $20 USB dongle. It was discovered that these cheap receivers were capable of receiving a wide range of spectrum from 25MHz-1700MHz. This includes many purposes including but not limited to FM radio, NOAA Weather Radio, and P25 emergency communication networks. This dongle combined with SDR software (GQRX, OP25) enables us to receive and demodulate these radio signals.
 
-It is important to note that these dongles are receive only. There are more expensive SDR platforms that have more capabilities including the ability to transmit. See [this wikipedia](https://en.wikipedia.org/wiki/Software-defined_radio#Amateur_and_home_use) entry for a description of these platforms. Check out [this video](https://www.youtube.com/watch?v=vk0S5JtQtMk) of a radio engineer transmitting P25 voice from a USRP SDR platform, and validating it using the same OP25 software we use in this tutorial.
+It is important to note that these dongles are receive only. There are more expensive SDR platforms that have more capabilities including the ability to transmit. See [this wikipedia](https://en.wikipedia.org/wiki/Software-defined_radio#Amateur_and_home_use) entry for a description of these platforms. Check out [this video](https://www.youtube.com/watch?v=vk0S5JtQtMk) [14] of a radio engineer transmitting P25 voice from a USRP SDR platform, and validating it using the same OP25 software we use in this tutorial.
 
 ## Setup
 
@@ -475,6 +475,15 @@ I would like to acknowledge John for his useful OP25 [tutorial](https://www.hage
 [9] "Whip Antenna Length And Frequency Calculator." 26 July 2021, www.csgnetwork.com/antennagenericfreqlencalc.html.
 
 [10] Indiana Integrated Public Safety Comission. February 2020, http://mattnik.andropov.org/files/System_Map_Feb_2020.pdf.
+
+[11] "P25 Standard | Tait Radio Academy." Tait Radio Academy | Free educational content about Critical Communications, 10 Sept. 2015, www.taitradioacademy.com/lessons/p25-standard.
+
+[12] "Introduction to Radio Communications Principles | Tait Radio Academy." Tait Radio Academy | Free educational content about Critical Communications, 23 June 2016, www.taitradioacademy.com/lessons/introduction-to-radio-communications-principals.
+
+[13] Contributors to Wikimedia projects. "Software-defined radio - Wikipedia." 10 July 2021, en.wikipedia.org/w/index.php?title=Software-defined_radio&oldid=1032948931.
+
+[14] Kierzkowski, David. "gnuradio usrp p25 opensource imbe encoder test." YouTube, 1 Dec. 2009, www.youtube.com/watch?v=vk0S5JtQtMk.
+
 
 
 
