@@ -35,7 +35,7 @@ These components provide a portable Raspbperry Pi based radio including a case, 
 
 While it is near the top-end of the price range for Pi cases, the pi-top[4] is a good fit for this project because it includes a battery, speaker, OS soft-shutdown via button press (to prevent SD card corruption without needing keyboard, monitor, or mouse to shutdown), and a utility screen that provides battery level and CPU monitoring. The pi-top[4] case is a well designed case for use in education or project settings, such as building robots, sensors, and more. It has the added benefit of exposing all GPIO pins and ports of the raspberry pi, so you can extend your pi to do multiple other projects if desired. It also has an attachable touch screen and keyboard that you can add to make your pi-radio fully configurable in a stand-alone manner. 
 
-> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from their website. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was recommended because it is assumed many users will already have a Raspberry Pi to begin with, it allows you the option to use an 8GB RAM model, and it is cheaper. Note the DIY edition does not come with the required USB-C PD 12v or 15v power supply. These are the type used for a modern laptop charger. Your 5v phone charger or Raspberry Pi charger will not work. I found a Nintendo Switch power supply works as well.
+> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from their website. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was recommended because it is assumed many users will already have a Raspberry Pi to begin with, it allows you the option to use an 8GB RAM model, and it is cheaper. Note, the DIY edition does not come with the required USB-C PD 12v or 15v power supply. These are the type used for a modern laptop charger. Your 5v phone charger or Raspberry Pi charger will not work. However, I found a Nintendo Switch power supply works.
 
 ### Car Plug-in Model
 
@@ -63,13 +63,13 @@ The Nooelec bundle comes with three antennas.
 
 The shorter fixed length antenna (~12cm) is for generic UHF, 300 MHz to 3 GHz.
 
-The longer fixed length antenna is optimized specifically for 433 Mhz which includes the ISM radio band.
+The longer fixed length antenna is optimized specifically for 433 Mhz which includes the ISM (industrial, scientific and medical) radio band.
 
-The variable length antenna can be tuned for a range of frequencies by varying its extended length. You can use various [calculators](http://www.csgnetwork.com/antennagenericfreqlencalc.html) do determine this. For example, to get a 1/4 wavelength antenna for 162.5 Mhz NOAA Weather Radio that we demonstrate later on, we determine we need to extend the antenna to ~17.28 inches. Whereas an 1/2 wavelength for 858 Mhz P25 radio would be ~6.5 inches.
+The variable length antenna can be tuned for a range of frequencies by varying its extended length. You can use various [calculators](http://www.csgnetwork.com/antennagenericfreqlencalc.html) to determine this. Typically, we use 1/2 or 1/4 wavelength antennas, that is, the length of the antenna is that fraction of the radio waves physical size (from wave peak to peak). For example, to get a 1/4 wavelength antenna for 162.5 Mhz NOAA Weather Radio that we demonstrate later on, we determine we need to extend the antenna to ~17.28 inches. Whereas a 1/2 wavelength for 858 Mhz P25 radio would be ~6.5 inches.
 
-Assuming reception is strong enough, you can likely use any of the three antennas for all instructions below, however, if you are having trouble getting a strong reception, then you can use this information to choose the correct antenna for your task. It is a good practice to try different antennas to see how your reception changes.
+Assuming reception is strong enough, you can likely use any of the three antennas for all instructions below, however, if you are having trouble getting a strong reception, then you can use this information to choose the correct antenna for your task (it will vary based on the frequencies in your area). It is a good practice to try different antennas to see how your reception changes.
 
-> Note: if you are interested in a sturdier yet still cheap antenna upgrade, you may be interested in [this kit](https://www.amazon.com/gp/product/B073JWDXMG/) from Nooelec.
+> Note: if you are interested in a sturdier but still cheap antenna upgrade, you may be interested in [this kit](https://www.amazon.com/gp/product/B073JWDXMG/) from Nooelec.
 
 ## P25
 
