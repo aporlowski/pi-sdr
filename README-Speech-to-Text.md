@@ -26,11 +26,23 @@ We will record P25 radio transcriptions using our SDR radio, and then run the re
 
 In this section we setup the [trunk-recorder software](https://github.com/robotastic/trunk-recorder) software to automate the recording of real-time P25 radio transmissions of the Indiana SAFE-T network from Bloomington, IN.
 
-### Install trunk-recorder as a Docker container on Ubuntu
+### Setup trunk-recorder as a Docker container on Ubuntu
 
 A docker container povides a quick and easy method to install the trunk-recorder software if you do not need to modify its source code. 
 
 We assume your environment already has Docker installed. If not we suggest you look at [these installation instructions](https://docs.docker.com/engine/install/ubuntu/).
+
+### Design your SDR radio system
+
+You may need multiple SDR dongles depending on the frequency ranges used in your local P25 radio system.
+
+Bloomington uses these channels for it's P25 system:
+
+851.250 Mhz, 851.9625, 852.400, 853.450a, 857.4875, and 858.4875c.
+
+Bloomington's lowest frequency is 851.250 Mhz and the highest is 858.4875 (used as the control channel).
+
+The difference is 7.2375 Mhz. The RTL-SDR dongles used in our prior work can reliably sample approximately 2.4 Mhz of bandwidth. So to cover the entire spectrum used by Bloomington's P25 system we need 2-3 SDR dongles. The first can cover the highest two channels (857.4875, and 858.4875c), and the second could theoretically cover teh lowest four channels (851.250 Mhz, 851.9625, 852.400, 853.450a). However, SDRs do not work as well on channels at the edges of the sampled bandwith. As the difference in the lowest four sets is 2.2 Mhz, it may be more reliable to use the second for the lowest three channels () a third SDR specifically for the 853.450a channel, and 
 
 #### Create a `config.json` file for your SDR radio system
 
