@@ -372,7 +372,6 @@ Now we will use the OP25 software to demodulate the digital P25 voice communicat
 
 10. We can now setup a file to automatically translate the talk-group ids (tgids) into a named entity such as ` Bloomington Police Dispatch`. This allows you to get a better idea of who is communicating. Open the file `Documents/op25/op25/gr-op25_repeater/apps/tompkins.tsv` using a spreadsheet program. We need to create a tsv with the tgids in column 1 and the nomenclature in column 2. You can find these back on [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084). Search for all Bloomington related tgids and input in the columns. Save as `bloomington.tsv` when you complete. An example tsv is included in our git repository.
 
-
    Ensure you save as a tab delimited file using [these instructions repeated below](https://ask.libreoffice.org/en/question/57184/how-to-generate-calc-tab-delimited-output/)
 
    `Use File > Save a Copy.`
