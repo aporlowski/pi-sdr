@@ -97,7 +97,7 @@ Now we will give you step-by-step directions to build your own SDR Radio. While 
 
 ### Choose your OS
 
-If you are building the radio with the `pi-top[4]` case we recommend you use the pi-topOS so all functions of the case (screen, buttons, fan, etc.) have the required software to work correctly without any additional software installation. 
+If you are building the radio with the `pi-top[4]` case, we recommend you use the pi-topOS so all functions of the case (screen, buttons, fan, etc.) have the required software to work correctly without any additional software installation. 
 
 If not using the pi-top[4] case we recommend you install Ubuntu Desktop 21.04 on your Pi. 
 
@@ -128,22 +128,24 @@ You know have Ubuntu Desktop installed on your Pi. Insert the SD card into the P
 
 ### Setup, Update and Upgrade your OS
 
-As the Pi is booting your will be presented a GUI setup menu. Setup the OS using the GUI guide to setup the computer. If using Ubuntu, make sure you enable automatic login, as we intend to boot the radio in the future without requiring a screen, monitor, and keyboard. On pi-topOS, this is enabled by default.
+As the Pi is booting your will be presented a GUI setup menu. Setup the OS using the GUI guide. If using Ubuntu, make sure you enable automatic login, as we intend to boot the radio in the future without requiring a screen, monitor, and keyboard. On pi-topOS, this is enabled by default.
 
-Once you are at your desktop we first need to update the software and software repositories to ensure we have the latest software on our OS. Run the commands below to update and reboot. If you are using `pi-topOS` this was completed in the GUI and you can skip to the next section.
+Once you are at your post-configuration desktop, we first need to update the software and software repositories to ensure we have the latest software on our OS. Run the commands below to update and reboot. If you are using `pi-topOS` this was completed in the GUI and you can skip to the next section.
 
-```sudo apt update```
+```
+sudo apt update
 
-`sudo apt full-upgrade`
+sudo apt full-upgrade
 
-`sudo reboot`
+sudo reboot
+```
 
 ### Install the [GQRX](https://gqrx.dk/) Open Source SDR Receiver Software
 
 Now we can install our first SDR radio application, GQRX.
 
 1. Follow the GQRX [installation instructions](https://gqrx.dk/download/install-ubuntu) repeated below
-2. First we need to remove existing installations of the software. There should be none so you can skip these commands or answer `n` to these commands if using a new OS installation.
+2. First we need to remove existing installations of the software. There should be none so you can skip these commands or answer `n` to these commands if using a fresh OS installation.
 
 ```
 sudo apt-get purge --auto-remove gqrx      
@@ -151,7 +153,7 @@ sudo apt-get purge --auto-remove gqrx-sdr
 sudo apt-get purge --auto-remove libgnuradio*   
 ```
 
-3. **Ubuntu only, pi-topOS skip:** Next we need to add multiple Personal Package Archive to install the software. GQRX and its required components are distributed by its authors in PPA instead of using standard built-in Ubuntu repositories. This gives the authors more control over the software repository, but requires we add the repositories to our OS so the software can be located. A version of GQRX is available in the default Raspbian repositories, so these instructions are not needed.
+3. **Ubuntu only, pi-topOS skip:** Next we need to add multiple Personal Package Archives to install the software. GQRX and its required components are distributed by its authors in PPA instead of using standard built-in Ubuntu repositories. This gives the authors more control over the software repository, but requires we add the repositories to our OS so the software can be located. A version of GQRX is available in the default Raspbian repositories, so these instructions are not needed.
 
 ```
 sudo add-apt-repository -y ppa:bladerf/bladerf
@@ -169,8 +171,8 @@ sudo apt-get install gqrx-sdr
 5. Next we will install the libvolk2-bin profiler to optimize our machines radio processing 
 
 ```
-sudo apt-get install libvolk2-bin   (Ubuntu only, if using older ubuntu use libvolk1-bin)
-volk_profile (ubuntu and pi-topOS)
+sudo apt-get install libvolk2-bin  # (Ubuntu only, if using an older ubuntu distrobution you will use libvolk1-bin)
+volk_profile # (ubuntu and pi-topOS)
 ```
 
 Running this program creates a configuration file in `$HOME/.volk/volk_config` that contains the best architecture and function calls to process radio signals on your computer. 
@@ -218,15 +220,15 @@ gqrx
 
 2. Pick device RTL2838UHIDIR > OK
 
-3. We will start with an easy signal to capture, FM radio; the same radio stations you listen to in a car. For our example we will use Bloomington's B96.7 WBWB found at 96.7 MHz. If you are not in Bloomington you can substitute a channel from your broadcast area. Because FM is a wide bandwidth transmission, it will be easier to find and tune correctly.  
+3. We will start with an easy signal to capture, FM radio; the same radio stations you listen to in a car. For our example we will use Bloomington's B96.7 WBWB found at 96.7 MHz. If you are not in Bloomington, you can substitute a channel from your broadcast area. Because FM is a wide bandwidth transmission, it will be easier to find and tune correctly.  
 
-4. GQRX takes all frequency inputs in kHz. So to get from 96.7 MHz to kHZ we need to multiply 96.7 MHz by 1000 to get 96700 kHz. Input this number in the Frequency box under the Receiver tab. This is the target frequency the SDR will center its reception on.
+4. GQRX takes all frequency inputs in kHz. So to get from 96.7 MHz to kHZ we need to multiply 96.7 MHz by 1000 to get 96700 kHz. Input this number in the `Frequency` box under the `Receiver tab`. This is the target frequency the SDR will center its reception on.
 
-5. Next Select `mode WFM (mono)` or `WFM (stereo)`. This mode selection that tells GQRX how to demodulate the radio signal. For example, AM and FM are different modulation techniques and you won't hear the correct audio output if you do not select the correct mode. You will notice that the stereo demodulation provides two channels of sound whereas the mono demodulation provides only one channel. Depending on your reception quality one mode may sound better than the other.
+5. Next Select `mode WFM (mono)` or `WFM (stereo)`. This mode selection that tells GQRX how to demodulate the radio signal. For example, AM and FM are different modulation techniques and you won't hear the correct audio output if you do not select the correct mode. You will notice that the stereo demodulation provides two channels of sound whereas the mono demodulation provides only one channel. Depending on your reception quality, one mode may sound better than the other.
 
-> See [this page](https://gqrx.dk/doc/practical-tricks-and-tips#use) for more description of the various settings.
+> See [this page](https://gqrx.dk/doc/practical-tricks-and-tips#use) for more description of the various GQRX settings.
 
-6. Push the `play` button in the top left corner. You should hear start to hear the radio station. You will see in the top half of the screen a spectrum analyzer, and in the bottom half a time plot of the signal strength for the sampled frequency range. The spectrum analyzer measures the signal strength in dB. You will see a noise floor across the entire frequency range (probably between -60 to -100 dB depending on your receiver and GQRX settings). Where there is a signal broadcast, you should see peaks of signals rise above the noise floor(probably between -80 and -20 dB), these are broadcast radios signals. In the lower plot, time runs up and down along the y-axis, and frequency is the x-axis. The colors show the signal strength blue:low, yellow:medium, red:high. Yellow is typically sufficient.
+6. Push the `play` button in the top left corner. You should hear start to hear the radio station. You will see in the top half of the screen a spectrum analyzer, and in the bottom half, a time plot of the signal strength for the sampled frequency range. The spectrum analyzer measures the signal strength in dB. You will see a noise floor across the entire frequency range (probably between -60 to -100 dB depending on your receiver and GQRX settings). Where there is a signal broadcast, you should see peaks of signals rise above the noise floor(probably between -80 and -20 dB), these are broadcast radios signals. In the lower plot, time runs up and down along the y-axis, and frequency is the x-axis. The colors show the signal strength blue:low, yellow:medium, red:high. Yellow is typically sufficient for demodulation.
 
 If your signal is not well define from the noise floor you may need to adjust your LNA `input tab` > `LNA`> I have mine set at 3.6 dB. You may also adjust your gain `receiver tab` > `Gain` > I have mine at -3.7 dB. The  `LNA` is a software low noise amplifier that attempts to amplify the power of the signal while not affecting the signal-to-noise (SNR) ratio. The `gain` will increase the power (read as volume) of the signal. You will notice as you increase the `gain` the volume output increases, but as you increase the `LNA` the signal may become more clear. Increasing the `LNA` will increase the power consumption, so you ideally want to use as little as possible while still receiving a clear signal.
 
