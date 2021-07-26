@@ -6,7 +6,7 @@ Turn your Raspberry Pi into a portable radio receiver using software defined rad
 
 ## Introduction
 
-This tutorial will be a introduction to Raspberry Pi single-board computers, software defined radio, and P25 radio.
+This tutorial will be a introduction to Raspberry Pi single-board computers [1], software defined radio, and P25 radio.
 
 Teachers and students can use this tutorial to learn about these concepts through an hands-on project. Concerned citizens, journalists, and [Virtual Operations Support Team (VOST) members](https://www.govtech.com/em/disaster/virtual-operations-support-teams-social-media.html) can use this tutorial to setup a radio to monitor emergency radio traffic, NOAA weather radio, or other FM radio in their area.
 
@@ -455,3 +455,7 @@ Here we present some known limitations of this project and ideas for further exp
 I would like to acknowledge John for his useful OP25 [tutorial](https://www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies/) that this tutorial extends and updates. I would also like to acknowledge Dr. David Wild, Oscar Lemus, and the teaching staff of the [Informatics for Disaster and Emergency Response Course](https://djwild.pages.iu.edu/ider/) at Indiana Univsersity for recommending the project and providing feedback as it was developed. 
 
 ## References
+
+[1] Raspberry Pi. "Teach, Learn, and Make with Raspberry Pi." Raspberry Pi, 26 July 2021, www.raspberrypi.org.
+
+
