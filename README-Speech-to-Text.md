@@ -18,9 +18,9 @@ We will record P25 radio transcriptions using our SDR radio, and then run the re
 ## Methodology
 
 - We will setup [trunk-recorder software](https://github.com/robotastic/trunk-recorder) to automate the recoding of P25 radio communications
-- Next we demonstrate transcription by measuring Amazon Transcribe transcription compared to human comprehension on ~10 minutes of radio broadcasts
-- Next we anaylze the transcription results to make generalizations, recommendations, and identify areas of further investigation
-- Finally we propose a software technical demo capable of real-time P25 radio transcription to acomputer console or file.
+- Next, we demonstrate transcription by measuring Amazon Transcribe's transcription compared to human comprehension on ~10 minutes of trunk-recorder produced recordings
+- Next, we anaylze the transcription results to make generalizations, recommendations, and identify areas for further investigation
+- Finally, we propose a software technical demo capable of real-time P25 radio transcription to a computer console or file.
 
 ## Setting Up Trunk Recorder
 
