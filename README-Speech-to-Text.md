@@ -28,7 +28,7 @@ He we outline the processing of a real-time P25 transcription for a simple techn
 
 Write software to automatically transcribe trunk-recorder recording outputs.
 
-    - Monitor trunk-recorder outputdirectoriesfor new wav filesb.
-    - Upload wav files to Amazon S3 bucket.
-    - Schedule Amazon TranscribeJobd.
-    - Fetch Amazon Transcribe Joband print result to console / output file inorder oftransmission 
+- Monitor trunk-recorder outputdirectoriesfor new wav filesb.
+- Upload wav files to Amazon S3 bucket.
+- Schedule Amazon TranscribeJobd.
+- Fetch Amazon Transcribe Joband print result to console / output file inorder oftransmission 
