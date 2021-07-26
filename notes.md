@@ -3,9 +3,9 @@
 
 ## TODO
 
-1. Add references section to radio tutorial
+1. ~~Add references section to radio tutorial
     - STATUS: COMPLETED. Also did general spell check and editing.
-2. Make project poster(Are there details on this requirement, or is my tutorial link sufficient?)
+2. Make project poster (Are there details on this requirement, or is my tutorial link sufficient?)
 3. Demonstrate transcription by measuring Amazon Transcribe transcription compared to my human comprehension on ~10 minutes of radio broadcasts.
 4. Write software to automatically transcribe trunk-recorder recording outputs.
     - Monitor trunk-recorder outputdirectoriesfor new wav filesb.
