@@ -356,13 +356,13 @@ Now we will use the OP25 software to demodulate the digital P25 voice communicat
 
    ![Constellation Plot](/images/constellation-plot-good)
 
-7. Verify the Mixer:balance plot is showing an even mix of the signal. `Press the number 5` to bring up the `Mixer:balance plot`.  If your signal is not dead on center then you may see one side of the signal peak higher than the other. Ideally this plot is showing a low number (less than 10).  As long as you are close enough the `-X` option should autotune to achieve a good balance. For example, my auto tune is showing  XXX hertz correction in the below image. You can tune manually using the `<` `>` (1200 hz) and `,` `.` (100 hz) keys.
+7. Verify the Mixer:balance plot is showing an even mix of the signal. `Press the number 5` to bring up the `Mixer:balance plot`.  If your signal is not dead on center, then you may see one side of the signal peak higher than the other. Ideally this plot is showing a low number (less than 10).  As long as you are close enough, the `-X` option should autotune to achieve a good balance. For example, my auto tune is showing  -50 hertz correction in the image further below. You can tune manually using the `<` `>` (1200 hz) and `,` `.` (100 hz) keys.
 
    ![Balance Plot](/images/balance-plot.png)
 
 8. When there is a voice communication you will see the frequency, active talk-group ID (tgids) , a last seen timer, and a transmission count in the terminal.
 
-Notice in the image below that in periods of high talking traffic, you will see many voice frequencies being used. Even the alternate control channel for Bloomington was used at some point for a voice transmission. If simultaneous transmissions are executed on frequencies separated by more bandwidth than the sample rate (in our case 960,000 kHz) you may not receive one of those communications. You can setup multiple SDR dongles to ensure you have enough bandwidth and recorders to receive all traffic. (outside the scope of this tutorial)
+   Notice in the image below that in periods of high talking traffic, you will see many voice frequencies being used. Even the alternate control channel for Bloomington was used at some point for a voice transmission. If simultaneous transmissions are executed on frequencies separated by more bandwidth than the sample rate (in our case 960,000 kHz) you may not receive one of those communications. You can setup multiple SDR dongles to ensure you have enough bandwidth and recorders to receive all traffic. (outside the scope of this tutorial)
 
    ![Voice-6-Freq](/images/voice-6-freq.png)
 
