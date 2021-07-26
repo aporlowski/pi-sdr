@@ -37,7 +37,7 @@ While it is near the top-end of the price range for Pi cases, the pi-top[4] is a
 
 > You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from their website. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was recommended because it is assumed many users will already have a Raspberry Pi to begin with, it allows you the option to use an 8GB RAM model, and it is cheaper. Note the DIY edition does not come with the required USB-C PD 12v or 15v power supply. These are the type used for a modern laptop charger. Your 5v phone charger or Raspberry Pi charger will not work. I found a Nintendo Switch power supply works as well.
 
-### Car Plug in Model
+### Car Plug-in Model
 
 If you simply want to plug your Pi radio into a car (or other USB power source and Bluetooth accessible speaker), then you will only need your Pi, the SDR dongle and antenna kit, and an inexpensive case.
 
@@ -136,7 +136,7 @@ Once you are at your desktop we first need to update the software and software r
 
 `sudo reboot`
 
-### Install the [GQRX](https://gqrx.dk/) Open Source SDR Reciever Software
+### Install the [GQRX](https://gqrx.dk/) Open Source SDR Receiver Software
 
 Now we can install our first SDR radio application, GQRX.
 
