@@ -295,9 +295,9 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 
 3. Launch OP25 using the command below. Substitute your correct `ppm` offset after the `-q` option. With my purpose-built dongle it is 0. For my cheap dongle it is 28.
 
-```
-./rx.py --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 0 -o 28000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
-```
+   ```
+   ./rx.py --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 0 -o 28000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
+   ```
 
    There are many options include to the `rx.py` program, that I will describe below.
 
@@ -309,13 +309,13 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 
    `-S 960000` this is the sample range. Our SDR will monitor 960,000 kHz of bandwidth. 
 
-> The recommended dongle is likely capable of more, however, I found with the cheap dongle, that a value closer to the dongles reported capability (2,400,000) I was receiving many `OOOOOOOOO` errors in the stderr.2 file. This is indicative that the SDR is overworked, or the computer can not keep up with the sample size.
+   > The recommended dongle is likely capable of more, however, I found with the cheap dongle, that a value closer to the dongles reported capability (2,400,000) I was receiving many `OOOOOOOOO` errors in the stderr.2 file. This is indicative that the SDR is overworked, or the computer can not keep up with the sample size.
 
    `-X` The OP25 software will attempt to auto-tune to the frequency. It only works if you are close. You will see a number such as `Frequency 858.487500(-266)` at the bottom of the terminal. This shows it has autotuned -266 hz to center on the signal.
 
    `-q 28` This is the frequency correction in `ppm`. Better SDR dongles should be significantly lower (`<= +/- 2`). 
 
-`-o 28000` The is the offset from the center frequency to avoid DC bias. I found 28000 Hz to work well for both of my dongles, however, this may be higher than is actually needed. This is not related to the `-q` option. 
+   `-o 28000` The is the offset from the center frequency to avoid DC bias. I found 28000 Hz to work well for both of my dongles, however, this may be higher than is actually needed. This is not related to the `-q` option. 
 
    `-v 1` Sets the verbosity level of the info and errors logged to stderr.2. Increase this for more information.
 
