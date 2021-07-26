@@ -27,6 +27,7 @@ We will record P25 radio transcriptions using our SDR radio, and then run the re
 He we outline the processing of a real-time P25 transcription for a simple technical demonstration.
 
 Write software to automatically transcribe trunk-recorder recording outputs.
+
     - Monitor trunk-recorder outputdirectoriesfor new wav filesb.
     - Upload wav files to Amazon S3 bucket.
     - Schedule Amazon TranscribeJobd.
