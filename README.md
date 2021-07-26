@@ -230,7 +230,7 @@ gqrx
 
 6. Push the `play` button in the top left corner. You should hear start to hear the radio station. You will see in the top half of the screen a spectrum analyzer, and in the bottom half, a time plot of the signal strength for the sampled frequency range. The spectrum analyzer measures the signal strength in dB. You will see a noise floor across the entire frequency range (probably between -60 to -100 dB depending on your receiver and GQRX settings). Where there is a signal broadcast, you should see peaks of signals rise above the noise floor(probably between -80 and -20 dB), these are broadcast radios signals. In the lower plot, time runs up and down along the y-axis, and frequency is the x-axis. The colors show the signal strength blue:low, yellow:medium, red:high. Yellow is typically sufficient for demodulation.
 
-   If your signal is not well define from the noise floor you may need to adjust your LNA `input tab` > `LNA`> I have mine set at 3.6 dB. You may also adjust your gain `receiver  tab` > `Gain` > I have mine at -3.7 dB. The  `LNA` is a software low noise amplifier that attempts to amplify the power of the signal while not affecting the signal-to-noise (SNR) ratio. The `gain` will increase the power (read as volume) of the signal. You will notice as you increase the `gain` the volume output increases, but as you increase the `LNA` the signal may become more clear. Increasing the `LNA` will increase the power consumption, so you ideally want to use as little as possible while still receiving a clear signal.
+   If your signal is not well define from the noise floor you may need to adjust your LNA. `input tab` > `LNA`> I have mine set at 3.6 dB. You may also adjust your gain `receiver  tab` > `Gain` > I have mine at -3.7 dB. The  `LNA` is a software low noise amplifier that attempts to amplify the power of the signal while not affecting the signal-to-noise (SNR) ratio. The `gain` will increase the power (read as volume) of the demodulated signal. You will notice as you increase the `gain` the volume output increases, but as you increase the `LNA` the signal may become more clear. Increasing the `LNA` will increase the power consumption, so you ideally want to use as little as possible while still receiving a clear signal.
 
 ![FM Tuning](/images/fm-tuning.png)
 
@@ -290,7 +290,7 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 2. Set the control channel frequency to that identified above.
 
 ```
-./setTrunkFreq.sh 858.4875    (this modiefies op25.sh, but we may need to modify further for -q and -o)
+./setTrunkFreq.sh 858.4875    # (this modiefies op25.sh, but we may need to modify further for -q and -o)
 ```
 
 3. Launch OP25 using the command below. Substitute your correct `ppm` offset after the `-q` option. With my purpose-built dongle it is 0. For my cheap dongle it is 28.
@@ -299,35 +299,35 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 ./rx.py --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 0 -o 28000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
 ```
 
-There are many options include to the `rx.py` program, that I will describe below.
+   There are many options include to the `rx.py` program, that I will describe below.
 
-`--nocrypt`: some P25 signals are encrypted, this will filter out encrypted communication as they will only come across sounding like noise.
+   `--nocrypt`: some P25 signals are encrypted, this will filter out encrypted communication as they will only come across sounding like noise.
 
-`--args "rtl`: this tells the OP25 software that you are using an rtl-sdr type dongle
+   `--args "rtl`: this tells the OP25 software that you are using an rtl-sdr type dongle
 
-`--gains 'lna:36` this controls the low noise amplifier to increase the strength of the signal (and also some of the noise) I believe this value is 36 dB, similar to the LNA option in the `input tab` of GQRX.
+   `--gains 'lna:36` this controls the low noise amplifier to increase the strength of the signal (and also some of the noise) I believe this value is 36 dB, similar to the LNA option in the `input tab` of GQRX.
 
-`-S 960000` this is the sample range. Our SDR will monitor 960,000 kHz of bandwidth. 
+   `-S 960000` this is the sample range. Our SDR will monitor 960,000 kHz of bandwidth. 
 
-> The dongle is likely capable of more, however, I found with a value closer to the dongles reported capability (2,400,000) I was receiving many `OOOOOOOOO` errors in the stderr.2 file. This is indicative that the SDR is overworked, or the computer can not keep up with the sample size.
+> The recommended dongle is likely capable of more, however, I found with the cheap dongle, that a value closer to the dongles reported capability (2,400,000) I was receiving many `OOOOOOOOO` errors in the stderr.2 file. This is indicative that the SDR is overworked, or the computer can not keep up with the sample size.
 
-`-X` The OP25 software will attempt to auto-tune to the frequency. It only works if you are close. You will see a number such as `Frequency 858.487500(-266)` at the bottom of the terminal. This shows it has autotuned -266 hz to center on the signal.
+   `-X` The OP25 software will attempt to auto-tune to the frequency. It only works if you are close. You will see a number such as `Frequency 858.487500(-266)` at the bottom of the terminal. This shows it has autotuned -266 hz to center on the signal.
 
-`-q 28` This is the frequency correction in `ppm`. Better SDR dongles should be significantly lower (<= +- 2). 
+   `-q 28` This is the frequency correction in `ppm`. Better SDR dongles should be significantly lower (`<= +/- 2`). 
 
 `-o 28000` The is the offset from the center frequency to avoid DC bias. I found 28000 Hz to work well for both of my dongles, however, this may be higher than is actually needed. This is not related to the `-q` option. 
 
-`-v 1` Sets the verbosity level of the info and errors logged to stderr.2. Increase this for more information.
+   `-v 1` Sets the verbosity level of the info and errors logged to stderr.2. Increase this for more information.
 
-`-2` Enables phase 2 TDMA decoding. Indiana SAFE-T network is reportedly all phase 1 according to radioreference.com, however it does not appear hurt to enable this.
+   `-2` Enables phase 2 TDMA decoding. Indiana SAFE-T network is reportedly all phase 1 according to radioreference.com, however it does not appear hurt to enable this.
 
-`-V`  Enables the voice codec. I've noticed this appears to improve the sound of voice transmissions.
+   `-V`  Enables the voice codec. I've noticed this appears to improve the sound of voice transmissions.
 
-`-U` Enables the built in UDP audio player. This allows you to hear the audio from your speakers, and capture it on a specific UDP port.
+   `-U` Enables the built in UDP audio player. This allows you to hear the audio from your speakers, and capture it on a specific UDP port.
 
-`-T trunk.tsv` Tells rx.py which file to use for the trunk configuration. This was modified with the `./setTrunkFrequency` command earlier.
+   `-T trunk.tsv` Tells rx.py which file to use for the trunk configuration. This was modified with the `./setTrunkFrequency` command earlier.
 
-`2> stderr.2` This redirects error output to a file named `stderr.2` This prevents the text console display from getting messed up. If things are not working, it is worth taking a look at the file `cat stderr.2` to read the message log.
+   `2> stderr.2` This redirects error output to a file named `stderr.2` This prevents the text console display from getting messed up. If things are not working, it is worth taking a look at the file, `cat stderr.2`, to read the message log.
 
 
 4. If the configuration options are correct (the frequency as set by the ./setTrunkFreq.sh program, the offset set by the -o, and the frequency correction as set by the -q) and the reception is acceptable then you should see a line similar to the following:
