@@ -1,5 +1,21 @@
 # Notes
 
+
+## TODO
+
+1.Addreferences section to radio tutorial
+2.Make project poster(Are there details on this requirement, or is my tutorial link sufficient?)
+3.Demonstrate transcription by measuring Amazon Transcribe transcription compared to my human comprehension on ~10 minutes of radio broadcasts.
+4.Write software to automatically transcribe trunk-recorder recording outputsa.
+- Monitor trunk-recorder outputdirectoriesfor new wav filesb.
+- Upload wav files to Amazon S3bucketc.
+- Schedule Amazon TranscribeJobd.
+- Fetch Amazon Transcribe Joband print result to console / output file inorder oftransmission
+5.Make Docker image or file to launch trunk-recorder, install and run my software
+6.Document results of speech-to-text investigation.
+7.Complete project submission
+
+
 ## GQRX
 
 - GQRX does not do AM by default. It requires some tuning to get below 22.0 MHZ. See [reddit thread](https://www.reddit.com/r/RTLSDR/comments/ksmv9f/cant_listen_to_am_radio_broadcasts_with_nooelec/) and [user report](http://adrianchadd.blogspot.com/2017/06/gqrx-direct-sampling-configuration.html?m=1)
@@ -39,6 +55,5 @@
 - kill a specific container `sudo docker kill CONTID`
 - list rtl devices `rtl_eeprom -d 0` `rtl_eeprom -d 1`
 - change rtl serial device `rtl_eeprom -s 00000001`
-
 
 
