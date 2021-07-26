@@ -283,15 +283,15 @@ Now we will use the OP25 software to demodulate the digital P25 voice communicat
 
 1. Change to the op25 receiver application directory
 
-```
-$ cd Documents/op25/op25/gr-op25_repeater/apps/
-```
+   ```
+   $ cd Documents/op25/op25/gr-op25_repeater/apps/
+   ```
 
 2. Set the control channel frequency to that identified above.
 
-```
-./setTrunkFreq.sh 858.4875    # (this modiefies op25.sh, but we may need to modify further for -q and -o)
-```
+   ```
+   ./setTrunkFreq.sh 858.4875    # (this modiefies op25.sh, but we may need to modify further for -q and -o)
+   ```
 
 3. Launch OP25 using the command below. Substitute your correct `ppm` offset after the `-q` option. With my purpose-built dongle it is 0. For my cheap dongle it is 28.
 
@@ -350,21 +350,21 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 
    ![FFT Plot](/images/fft-plot)
 
-   If this number is off, then you will need to change you ppm `-q` option until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on the cheap dongle. This is the most difficult part of tuning in the P25 signal, but that is why we first started in GQRX, to get a good starting point. Fortunately once you find the correct `ppmn` number, it will hopefully not deviate much. It should deviate less with higher quality dongles. Cheap dongles may increase in temperature overtime and cause additional drift. Interference from nearby electronics or USB devices can also cause signal loss due to increased noise. DC bias can also affect reception if tuning directly on the center frequency (i.e. you set `-o` to 0).
+   If this number is off, then you will need to change you ppm (`-q` option) until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on the cheap dongle. This is the most difficult part of tuning in the P25 signal, but that is why we first started in GQRX, to get a good starting point. Fortunately once you find the correct `ppmn` number, it will hopefully not deviate much. It should deviate less with higher quality dongles. Cheap dongles may increase in temperature overtime and cause additional drift. Interference from nearby electronics or USB devices can also cause signal loss due to increased noise. DC bias can also affect reception if tuning directly on the center frequency (i.e. you set `-o` to 0).
 
 6. Verify the constellation plot is showing good decoding of the `CQPSK` signal. `Press the number 2` to bring up the `constellation plot`. `CQPSK` or Compatible Differential Offset Quadrature Phase Shift Keying is the modulation technique used by P25 Phase II FDMA systems. You should see 4 distinct circles in your graph that represent the 4 possible digital symbol values transmitted by the signal. If you see a ring or one large circle, then OP25 is not able to demodulate the `CQPSK` signal correctly and you will need to improve your reception or confirm your settings.
 
-![Constellation Plot](/images/constellation-plot-good)
+   ![Constellation Plot](/images/constellation-plot-good)
 
 7. Verify the Mixer:balance plot is showing an even mix of the signal. `Press the number 5` to bring up the `Mixer:balance plot`.  If your signal is not dead on center then you may see one side of the signal peak higher than the other. Ideally this plot is showing a low number (less than 10).  As long as you are close enough the `-X` option should autotune to achieve a good balance. For example, my auto tune is showing  XXX hertz correction in the below image. You can tune manually using the `<` `>` (1200 hz) and `,` `.` (100 hz) keys.
 
-![Balance Plot](/images/balance-plot.png)
+   ![Balance Plot](/images/balance-plot.png)
 
 8. When there is a voice communication you will see the frequency, active talk-group ID (tgids) , a last seen timer, and a transmission count in the terminal.
 
 Notice in the image below that in periods of high talking traffic, you will see many voice frequencies being used. Even the alternate control channel for Bloomington was used at some point for a voice transmission. If simultaneous transmissions are executed on frequencies separated by more bandwidth than the sample rate (in our case 960,000 kHz) you may not receive one of those communications. You can setup multiple SDR dongles to ensure you have enough bandwidth and recorders to receive all traffic. (outside the scope of this tutorial)
 
-![Voice-6-Freq](/images/voice-6-freq.png)
+   ![Voice-6-Freq](/images/voice-6-freq.png)
 
 
 9. Press `q` to quit the program
@@ -372,27 +372,27 @@ Notice in the image below that in periods of high talking traffic, you will see 
 
 10. We can now setup a file to automatically translate the talk-group ids (tgids) into a named entity such as ` Bloomington Police Dispatch`. This allows you to get a better idea of who is communicating. Open the file `Documents/op25/op25/gr-op25_repeater/apps/tompkins.tsv` using a spreadsheet program. We need to create a tsv with the tgids in column 1 and the nomenclature in column 2. You can find these back on [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084). Search for all Bloomington related tgids and input in the columns. Save as `bloomington.tsv` when you complete. An example tsv is included in our git repository.
 
-Ensure you save as a tab delimited file using [these instructions repeated below](https://ask.libreoffice.org/en/question/57184/how-to-generate-calc-tab-delimited-output/)
+   Ensure you save as a tab delimited file using [these instructions repeated below](https://ask.libreoffice.org/en/question/57184/how-to-generate-calc-tab-delimited-output/)
 
-`Use File > Save a Copy.`
+   `Use File > Save a Copy.`
 
-`Go to the place, where you want to save the file.`
+   `Go to the place, where you want to save the file.`
 
-`Choose the file type Text CSV (.csv) form the drop down list`
+   `Choose the file type Text CSV (.csv) form the drop down list`
 
-`Check Edit filter settings. Click Save. Now you get a dialog for the settings.`
+   `Check Edit filter settings. Click Save. Now you get a dialog for the settings.`
 
-`In the drop-down list field delimiter select the item {Tab}.`
+   `In the drop-down list field delimiter select the item {Tab}.`
 
-`After saving change .csv to .tsv`
+   `After saving change .csv to .tsv`
 
-![RR TGIDS](/images/rr-tgids.png)
+   ![RR TGIDS](/images/rr-tgids.png)
 
-Now edit the trunk.tsv file in the Libre calc app. Under `tgid_tags_file` input `bloomington.tsv`. This tells the software to use `bloomington.tsv` to translate the tgids. When saving use hte `Use Text CSV format` to keep the file as a tabbed separated file.
+   Now edit the trunk.tsv file in the Libre calc app. Under `tgid_tags_file` input `bloomington.tsv`. This tells the software to use `bloomington.tsv` to translate the tgids. When saving use hte `Use Text CSV format` to keep the file as a tabbed separated file.
 
 11. Relaunch the program with the same command as in `3.` You will now see the tags at the bottom of the terminal during voice transmissions. In this case `DOT-52-SUB`. You can use the descriptions if you prefer.
 
-![Tagged Voice](/images/tagged-voice.png)
+   ![Tagged Voice](/images/tagged-voice.png)
 
 ### Launch the OP25 software automatically on boot
 
