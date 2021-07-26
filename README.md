@@ -81,7 +81,7 @@ It is important to note for this tutorial that the Indiana P25 network is a trun
 
 If you are interested in learning the details of P25 radio, I highly recommend you take [this free short class](https://www.taitradioacademy.com/lessons/p25-standard/) (1-3 hrs) by taitradioacademy.com.
 
-Further, if you are brand new to radio, you may be interested in this [introduction to radio])https://www.taitradioacademy.com/lessons/introduction-to-radio-communications-principals/) class also offered by taitradioacademy.com. 
+Further, if you are brand new to radio, you may be interested in this [introduction to radio](https://www.taitradioacademy.com/lessons/introduction-to-radio-communications-principals/) class also offered by taitradioacademy.com. 
 
 ## Software Defined Radio
 
