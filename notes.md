@@ -17,33 +17,6 @@
 7. Complete project submission
 
 
-## GQRX
-
-- GQRX does not do AM by default. It requires some tuning to get below 22.0 MHZ. See [reddit thread](https://www.reddit.com/r/RTLSDR/comments/ksmv9f/cant_listen_to_am_radio_broadcasts_with_nooelec/) and [user report](http://adrianchadd.blogspot.com/2017/06/gqrx-direct-sampling-configuration.html?m=1)
-
-## NOAA
-
-- [IN NOAA Weather Radio Channels](https://www.weather.gov/nwr/stations?State=IN)
-- Bloomington is 162.450 MHz, narrow FM demod
-
-## FM
-
-- Found harmonics for 96.7 (31.94 MHz) and B 96.1 (32.5)
-
-## DMR
-
-- UK equiavlant of P25 (Europe?) fully encrypted in BBC, so not able to listen to it.
-
-
-## Unorganized
-
-- change the sample rate on gqrx for improved performance
-- relook LNA and gain description was not the same for recommended dongle
-- noaa weather coverage maps
-- most recently 162.500 weather (georgia, south of bedford) was working not 162.45
-- get what you pay for when it comes to SDR and perhaps antennas
-- update components and add antenna https://www.amazon.com/LM-YN-Omnidirectional-Compatible-Frequency/dp/B01N6GO584/
--  remove small antenna recommendation (doesn't work well with pi-top, too much noise)
 
 ## Docker Commands
 - launch trunk-recorder as docker container `sudo dockerun -it   --privileged   -v /home/anthony/trunk-recorder:/app   -v /var/run/dbus:/var/run/dbus   -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket   robotastic/trunk-recorder:latest`
