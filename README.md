@@ -330,27 +330,27 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
    `2> stderr.2` This redirects error output to a file named `stderr.2` This prevents the text console display from getting messed up. If things are not working, it is worth taking a look at the file, `cat stderr.2`, to read the message log.
 
 
-4. If the configuration options are correct (the frequency as set by the ./setTrunkFreq.sh program, the offset set by the -o, and the frequency correction as set by the -q) and the reception is acceptable then you should see a line similar to the following:
+4. If the configuration options are correct (the frequency as set by the `./setTrunkFreq.sh` program, the offset set by the `-o`, and the frequency correction as set by the `-q`) and the reception is acceptable, then you should see a line similar to the following:
 
-```
-NAC 0x6b1 WACN 0xbee00 SYSID 0x6bd 858.487500/813.487500 tsbks 702
-```
+   ```
+   NAC 0x6b1 WACN 0xbee00 SYSID 0x6bd 858.487500/813.487500 tsbks 702
+   ```
 
-You can use this line at the top of the terminal to verify that you are receiving and correctly decoding data from the control channel. For the P25 system, the NAC is the network access code, the WACN is the wide area communications network ID and the SYSID is the system ID within the WACN. If the WACN and SYSID numbers match those found in the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) database then you know you have tuned into the correct P25 control channel.
+   You can use this line at the top of the terminal to verify that you are receiving and correctly decoding data from the control channel. For the P25 system, the NAC is the network access code, the WACN is the wide area communications network ID and the SYSID is the system ID within the WACN. If the WACN and SYSID numbers match those found in the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) database then you know you have tuned into the correct P25 control channel.
 
-If your reception or options are incorrect then you will see a line similar to the following:
+   If your reception or options are incorrect then you will see a line similar to the following:
 
-```
-NAC 0x00 WACN 0x-1 SYSID 0x-1 0.000000/0.000000 tsbks 0
-```
+   ```
+   NAC 0x00 WACN 0x-1 SYSID 0x-1 0.000000/0.000000 tsbks 0
+   ```
 
-Continue troubleshooting by changing your input options and using the steps below.
+   Continue troubleshooting by changing your input options and using the steps below.
 
 5. Verify the center frequency is on top of the control channel peak. `Press the number 1` to bring up the `fft plot`. This plot will show you the sampled spectrum and the power of the signals received. You should see the peak of the control channel frequency line up with the black bar indicating the tuned frequency.
 
 ![FFT Plot](/images/fft-plot)
 
-If this number is off, then you will need to change you ppm `-q` option until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on the cheap dongle. This is the most difficult part of tuning in the P25 signal, but that is why we first started in GQRX, to get a good starting point. Fortunately once you find the correct `ppmn` number, it will hopefully not deviate much. It should deviate less with higher quality dongles. Cheap dongles may increase in temperature overtime and cause additional drift. Interference from nearby electronics or USB devices can also cause signal loss due to increased noise. DC bias can also affect reception if tuning directly on the center frequency (i.e. you set `-o` to 0).
+   If this number is off, then you will need to change you ppm `-q` option until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on the cheap dongle. This is the most difficult part of tuning in the P25 signal, but that is why we first started in GQRX, to get a good starting point. Fortunately once you find the correct `ppmn` number, it will hopefully not deviate much. It should deviate less with higher quality dongles. Cheap dongles may increase in temperature overtime and cause additional drift. Interference from nearby electronics or USB devices can also cause signal loss due to increased noise. DC bias can also affect reception if tuning directly on the center frequency (i.e. you set `-o` to 0).
 
 6. Verify the constellation plot is showing good decoding of the `CQPSK` signal. `Press the number 2` to bring up the `constellation plot`. `CQPSK` or Compatible Differential Offset Quadrature Phase Shift Keying is the modulation technique used by P25 Phase II FDMA systems. You should see 4 distinct circles in your graph that represent the 4 possible digital symbol values transmitted by the signal. If you see a ring or one large circle, then OP25 is not able to demodulate the `CQPSK` signal correctly and you will need to improve your reception or confirm your settings.
 
