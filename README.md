@@ -1,6 +1,6 @@
 # pi-sdr
 
-Turn your Raspberry Pi into a portable radio reciever using software defined radio (SDR). We demonstrate its use to listen to FM radio, NOAA Weather Radio, and Project 25 (P25) emergency services communications.
+Turn your Raspberry Pi into a portable radio receiver using software defined radio (SDR). We demonstrate its use to listen to FM radio, NOAA Weather Radio, and Project 25 (P25) emergency services communications.
 
 ![Pi Radio](/images/pi-radio.jpg)
 
@@ -10,13 +10,13 @@ This tutorial will be a introduction to Raspberry Pi single-board computers, sof
 
 Teachers and students can use this tutorial to learn about these concepts through an hands-on project. Concerned citizens, journalists, and [Virtual Operations Support Team (VOST) members](https://www.govtech.com/em/disaster/virtual-operations-support-teams-social-media.html) can use this tutorial to setup a radio to monitor emergency radio traffic, NOAA weather radio, or other FM radio in their area.
 
-P25 capable recievers on the market, such as the [Bluetail Technolgies P25rx](https://bluetailtechnologies.com/products/p25rx-digital-police-receiver), typically cost $250 or more and are relatively single use when compared to the Raspberry Pi which provides a full computer and can be repurposed for multiple projects. The initial cost of traditional radio recievers can be prohibitively expensive for individuals interested in monitoring emergency radio communication. Some webistes, such as [openmhz.com](https://openmhz.com/systems) provide real-time and recorded P25 communications traffic, however coverage for your area is not guaranteed. With a cheap SDR dongle and a computer such as the Raspberry Pi, you can set up your own P25 scanner. By presenting a gentle introduction to the field of SDR, this tutorial can enable and encourage more people to implement P25 trunk recording, such as that found on openmhz.com and powerd by the [trunk-recorder software](https://github.com/robotastic/trunk-recorder), to make emergency communications more acessbile to the public. Building your own P25 scanner is a fun hands-on project to learn about P25, SDR, and single-board computers.
+P25 capable receivers on the market, such as the [Bluetail Technologies P25rx](https://bluetailtechnologies.com/products/p25rx-digital-police-receiver), typically cost $250 or more and are relatively single use when compared to the Raspberry Pi which provides a full computer and can be repurposed for multiple projects. The initial cost of traditional radio receivers can be prohibitively expensive for individuals interested in monitoring emergency radio communication. Some websites, such as [openmhz.com](https://openmhz.com/systems) provide real-time and recorded P25 communications traffic, however coverage for your area is not guaranteed. With a cheap SDR dongle and a computer such as the Raspberry Pi, you can set up your own P25 scanner. By presenting a gentle introduction to the field of SDR, this tutorial can enable and encourage more people to implement P25 trunk recording, such as that found on openmhz.com and powered by the [trunk-recorder software](https://github.com/robotastic/trunk-recorder), to make emergency communications more accessible to the public. Building your own P25 scanner is a fun hands-on project to learn about P25, SDR, and single-board computers.
 
-> See this [site](https://wiki.radioreference.com/index.php/APCO_Project_25#Scanner_Support_FDMA_and_TDMA) for a list of P25 scanners and thier supported technology (phase I, II, etc) 
+> See this [site](https://wiki.radioreference.com/index.php/APCO_Project_25#Scanner_Support_FDMA_and_TDMA) for a list of P25 scanners and their supported technology (phase I, II, etc) 
 
 ## Video Demo
 
-[![IPi Radio Demo](https://img.youtube.com/vi/avw6MLh7hUw/0.jpg)](https://www.youtube.com/watch?v=avw6MLh7hUw)
+[![Pi Radio Demo](https://img.youtube.com/vi/avw6MLh7hUw/0.jpg)](https://www.youtube.com/watch?v=avw6MLh7hUw)
 
 ## Components
 
@@ -24,27 +24,27 @@ In the sections below we provide components recommended to build a Raspberry Pi 
 
 ### Portable Model
 
-These components provide a portable Rasbperry Pi based radio including a case, battery, built-in speaker, small utility screen, SDR dongle, and antenna. Bluetooth and audio jacks from the Pi provide audio output, and wifi allows configuration via secure shell (ssh) from any computer. Alternatively you can attach a monitor, keyboard, and mouse to make configuration changes.
+These components provide a portable Raspbperry Pi based radio including a case, battery, built-in speaker, small utility screen, SDR dongle, and antenna. Bluetooth and audio jacks from the Pi provide audio output, and wifi allows configuration via secure shell (ssh) from any computer. Alternatively, you can attach a monitor, keyboard, and mouse to make configuration changes.
 
 - [Raspberry Pi 4 Model B Starter Kit 8GB](https://www.amazon.com/dp/B08DJ9MLHV?psc=1&smid=A30ZYR2W3VAJ0A&ref_=chk_typ_imgToDp) $94.99 (cheaper, smaller RAM models should work as well)
 - [Samsung EVO 32 GB micro SD card](https://www.amazon.com/dp/B06XWN9Q99?psc=1&smid=ATVPDKIKX0DER&ref_=chk_typ_imgToDp) $7.49
 - [PI-TOP [4] DIY Edition Case](https://www.amazon.com/dp/B08N6B8M1H) $99.95
 - [USB-C PD power supply](https://www.amazon.com/ZMI-zPower-Turbo-Power-Adapter/dp/B07D64QLQ1/) $19.99 capable of 12v or 15v 3A output. 
-- [Nooelec NESDR Smart v4 Bundle](https://www.amazon.com/gp/product/B01GDN1T4S/) $41.95 ([this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $19.99 SDR dongle was validated with the tutorial below (althout it is significantly more difficult to tune; see notes in tutorial . The reccommended dongle should provide better radio reception with less manual frequency corerection and less frequency drift compared to the cheaper dongle.)
-- **Total $264.37 not including tax, or $161.89 with existing Pi and SD card** (You can redudece the price by $40 or more by using cheaper Raspberry Pi's and SDR dongles)
+- [Nooelec NESDR Smart v4 Bundle](https://www.amazon.com/gp/product/B01GDN1T4S/) $41.95 ([this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $19.99 SDR dongle was validated with the tutorial below (although it is significantly more difficult to tune; see notes in tutorial . The recommended dongle should provide better radio reception with less manual frequency correction and less frequency drift compared to the cheaper dongle.)
+- **Total $264.37 not including tax, or $161.89 with existing Pi and SD card** (You can reduce the price by $40 or more by using cheaper Raspberry Pi's and SDR dongles)
 
-Wihle it is near the top-end of the price range for Pi cases, the pi-top[4] is a good fit for this project becuase it includes a battery, speaker, OS soft-shutdown via button press (to prevent SD card corruption without needing keyboard, monitor, or mouse to shutdown), and a utility screen that provides battery level and CPU monitoring. The pi-top[4] case is a well designed case for use in education or project settings, such as building robots, sensors, and more. It has the added benefit of exposing all GPIO pins and ports of the raspberry pi, so you can extend your pi to do multiple other projects if desired. It also has an attachable touch screen and keyboard that you can add to make your pi-radio fully configurable in a stand-alone manner. 
+While it is near the top-end of the price range for Pi cases, the pi-top[4] is a good fit for this project because it includes a battery, speaker, OS soft-shutdown via button press (to prevent SD card corruption without needing keyboard, monitor, or mouse to shutdown), and a utility screen that provides battery level and CPU monitoring. The pi-top[4] case is a well designed case for use in education or project settings, such as building robots, sensors, and more. It has the added benefit of exposing all GPIO pins and ports of the raspberry pi, so you can extend your pi to do multiple other projects if desired. It also has an attachable touch screen and keyboard that you can add to make your pi-radio fully configurable in a stand-alone manner. 
 
-> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from thier website. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was reccommended becuase it is assumed many users will already have a Raspberry Pi to begin with, it allows you the option to use an 8GB RAM model, and it is cheaper. Note the DIY edition does not come with the required USB-C PD 12v or 15v power supply. These are the type used for a modern laptop charger. Your 5v phone charger or Raspberry Pi charger will not work. I found a Nintendo Switch power supply works as well.
+> You can buy a pi-top[4] with a 4 GB Raspberry Pi 4 pre-installed from their website. See the `pi-top[4] complete` kit. The `pi-top[4] diy` case was recommended because it is assumed many users will already have a Raspberry Pi to begin with, it allows you the option to use an 8GB RAM model, and it is cheaper. Note the DIY edition does not come with the required USB-C PD 12v or 15v power supply. These are the type used for a modern laptop charger. Your 5v phone charger or Raspberry Pi charger will not work. I found a Nintendo Switch power supply works as well.
 
 ### Car Plug in Model
 
-If you simply want to plug your Pi radio into a car (or other USB power source and bluetooth accessible speaker), then you will only need your Pi, the SDR dongle and antenna kit, and an inexpensive case.
+If you simply want to plug your Pi radio into a car (or other USB power source and Bluetooth accessible speaker), then you will only need your Pi, the SDR dongle and antenna kit, and an inexpensive case.
 
 - [Raspberry Pi 4 Model B Starter Kit 8GB](https://www.amazon.com/dp/B08DJ9MLHV?psc=1&smid=A30ZYR2W3VAJ0A&ref_=chk_typ_imgToDp) $94.99 (cheaper, smaller RAM models should work as well)
 - [Samsung EVO 32 GB micro SD card](https://www.amazon.com/dp/B06XWN9Q99?psc=1&smid=ATVPDKIKX0DER&ref_=chk_typ_imgToDp) $7.49
 - [Raspberry Pi 4 Case iUniker](https://www.amazon.com/iUniker-Raspberry-Aluminium-Heatsink-Supply/dp/B07D3S4KBK/) $10.95
-- [Nooelec NESDR Smart v4 Bundle](https://www.amazon.com/gp/product/B01GDN1T4S/) $41.95 ([this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $19.99 SDR dongle was validated with the tutorial below (althout it is significantly more difficult to tune; see notes in tutorial . The reccommended dongle should provide better radio reception with less manual frequency corerection and less frequency drift compared to the cheaper dongle.)
+- [Nooelec NESDR Smart v4 Bundle](https://www.amazon.com/gp/product/B01GDN1T4S/) $41.95 ([this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $19.99 SDR dongle was validated with the tutorial below (although it is significantly more difficult to tune; see notes in tutorial . The recommended dongle should provide better radio reception with less manual frequency correction and less frequency drift compared to the cheaper dongle.)
 - **Total $155.38 not including tax, $52.90 with existing Pi and SD card**
 
 
@@ -52,12 +52,12 @@ If you simply want to plug your Pi radio into a car (or other USB power source a
 
 With an existing computer running Linux you simply need an SDR dongle and antenna to begin monitoring P25 radio communications. 
 
-- [Nooelec NESDR Smart v4 Bundle](https://www.amazon.com/gp/product/B01GDN1T4S/) $41.95 ([this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $19.99 SDR dongle was validated with the tutorial below (althout it is significantly more difficult to tune; see notes in tutorial . The reccommended dongle should provide better radio reception with less manual frequency corerection and less frequency drift compared to the cheaper dongle.)
+- [Nooelec NESDR Smart v4 Bundle](https://www.amazon.com/gp/product/B01GDN1T4S/) $41.95 ([this](https://www.amazon.com/gp/product/B00UAB79WG/) cheaper $19.99 SDR dongle was validated with the tutorial below (although it is significantly more difficult to tune; see notes in tutorial . The recommended dongle should provide better radio reception with less manual frequency correction and less frequency drift compared to the cheaper dongle.)
 - **Total $19.99-39.99 not including tax**
 
 ### Antenna Purposes
 
-Antennas vary in thier phyical properties, such as length and shape, to optimize reception of a specific section of radio spectrum. Length typically decreaes as frequency increases. 
+Antennas vary in their physical properties, such as length and shape, to optimize reception of a specific section of radio spectrum. Length typically decrease as frequency increases. 
 
 The Nooelec bundle comes with three antennas.
 
@@ -65,19 +65,19 @@ The shorter fixed length antenna (~12cm) is for generic UHF, 300 MHz to 3 GHz.
 
 The longer fixed length antenna is optimized specifically for 433 Mhz which includes the ISM radio band.
 
-The variable length antenna can be tuned for a range of frequencies by varying its extended length. You can use various [calculators](http://www.csgnetwork.com/antennagenericfreqlencalc.html) do determine this. For example, to get a 1/4 wavelength antenna for 162.5 Mhz NOAA Weather Radio that we demonstrate later on, we determine we need to extend the antenna to ~17.28 inches. Whereas an 1/2 wavelenth for 858 Mhz P25 radio would be ~6.5 inches.
+The variable length antenna can be tuned for a range of frequencies by varying its extended length. You can use various [calculators](http://www.csgnetwork.com/antennagenericfreqlencalc.html) do determine this. For example, to get a 1/4 wavelength antenna for 162.5 Mhz NOAA Weather Radio that we demonstrate later on, we determine we need to extend the antenna to ~17.28 inches. Whereas an 1/2 wavelength for 858 Mhz P25 radio would be ~6.5 inches.
 
-Assuming reception is strong enough, you can likely use any of the three antennas for all instructions below, however, if you are having trouble getting a strong reception, then you can use this information to choose the correct antenna for your task. It is a good excercise to try different antennas to see how your reception changes.
+Assuming reception is strong enough, you can likely use any of the three antennas for all instructions below, however, if you are having trouble getting a strong reception, then you can use this information to choose the correct antenna for your task. It is a good practice to try different antennas to see how your reception changes.
 
-> Note: if you are interested in a sturdier yet still cheap antenna upgrae, you may be interetested in [this kit](https://www.amazon.com/gp/product/B073JWDXMG/) from Nooelec.
+> Note: if you are interested in a sturdier yet still cheap antenna upgrade, you may be interested in [this kit](https://www.amazon.com/gp/product/B073JWDXMG/) from Nooelec.
 
 ## P25
 
-P25 is set of two-way radio standards designed to standardize radio networks and capabilities for use in public safety, public service and commercial applications. It provides a digital radio protocol that replace the analog radio networks previously used by these sectors. This allows it to support digital voice encoding, targeted messaging, texting, data, and encryption, and reduce bandwidth utilization increasing the ability to share radio specturm. Analog radio simply modulates analog radio signals with voice, however in a digitral system the voice is first encoded into a digital bitstream (similar to how data is passed over the internet), and then modulated onto the analog radio signal. This allows advanced features such as error correction and the transmission of data.
+P25 is set of two-way radio standards designed to standardize radio networks and capabilities for use in public safety, public service and commercial applications. It provides a digital radio protocol that replace the analog radio networks previously used by these sectors. This allows it to support digital voice encoding, targeted messaging, texting, data, and encryption, and reduce bandwidth utilization increasing the ability to share radio spectrum. Analog radio simply modulates analog radio signals with voice, however in a digital system the voice is first encoded into a digital bitstream (similar to how data is passed over the internet), and then modulated onto the analog radio signal. This allows advanced features such as error correction and the transmission of data.
 
-P25 can be used to create large radio networks such as the statewide Indiana SAFE-T network that we will use in this tutorial. [This link](http://mattnik.andropov.org/files/System_Map_Feb_2020.pdf) shows a map of the Indiana network in 2020. In this network each county has typically one to five repeaters that enable near statewide coverage. These repeaters are connected with T1 lines, microwave radio, and other IP backhaul. This coverage combined with the talk-group and message directing capabiities of P25 allow greater coordination of public servants. For example, police and EMS who normally talk in separate groups, can reprogram thier radios on the fly to create a mutual channel when coordinating on an emergency event. In a disaster event, when emergency service personnel from many outside districts are called in to assit, they can quickly be integrated into the response due to thier interoperable radios.
+P25 can be used to create large radio networks such as the statewide Indiana SAFE-T network that we will use in this tutorial. [This link](http://mattnik.andropov.org/files/System_Map_Feb_2020.pdf) shows a map of the Indiana network in 2020. In this network each county has typically one to five repeaters that enable near statewide coverage. These repeaters are connected with T1 lines, microwave radio, and other IP backhaul. This coverage combined with the talk-group and message directing capabilities of P25 allow greater coordination of public servants. For example, police and EMS who normally talk in separate groups, can reprogram their radios on the fly to create a mutual channel when coordinating on an emergency event. In a disaster event, when emergency service personnel from many outside districts are called in to assist, they can quickly be integrated into the response due to their interoperable radios.
 
-It is important to note for this tutorial that the Indiana P25 network is a trunked radio network. A trunked network includes a control channel and multiple voice channels. When a radio wants to send a message to a talk group it requests from the control channel a voice channel. After the voice channel is assigned, other radios programed to listen to that talkgroup will be automatically notified and tune to that channel to recieve the message. 
+It is important to note for this tutorial that the Indiana P25 network is a trunked radio network. A trunked network includes a control channel and multiple voice channels. When a radio wants to send a message to a talk group it requests from the control channel a voice channel. After the voice channel is assigned, other radios programed to listen to that talkgroup will be automatically notified and tune to that channel to receive the message.
 
 If you are interested in learning the details of P25 radio, I highly recommend you take [this free short class](https://www.taitradioacademy.com/lessons/p25-standard/) (1-3 hrs) by taitradioacademy.com.
 
@@ -87,7 +87,9 @@ Further, if you are brand new to radio, you may be interested in this [introduct
 
 Historically the various components of a radio (mixer, amplifier, modulator/demodulator, etc) were implemented as dedicated circuits in hardware. This causes radio to be relatively purpose built, dedicated, and non-reconfigurable devices. Modern computing has enabled what is known as Software Defined Radio. Some of these components can now be implemented as software, such as on a typical desktop computer, or as reconfigurable circuits in field-programmable-arrays. SDR enables more dynamic radio systems that can be reprogrammed on the fly to achieve a particular radio goal.
 
-In this project we will use a SDR known as the RTL-SDR. It is based on two chips that were originall designed to recieve over-the-air HD TV broadcasts withing a cheap $20 USB dongle. It was discovered that these cheap recievers were capable of recieving a wide range of spectrum from 25MHz-1700MHz. This includes many purposes including but not limited to FM radio, NOAA Weather Radio, and P25 emergency communication networks. This dongle combined with SDR software (GQRX, OP25) enables us to recieve and demodulate these radio signals.
+In this project we will use a SDR known as the RTL-SDR. It is based on two chips that were originally designed to receive over-the-air HD TV broadcasts within a cheap $20 USB dongle. It was discovered that these cheap receivers were capable of receiving a wide range of spectrum from 25MHz-1700MHz. This includes many purposes including but not limited to FM radio, NOAA Weather Radio, and P25 emergency communication networks. This dongle combined with SDR software (GQRX, OP25) enables us to receive and demodulate these radio signals.
+
+It is important to note that these dongles are receive only. There are other, more expensive SDR platforms that have more capabilities including the ability to transmit. See [this wikipedia](https://en.wikipedia.org/wiki/Software-defined_radio#Amateur_and_home_use) entry for a description of these platforms.
 
 ## Setup
 
