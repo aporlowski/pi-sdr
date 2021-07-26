@@ -103,7 +103,7 @@ If not using the pi-top[4] case we recommend you install Ubuntu Desktop 21.04 on
 
 #### Option 1: Install pi-topOS on Raspberry Pi when using pi-top[4] case
 
-1. First you need to install your Pi into your pi-top[4] case if not already done so. See this [youtube video](https://www.youtube.com/watch?v=38BCTsGrdiU) for instructions. 
+1. First you need to install your Pi into your pi-top[4] case if not already done so. See this [youtube video](https://www.youtube.com/watch?v=38BCTsGrdiU) for instructions [15]. 
 2. Now we can install the OS. Download the pi-topOS from [here](https://www.pi-top.com/products/os)
 3. Extract the image from the zip file.
 3. Download the Raspberyy Pi Imager [software](https://www.raspberrypi.org/software/)
@@ -142,7 +142,7 @@ sudo reboot
 
 ### Install the [GQRX](https://gqrx.dk/) Open Source SDR Receiver Software
 
-Now we can install our first SDR radio application, GQRX.
+Now we can install our first SDR radio application, GQRX [16].
 
 1. Follow the GQRX [installation instructions](https://gqrx.dk/download/install-ubuntu) repeated below
 2. First we need to remove existing installations of the software. There should be none so you can skip these commands or answer `n` to these commands if using a fresh OS installation.
@@ -168,7 +168,7 @@ sudo apt-get update
 ```
 sudo apt-get install gqrx-sdr
 ```
-5. Next we will install the libvolk2-bin profiler to optimize our machines radio processing 
+5. Next we will install the libvolk2-bin [17] profiler to optimize our machines radio processing 
 
 ```
 sudo apt-get install libvolk2-bin  # (Ubuntu only, if using an older ubuntu distrobution you will use libvolk1-bin)
@@ -189,7 +189,7 @@ Now we can install the OP25 software that we will use to demodulate the digital 
 sudo apt install git
 ```
 
-2. Next we clone the [boatbod fork](https://github.com/boatbod/op25.git) of the [OP25 software](http://osmocom.org/projects/op25/wiki)
+2. Next we clone the [boatbod fork](https://github.com/boatbod/op25.git) [18] of the [OP25 software](http://osmocom.org/projects/op25/wiki) [19]
 
 ```
 cd Documents
@@ -226,7 +226,7 @@ gqrx
 
 5. Next Select `mode WFM (mono)` or `WFM (stereo)`. This mode selection that tells GQRX how to demodulate the radio signal. For example, AM and FM are different modulation techniques and you won't hear the correct audio output if you do not select the correct mode. You will notice that the stereo demodulation provides two channels of sound whereas the mono demodulation provides only one channel. Depending on your reception quality, one mode may sound better than the other.
 
-> See [this page](https://gqrx.dk/doc/practical-tricks-and-tips#use) for more description of the various GQRX settings.
+> See [this page](https://gqrx.dk/doc/practical-tricks-and-tips#use) for more description of the various GQRX settings [20].
 
 6. Push the `play` button in the top left corner. You should hear start to hear the radio station. You will see in the top half of the screen a spectrum analyzer, and in the bottom half, a time plot of the signal strength for the sampled frequency range. The spectrum analyzer measures the signal strength in dB. You will see a noise floor across the entire frequency range (probably between -60 to -100 dB depending on your receiver and GQRX settings). Where there is a signal broadcast, you should see peaks of signals rise above the noise floor(probably between -80 and -20 dB), these are broadcast radios signals. In the lower plot, time runs up and down along the y-axis, and frequency is the x-axis. The colors show the signal strength blue:low, yellow:medium, red:high. Yellow is typically sufficient for demodulation.
 
@@ -240,7 +240,7 @@ gqrx
 
 #### NOAA Weather Radio
 
-1. Change the frequency to your local NOAA Weather radio channel. In Bloomington, this is currently 162.50 MHz or 162500 kHz. You can find your local frequency from the [NOAA site](https://www.weather.gov/nwr/station_listing). 
+1. Change the frequency to your local NOAA Weather radio channel. In Bloomington, this is currently 162.50 MHz or 162500 kHz. You can find your local frequency from the [NOAA site](https://www.weather.gov/nwr/station_listing) [21]. 
 
 2. Change the mode to `Narrow FM`. You will notice the grey bars on either side of the center frequency will shrink. Narrow FM uses less bandwidth to broadcast the signals. This allows more radio stations to fit into the spectrum, however, it decreases the quality of audio. This smaller bandwidth is still suitable for talking based audio like two-way radio and news, but it would not perform well for music found on typical FM radio stations.
 
@@ -269,7 +269,7 @@ Next, we will search for the P25 control channel for Bloomington.
 
 3. Keep the mode on `Narrow FM`
 
-4. This channel is significantly harder to tune, as there is no voice audio to guide us. P25 is a digital broadcast, so the control channel is a consistent peak of what sounds like digital noise. See this [YouTube video](https://www.youtube.com/watch?v=KtWhSuAL1_Q&t=5s) to get an idea of the sound we are looking for. Mine sounds similar to the video but with less of the screeching, chirping, and a slower paced rhythmic thudding, so do not be concerned if it only sounds similar, but not exact to the video.
+4. This channel is significantly harder to tune, as there is no voice audio to guide us. P25 is a digital broadcast, so the control channel is a consistent peak of what sounds like digital noise. See this [YouTube video](https://www.youtube.com/watch?v=KtWhSuAL1_Q&t=5s) [23] to get an idea of the sound we are looking for. Mine sounds similar to the video but with less of the screeching, chirping, and a slower paced rhythmic thudding, so do not be concerned if it only sounds similar, but not exact to the video.
 
 5. Also, at this higher frequency your receiver error will be amplified. I have to tune my cheap dongle approximately -23.1 kHz to center on the signal (corrected signal). This is quite far due, and in my case the corrected peak happens to be a slightly lower than the peak that appears at the center frequency. Do not be tricked if you have a strong signal at the center frequency but not the correct noise. Investigate all peaks nearby. The peak at the center frequency can be caused by DC bias. Audio sounds better the closer it is to the center frequency, and conversely SDR do not handle audio at the edge of the sample range as well. However, there is some DC bias introduced at the center frequency, so it is best for us to tune to a center frequency that is close to, but not exactly the target frequency. We will handle this with an tuning offset later on.
  
@@ -372,7 +372,7 @@ Now we will use the OP25 software to demodulate the digital P25 voice communicat
 
 10. We can now setup a file to automatically translate the talk-group ids (tgids) into a named entity such as ` Bloomington Police Dispatch`. This allows you to get a better idea of who is communicating. Open the file `Documents/op25/op25/gr-op25_repeater/apps/tompkins.tsv` using a spreadsheet program. We need to create a tsv with the tgids in column 1 and the nomenclature in column 2. You can find these back on [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084). Search for all Bloomington related tgids and input in the columns. Save as `bloomington.tsv` when you complete. An example tsv is included in our git repository.
 
-    Ensure you save as a tab delimited file using [these instructions repeated below](https://ask.libreoffice.org/en/question/57184/how-to-generate-calc-tab-delimited-output/)
+    Ensure you save as a tab delimited file using [these instructions repeated below](https://ask.libreoffice.org/en/question/57184/how-to-generate-calc-tab-delimited-output/) [24].
 
     `Use File > Save a Copy.`
 
@@ -452,7 +452,7 @@ Here we present some known limitations of this project and ideas for further exp
 
 ## Acknowledgements
 
-I would like to acknowledge John for his useful OP25 [tutorial](https://www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies/) that this tutorial extends and updates. I would also like to acknowledge Dr. David Wild, Oscar Lemus, and the teaching staff of the [Informatics for Disaster and Emergency Response Course](https://djwild.pages.iu.edu/ider/) at Indiana Univsersity for recommending the project and providing feedback as it was developed. 
+I would like to acknowledge John for his useful OP25 [tutorial](https://www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies/) [25] that this tutorial extends and updates. I would also like to acknowledge Dr. David Wild, Oscar Lemus, and the teaching staff of the [Informatics for Disaster and Emergency Response Course](https://djwild.pages.iu.edu/ider/) [26] at Indiana Univsersity for recommending the project and providing feedback as it was developed. 
 
 ## References
 
@@ -484,6 +484,26 @@ I would like to acknowledge John for his useful OP25 [tutorial](https://www.hage
 
 [14] Kierzkowski, David. "gnuradio usrp p25 opensource imbe encoder test." YouTube, 1 Dec. 2009, www.youtube.com/watch?v=vk0S5JtQtMk.
 
+[15] Team, Pi-top. "Installing the Raspberry Pi 4 into your pi-top [4] DIY Edition." YouTube, 23 Sept. 2020, www.youtube.com/watch?v=38BCTsGrdiU.
 
+[16] "Gqrx SDR – Open source software defined radio by Alexandru Csete OZ9AEC." 26 July 2021, gqrx.dk.
 
+[17] "Volk - GNU Radio." 4 Dec. 2020, wiki.gnuradio.org/index.php/Volk.
 
+[18] boatbod. "op25." GitHub, 26 July 2021, github.com/boatbod/op25.
+
+[19] "WikiStart - OP25 - Open Source Mobile Communications." 26 July 2021, osmocom.org/projects/op25/wiki.
+
+[20] "Practical tricks and tips – Gqrx SDR." 26 July 2021, gqrx.dk/doc/practical-tricks-and-tips#use.
+
+[21] Service, National Weather. "NWR Station Listing." NOAA's National Weather Service, 23 Sept. 2019, www.weather.gov/nwr/station_listing.
+
+[22] "Indiana Project Hoosier SAFE-T Trunking System, Statewide, Multi-State - Scanner Frequencies." 18 July 2021, www.radioreference.com/apps/db/?sid=8084.
+
+[23] Hagensieker, John. "Control Channel Noise." YouTube, 17 July 2018, www.youtube.com/watch?v=KtWhSuAL1_Q&t=5s.
+
+[24] "How to generate Calc tab delimited output? [closed] - Ask LibreOffice." 26 July 2021, ask.libreoffice.org/en/question/57184/how-to-generate-calc-tab-delimited-output.
+
+[25] John. "OP25 For Dummies – Or how to build a police scanner for $30 (Part 1) | John’s Tech Blog." 26 July 2021, www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies.
+
+[26] Wiled, David. "Informatics in Disasters and Emergency Response." 9 June 2021, djwild.pages.iu.edu/ider.
