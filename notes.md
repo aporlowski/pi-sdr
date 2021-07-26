@@ -7,10 +7,10 @@
 2.Make project poster(Are there details on this requirement, or is my tutorial link sufficient?)
 3.Demonstrate transcription by measuring Amazon Transcribe transcription compared to my human comprehension on ~10 minutes of radio broadcasts.
 4.Write software to automatically transcribe trunk-recorder recording outputs.
-- Monitor trunk-recorder outputdirectoriesfor new wav filesb.
-- Upload wav files to Amazon S3 bucket.
-- Schedule Amazon TranscribeJobd.
-- Fetch Amazon Transcribe Joband print result to console / output file inorder oftransmission
+    - Monitor trunk-recorder outputdirectoriesfor new wav filesb.
+    - Upload wav files to Amazon S3 bucket.
+    - Schedule Amazon TranscribeJobd.
+    - Fetch Amazon Transcribe Joband print result to console / output file inorder oftransmission
 5.Make Docker image or file to launch trunk-recorder, install and run my software
 6.Document results of speech-to-text investigation.
 7.Complete project submission
