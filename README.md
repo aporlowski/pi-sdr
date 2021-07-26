@@ -273,39 +273,39 @@ Next, we will search for the P25 control channel for Bloomington.
 
  ![P25 Tuning](/images/p25-tuning.png)
 
-### Configure and Launch OP25 Software to Listen to P25 Commuincation
+### Configure and Launch OP25 Software to Listen to P25 Communication
 
 Now we will use the OP25 software to demodulate the digital P25 voice communications.
 
-1. Change to the op25 reciver application directory
+1. Change to the op25 receiver application directory
 
 ```
 $ cd Documents/op25/op25/gr-op25_repeater/apps/
 ```
 
-2. Set the control channel frequency to tat identified above.
+2. Set the control channel frequency to that identified above.
 
 ```
 ./setTrunkFreq.sh 858.4875    (this modiefies op25.sh, but we may need to modify further for -q and -o)
 ```
 
-3. Launch OP25 using the command below. Substitue your correct `ppm` offset after the `-q` option. With my purpose-built dongle it is 0. For my cheap dongle it is 28.
+3. Launch OP25 using the command below. Substitute your correct `ppm` offset after the `-q` option. With my purpose-built dongle it is 0. For my cheap dongle it is 28.
 
 ```
 ./rx.py --nocrypt --args "rtl" --gains 'lna:36' -S 960000 -X -q 0 -o 28000 -v 1 -2 -V -U -T trunk.tsv 2> stderr.2
 ```
 
-There are many options include to the `rx.py` program, that I will desribe below.
+There are many options include to the `rx.py` program, that I will describe below.
 
 `--nocrypt`: some P25 signals are encrypted, this will filter out encrypted communication as they will only come across sounding like noise.
 
 `--args "rtl`: this tells the OP25 software that you are using an rtl-sdr type dongle
 
-`--gains 'lna:36` this controls the low noise amplifier to increase the strenth of the signal (and also some of the noise) I believe this value is 36 dB, similar to the LNA option in the `input tab` of GQRX.
+`--gains 'lna:36` this controls the low noise amplifier to increase the strength of the signal (and also some of the noise) I believe this value is 36 dB, similar to the LNA option in the `input tab` of GQRX.
 
 `-S 960000` this is the sample range. Our SDR will monitor 960,000 kHz of bandwidth. 
 
-> The dongle is likely capable of more, however, I found with a value closer to the dongles reported capability (2,400,000) I was recieving many `OOOOOOOOO` errors in the stderr.2 file. This is indicative that the SDR is overworked, or the computer can not keep up with the sample size.
+> The dongle is likely capable of more, however, I found with a value closer to the dongles reported capability (2,400,000) I was receiving many `OOOOOOOOO` errors in the stderr.2 file. This is indicative that the SDR is overworked, or the computer can not keep up with the sample size.
 
 `-X` The OP25 software will attempt to auto-tune to the frequency. It only works if you are close. You will see a number such as `Frequency 858.487500(-266)` at the bottom of the terminal. This shows it has autotuned -266 hz to center on the signal.
 
@@ -317,13 +317,13 @@ There are many options include to the `rx.py` program, that I will desribe below
 
 `-2` Enables phase 2 TDMA decoding. Indiana SAFE-T network is reportedly all phase 1 according to radioreference.com, however it does not appear hurt to enable this.
 
-`-V`  Enables the voice codec. I've notived this appears to improve the sound of voice transmissions.
+`-V`  Enables the voice codec. I've noticed this appears to improve the sound of voice transmissions.
 
 `-U` Enables the built in UDP audio player. This allows you to hear the audio from your speakers, and capture it on a specific UDP port.
 
 `-T trunk.tsv` Tells rx.py which file to use for the trunk configuration. This was modified with the `./setTrunkFrequency` command earlier.
 
-`2> stderr.2` This redirects error ouput to a file named `stderr.2` This prevents the text console display from getting messed up. If things are not working, it is worth taking a look at the file `cat stderr.2` to read the message log.
+`2> stderr.2` This redirects error output to a file named `stderr.2` This prevents the text console display from getting messed up. If things are not working, it is worth taking a look at the file `cat stderr.2` to read the message log.
 
 
 4. If the configuration options are correct (the frequency as set by the ./setTrunkFreq.sh program, the offset set by the -o, and the frequency correction as set by the -q) and the reception is acceptable then you should see a line similar to the following:
@@ -332,7 +332,7 @@ There are many options include to the `rx.py` program, that I will desribe below
 NAC 0x6b1 WACN 0xbee00 SYSID 0x6bd 858.487500/813.487500 tsbks 702
 ```
 
-You can use this line at the top of the terminal to verify that you are recieving and correctly decoding data from the control channel. For the P25 system, the NAC is the network access code, the WACN is the wide area communications network ID and the SYSID is the system ID withing the WACN. If the WACN and SYSID numbers match those found in the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) databse then you know you have tuned into the correct P25 control channel.
+You can use this line at the top of the terminal to verify that you are receiving and correctly decoding data from the control channel. For the P25 system, the NAC is the network access code, the WACN is the wide area communications network ID and the SYSID is the system ID within the WACN. If the WACN and SYSID numbers match those found in the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) database then you know you have tuned into the correct P25 control channel.
 
 If your reception or options are incorrect then you will see a line similar to the following:
 
@@ -340,25 +340,25 @@ If your reception or options are incorrect then you will see a line similar to t
 NAC 0x00 WACN 0x-1 SYSID 0x-1 0.000000/0.000000 tsbks 0
 ```
 
-Continue trobleshooting by changing your input options and using hte steps below.
+Continue troubleshooting by changing your input options and using the steps below.
 
-5. Verify the center frequency is on top of the control channel peak. `Press the number 1` to bring up the `fft plot`. This plot will show you the sampled specturm and the power of the signals recieved. You should see the peak of the control channel frequency line up with the black bar indicating the tuned frequey.
+5. Verify the center frequency is on top of the control channel peak. `Press the number 1` to bring up the `fft plot`. This plot will show you the sampled spectrum and the power of the signals received. You should see the peak of the control channel frequency line up with the black bar indicating the tuned frequency.
 
 ![FFT Plot](/images/fft-plot)
 
-If this number is off, then you will need to change you ppm `-q` option until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on the cheap dongle. This is the most difficult part of tuning in the P25 signal, but that is why we first started in GQRX, to get a good starting point. Fortunately once you find the correct `ppmn` number, it will hopefully not deviate much. It should deviate less with higher quality dongles. Cheap dongles may increase in temperature overtime and cause additional drift. Interference from nearby electronics or USB devices can also cause signal loss due to increased noise. DC bias can also affect reception if tuning directly on the cneter frequency (i.e. you set `-o` to 0)
+If this number is off, then you will need to change you ppm `-q` option until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on the cheap dongle. This is the most difficult part of tuning in the P25 signal, but that is why we first started in GQRX, to get a good starting point. Fortunately once you find the correct `ppmn` number, it will hopefully not deviate much. It should deviate less with higher quality dongles. Cheap dongles may increase in temperature overtime and cause additional drift. Interference from nearby electronics or USB devices can also cause signal loss due to increased noise. DC bias can also affect reception if tuning directly on the center frequency (i.e. you set `-o` to 0).
 
 6. Verify the constellation plot is showing good decoding of the `CQPSK` signal. `Press the number 2` to bring up the `constellation plot`. `CQPSK` or Compatible Differential Offset Quadrature Phase Shift Keying is the modulation technique used by P25 Phase II FDMA systems. You should see 4 distinct circles in your graph that represent the 4 possible digital symbol values transmitted by the signal. If you see a ring or one large circle, then OP25 is not able to demodulate the `CQPSK` signal correctly and you will need to improve your reception or confirm your settings.
 
 ![Constellation Plot](/images/constellation-plot-good)
 
-7. Verify the Mixer:balance plot is showing an even mix of the signal. `Press the number 5` to bring up the `Mixer:balance plot`.  If your signal is not dead on center then you may see one side of hte signal peak higher than the other. Ideally this plot is showing a low number (less than 10).  As long as you are close enough the `-X` option should autotune to achieve a good balance. For example, my auto tune is showing  XXX hertz correction in the below image. You can tune manyually using the `<` `>` (1200 hz) and `,` `.` (100 hz) keys
+7. Verify the Mixer:balance plot is showing an even mix of the signal. `Press the number 5` to bring up the `Mixer:balance plot`.  If your signal is not dead on center then you may see one side of the signal peak higher than the other. Ideally this plot is showing a low number (less than 10).  As long as you are close enough the `-X` option should autotune to achieve a good balance. For example, my auto tune is showing  XXX hertz correction in the below image. You can tune manually using the `<` `>` (1200 hz) and `,` `.` (100 hz) keys.
 
 ![Balance Plot](/images/balance-plot.png)
 
 8. When there is a voice communication you will see the frequency, active talk-group ID (tgids) , a last seen timer, and a transmission count in the terminal.
 
-Notice in the image below that in periods of high talking traffic, you will see many voice frequencies being used. Even the alternate control channel for Bloomington was used at some point for a voice transmission. If simultaneous transmissions are executed on frequences separated by more bandwidth than the sample rate (in our case 960,000 kHz) you may not recieve one of those communications. You can setup multiple SDR dongles to ensure you have enough bandwidth and recorders to recieve all traffic. (outside the scope of this tutorial)
+Notice in the image below that in periods of high talking traffic, you will see many voice frequencies being used. Even the alternate control channel for Bloomington was used at some point for a voice transmission. If simultaneous transmissions are executed on frequencies separated by more bandwidth than the sample rate (in our case 960,000 kHz) you may not receive one of those communications. You can setup multiple SDR dongles to ensure you have enough bandwidth and recorders to receive all traffic. (outside the scope of this tutorial)
 
 ![Voice-6-Freq](/images/voice-6-freq.png)
 
@@ -366,17 +366,17 @@ Notice in the image below that in periods of high talking traffic, you will see 
 9. Press `q` to quit the program
 
 
-10. We can now setup a file to automatically translate the talk-group ids (tgids) into a named entity such as ` Bloomington Police Dispatch`. This allows you to get a better idea of who is communicating. Open the file `Documents/op25/op25/gr-op25_repeater/apps/tompkins.tsv` using a spreasheet program. We need to create a tsv with the tgids in column 1 and the nomenclature in column 2. You can find these back on [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084). Search for all Bloomington related tgids and input in the columns. Save as `bloomington.tsv` when you complete. An example tsv is includd in our git repository.
+10. We can now setup a file to automatically translate the talk-group ids (tgids) into a named entity such as ` Bloomington Police Dispatch`. This allows you to get a better idea of who is communicating. Open the file `Documents/op25/op25/gr-op25_repeater/apps/tompkins.tsv` using a spreadsheet program. We need to create a tsv with the tgids in column 1 and the nomenclature in column 2. You can find these back on [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084). Search for all Bloomington related tgids and input in the columns. Save as `bloomington.tsv` when you complete. An example tsv is included in our git repository.
 
 Ensure you save as a tab delimited file using [these instructions repeated below](https://ask.libreoffice.org/en/question/57184/how-to-generate-calc-tab-delimited-output/)
 
 `Use File > Save a Copy.`
 
-`Goto the place, where you want to save the file.q`
+`Go to the place, where you want to save the file.`
 
-`Choose the file type Text CSV (.csv) form the drop down list.q`
+`Choose the file type Text CSV (.csv) form the drop down list`
 
-`CheckEdit filter settings. Click Save. Now you get a dialog for the settings.`
+`Check Edit filter settings. Click Save. Now you get a dialog for the settings.`
 
 `In the drop-down list field delimiter select the item {Tab}.`
 
@@ -384,9 +384,9 @@ Ensure you save as a tab delimited file using [these instructions repeated below
 
 ![RR TGIDS](/images/rr-tgids.png)
 
-Now edit the trunk.tsv file in the Libre calc app. Under `tgid_tags_file` input `bloomington.tsv`. This tells the software to youse `bloomington.tsv` to translate the tgids. When saving use hte `Use Text CSV format` to keep the file as a tabbed separated file.
+Now edit the trunk.tsv file in the Libre calc app. Under `tgid_tags_file` input `bloomington.tsv`. This tells the software to use `bloomington.tsv` to translate the tgids. When saving use hte `Use Text CSV format` to keep the file as a tabbed separated file.
 
-11. Relaunch the program with the same command as in `3.` You will now see the tags at the bottom of the terminal during voice transmissions. In this case `DOT-52-SUB`. You can yous the descriptions if you prefer.
+11. Relaunch the program with the same command as in `3.` You will now see the tags at the bottom of the terminal during voice transmissions. In this case `DOT-52-SUB`. You can use the descriptions if you prefer.
 
 ![Tagged Voice](/images/tagged-voice.png)
 
@@ -439,13 +439,13 @@ Now on boot, the radio application will automatically be launched.
 
 Here we present some known limitations of this project and ideas for further expansion.
 
-- We have not detailed how to connect the radio to a speaker via bluetooh. Some use cases might include a connecting to a portable bluetooth speaker or a car audio system. This is likely possible becuase the Pi has a built in bluetooth radio.
-- The pi-top[4] case includes a small programmable OLED screen and buttons that can be controlled over the Raspberry Pi SPI link. It is likely possible to write software to display the named-entities of hte TGIDs on this screen. It can also be useful to display signal strenth information.
-- The pi-top[4] does not appeart to be able to connect to an HDMI screen if it booted unattached to one.
+- We have not detailed how to connect the radio to a speaker via Bluetooth. Some use cases might include a connecting to a portable Bluetooth speaker or a car audio system. This is likely possible because the Pi has a built in Bluetooth radio.
+- The pi-top[4] case includes a small programmable OLED screen and buttons that can be controlled over the Raspberry Pi SPI link. It is likely possible to write software to display the named-entities of the TGIDs on this screen. It can also be useful to display signal strength information.
+- The pi-top[4] does not appear to be able to connect to an HDMI screen if it booted unattached to one.
 - Volume is not adjustable without a keyboard and screen. Software for the pi-top[4] case could be implemented to allow this.
 
-## Acknoledgements
+## Acknowledgements
 
-I would like to ackknowledge John for his useful OP25 [tutorial](https://www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies/) that this tutorial extends and updates. 
+I would like to acknowledge  John for his useful OP25 [tutorial](https://www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies/) that this tutorial extends and updates. 
 
 ## References
