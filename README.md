@@ -439,7 +439,7 @@ Comment=
 Now on boot, the radio application will automatically be launched.
 
 
-## Limitations	
+## Limitations	and Future Work
 
 Here we present some known limitations of this project and ideas for further expansion.
 
