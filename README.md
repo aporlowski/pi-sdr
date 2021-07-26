@@ -451,6 +451,6 @@ Here we present some known limitations of this project and ideas for further exp
 
 ## Acknowledgements
 
-I would like to acknowledge John for his useful OP25 [tutorial](https://www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies/) that this tutorial extends and updates. I would also like to acknowledge Dr. David Wild, Oscar Lemus, and the teaching staff of the Informatics for Disaster and Emergency Response Course at Indiana Univsersity for recommending the project and providing feedback as it was developed. 
+I would like to acknowledge John for his useful OP25 [tutorial](https://www.hagensieker.com/wordpress/2018/07/17/op25-for-dummies/) that this tutorial extends and updates. I would also like to acknowledge Dr. David Wild, Oscar Lemus, and the teaching staff of the [Informatics for Disaster and Emergency Response Course](https://djwild.pages.iu.edu/ider/) at Indiana Univsersity for recommending the project and providing feedback as it was developed. 
 
 ## References
