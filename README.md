@@ -348,7 +348,7 @@ $ cd Documents/op25/op25/gr-op25_repeater/apps/
 
 5. Verify the center frequency is on top of the control channel peak. `Press the number 1` to bring up the `fft plot`. This plot will show you the sampled spectrum and the power of the signals received. You should see the peak of the control channel frequency line up with the black bar indicating the tuned frequency.
 
-![FFT Plot](/images/fft-plot)
+   ![FFT Plot](/images/fft-plot)
 
    If this number is off, then you will need to change you ppm `-q` option until the peak is aligned on the black bar. Increasing the ppm and offset will shift the black bar to the left (or from the other perspective, the signal to right relative to the black bar). Good SDRs should be in the range of -2 to 2 ppm. Cheap dongles can be much greater, such as the 28 ppm observed on the cheap dongle. This is the most difficult part of tuning in the P25 signal, but that is why we first started in GQRX, to get a good starting point. Fortunately once you find the correct `ppmn` number, it will hopefully not deviate much. It should deviate less with higher quality dongles. Cheap dongles may increase in temperature overtime and cause additional drift. Interference from nearby electronics or USB devices can also cause signal loss due to increased noise. DC bias can also affect reception if tuning directly on the center frequency (i.e. you set `-o` to 0).
 
