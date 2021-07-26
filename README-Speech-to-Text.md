@@ -22,6 +22,18 @@ We will record P25 radio transcriptions using our SDR radio, and then run the re
 - Next we anaylze the transcription results to make generalizations, recommendations, and identify areas of further investigation
 - Finally we propose a software technical demo capable of real-time P25 radio transcription to acomputer console or file.
 
+## Setting Up Trunk Recorder
+
+In this section we setup the [trunk-recorder software](https://github.com/robotastic/trunk-recorder) software to automate the recording of real-time P25 radio transmissions of the Indiana SAFE-T network from Bloomington, IN.
+
+### Install trunk-recorder as a Docker container on Ubuntu
+
+A docker container povides a quick and easy method to install the trunk-recorder software if you do not need to modify its source code. 
+
+We assume your environment already has Docker installed. If not we suggest you look at [these installation instructions](https://docs.docker.com/engine/install/ubuntu/).
+
+#### Create a `config.json` file for your SDR radio system
+
 ## Software Technical Demo
 
 He we outline the processing of real-time P25 transmissions for a simple transcription technical demonstration.
