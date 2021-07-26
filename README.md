@@ -362,7 +362,7 @@ Now we will use the OP25 software to demodulate the digital P25 voice communicat
 
 8. When there is a voice communication you will see the frequency, active talk-group ID (tgids) , a last seen timer, and a transmission count in the terminal.
 
-   Notice in the image below that in periods of high talking traffic, you will see many voice frequencies being used. Even the alternate control channel for Bloomington was used at some point for a voice transmission. If simultaneous transmissions are executed on frequencies separated by more bandwidth than the sample rate (in our case 960,000 kHz) you may not receive one of those communications. You can setup multiple SDR dongles to ensure you have enough bandwidth and recorders to receive all traffic. (outside the scope of this tutorial)
+   Notice in the image below that in periods of high traffic, you will see many voice frequencies being used. Even the alternate control channel for Bloomington was used at some point for a voice transmission. If simultaneous transmissions are executed on frequencies separated by more bandwidth than the sample rate (in our case 960,000 kHz) you may not receive one of those communications. You can setup multiple SDR dongles to ensure you have enough bandwidth and recorders to receive all traffic (outside the scope of this tutorial).
 
    ![Voice-6-Freq](/images/voice-6-freq.png)
 
