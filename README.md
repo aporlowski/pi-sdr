@@ -126,7 +126,7 @@ You know have Ubuntu Desktop installed on your Pi. Insert the SD card into the P
 
 ### Setup, Update and Upgrade your OS
 
-As the Pi is booting your will be presented a GUI setup menu. Setup the OS using the GUI guide to setup the computer. If using Ubuntu, make sure you enable automatic login, as we intend to boot the radio in the future without requireing a screen, monitor, and keybaord. On pi-topOS, this is enabled by default.
+As the Pi is booting your will be presented a GUI setup menu. Setup the OS using the GUI guide to setup the computer. If using Ubuntu, make sure you enable automatic login, as we intend to boot the radio in the future without requiring a screen, monitor, and keyboard. On pi-topOS, this is enabled by default.
 
 Once you are at your desktop we first need to update the software and software repositories to ensure we have the latest software on our OS. Run the commands below to update and reboot. If you are using `pi-topOS` this was completed in the GUI and you can skip to the next section.
 
@@ -149,7 +149,7 @@ sudo apt-get purge --auto-remove gqrx-sdr
 sudo apt-get purge --auto-remove libgnuradio*   
 ```
 
-3. **Ubunt only, pi-topOS skip:** Next we need to add multiple Personal Package Archive to install the software. GQRX and its required components are distributed by its authors in PPA instead of using standard built-in Ubuntu repositories. This gives the authors more control over the software repository, but requires we add the repositories to our OS so the software can be located. A verstion of GQRX is available in the default Raspbian repositories, so these instructions are not needed.
+3. **Ubuntu only, pi-topOS skip:** Next we need to add multiple Personal Package Archive to install the software. GQRX and its required components are distributed by its authors in PPA instead of using standard built-in Ubuntu repositories. This gives the authors more control over the software repository, but requires we add the repositories to our OS so the software can be located. A version of GQRX is available in the default Raspbian repositories, so these instructions are not needed.
 
 ```
 sudo add-apt-repository -y ppa:bladerf/bladerf
@@ -171,7 +171,7 @@ sudo apt-get install libvolk2-bin   (Ubuntu only, if using older ubuntu use libv
 volk_profile (ubuntu and pi-topOS)
 ```
 
-Running this program creates a congiuration file in `$HOME/.volk/volk_config` that contains the best architecture and function calls to process radio signals on your computer. 
+Running this program creates a configuration file in `$HOME/.volk/volk_config` that contains the best architecture and function calls to process radio signals on your computer. 
 
 > If running an older OS only libvolk1-bin may be available for installation from standard repositories. Use this instead.
 
@@ -192,7 +192,7 @@ cd Documents
 git clone https://github.com/boatbod/op25.git
 ```
 
-This will download the software into a the directory `~/Documents/op25`
+This will download the software into the directory `~/Documents/op25`
 
 3. Now we install the software using the provided script
 
@@ -216,39 +216,39 @@ gqrx
 
 2. Pick device RTL2838UHIDIR > OK
 
-3. We will start with an easy signal to capture, FM radio; the same radio stations you listen to in a car. For our example we will use Bloomington's B96.7 WBWB found at 96.7 MHz. If you are not in Bloomgington you can substitute a channel from your broadcast area. Because FM is a wide bandwidth transmission, it will be easier to find and tune correctly.  
+3. We will start with an easy signal to capture, FM radio; the same radio stations you listen to in a car. For our example we will use Bloomington's B96.7 WBWB found at 96.7 MHz. If you are not in Bloomington you can substitute a channel from your broadcast area. Because FM is a wide bandwidth transmission, it will be easier to find and tune correctly.  
 
-4. GQRX takes all frequency inputs in kHz. So to get from 96.7 MHz to kHZ we need to multiply 96.7 MHz by 1000 to get 96700 kHz. Input this number in the Frequency box under the Reciever tab. This is the target frequency the SDR will center its reception on.
+4. GQRX takes all frequency inputs in kHz. So to get from 96.7 MHz to kHZ we need to multiply 96.7 MHz by 1000 to get 96700 kHz. Input this number in the Frequency box under the Receiver tab. This is the target frequency the SDR will center its reception on.
 
-5. Next Select `mode WFM (mono)` or `WFM (stereo)`. This mode selection that tells GQRX how to demondulate the radio signal. For example, AM and FM are different modulation techniques and you won't hear the correct audio output if you do not select the correct mode. You will notice that the stereo demodulation provides two channels of sound whereas the mono demodulation provides only one channel. Depending on your reception quality one mode may sound better than the other.
+5. Next Select `mode WFM (mono)` or `WFM (stereo)`. This mode selection that tells GQRX how to demodulate the radio signal. For example, AM and FM are different modulation techniques and you won't hear the correct audio output if you do not select the correct mode. You will notice that the stereo demodulation provides two channels of sound whereas the mono demodulation provides only one channel. Depending on your reception quality one mode may sound better than the other.
 
 > See [this page](https://gqrx.dk/doc/practical-tricks-and-tips#use) for more description of the various settings.
 
-6. Push the `play` button in the top left corner. You should hear start to hear the radio station. You will see in the top half of the screen a specturm analyzer, and in the bottom half a time plot of the signal strength for the sampled frequency range. The specturem analyzer measures the signal strength in dB. You will see a noise floor across the entire frequency range (probably between -60 to -100 dB depending on your reciever and GQRX settings). Where there is a signal broadcast, you should see peaks of signals rise above the noise floor(probably between -80 and -20 dB), these are broadcast radios signals. In the lower plot, time runs up and down along the y-axis, and frequency is the x-axis. The colors show the signal strength blue:low, yellow:medium, red:high. Yellow is typically suficient.
+6. Push the `play` button in the top left corner. You should hear start to hear the radio station. You will see in the top half of the screen a spectrum analyzer, and in the bottom half a time plot of the signal strength for the sampled frequency range. The spectrum analyzer measures the signal strength in dB. You will see a noise floor across the entire frequency range (probably between -60 to -100 dB depending on your receiver and GQRX settings). Where there is a signal broadcast, you should see peaks of signals rise above the noise floor(probably between -80 and -20 dB), these are broadcast radios signals. In the lower plot, time runs up and down along the y-axis, and frequency is the x-axis. The colors show the signal strength blue:low, yellow:medium, red:high. Yellow is typically sufficient.
 
-If your signal is not well define from the noise floor you may need to adjust your LNA `input tab` > `LNA`> I have mine set at 3.6 dB. You may also adjust your gain `reciever tab` > `Gain` > I have mine at -3.7 dB. The  `LNA` is a software low noise amplifier that attempts to amplify the power of the signal while not affecting the signal-to-noise (SNR) ratio. The `gain` will increase the power (read as volume) of the signal. You will notice as you increase the `gain` the volume output increases, but as you increase the `LNA` the signal may become more clear. Increasing the `LNA` will increase the power consumption, so you ideally want to use as little as possible while still recieving a clear signal.
+If your signal is not well define from the noise floor you may need to adjust your LNA `input tab` > `LNA`> I have mine set at 3.6 dB. You may also adjust your gain `receiver tab` > `Gain` > I have mine at -3.7 dB. The  `LNA` is a software low noise amplifier that attempts to amplify the power of the signal while not affecting the signal-to-noise (SNR) ratio. The `gain` will increase the power (read as volume) of the signal. You will notice as you increase the `gain` the volume output increases, but as you increase the `LNA` the signal may become more clear. Increasing the `LNA` will increase the power consumption, so you ideally want to use as little as possible while still receiving a clear signal.
 
  ![FM Tuning](/images/fm-tuning.png)
 
 7. Push the `play` button again to stop the reception after you finish exploring the software. Next, we will try a slightly more difficult signal to tune, NOAA Weather radio.
 
-> Note RTL-SDR and GQRX can not tune typical broadcast AM radio stations without some additional effort. It requires some tuning to get below 22.0 MHZ. See [reddit thread](https://www.reddit.com/r/RTLSDR/comments/ksmv9f/cant_listen_to_am_radio_broadcasts_with_nooelec/) and [user report](http://adrianchadd.blogspot.com/2017/06/gqrx-direct-sampling-configuration.html?m=1)
+> Note RTL-SDR and GQRX can not tune typical broadcast AM radio stations without some additional effort. It requires some tuning to get below 22.0 MHZ. See [Reddit thread](https://www.reddit.com/r/RTLSDR/comments/ksmv9f/cant_listen_to_am_radio_broadcasts_with_nooelec/) and [user report](http://adrianchadd.blogspot.com/2017/06/gqrx-direct-sampling-configuration.html?m=1)
 
 #### NOAA Weather Radio
 
 1. Change the frequency to your local NOAA Weather radio channel. In Bloomington, this is currently 162.50 MHz or 162500 kHz. You can find your local frequency from the [NOAA site](https://www.weather.gov/nwr/station_listing). 
 
-2. Change the mode to `Narrow FM`. You will notice the grey bars on either side of the center frequency will shirnk. Narrow FM uses less bandwidth to broadcast the signals. This allows more radio stations to fit into the specturm, however, it decreases the quality of audio. This smaller bandwidth is still suitable for talking based audio like two-way radio and news, but it would not perform well for music found on typical FM radio stations.
+2. Change the mode to `Narrow FM`. You will notice the grey bars on either side of the center frequency will shrink. Narrow FM uses less bandwidth to broadcast the signals. This allows more radio stations to fit into the spectrum, however, it decreases the quality of audio. This smaller bandwidth is still suitable for talking based audio like two-way radio and news, but it would not perform well for music found on typical FM radio stations.
 
 3. Push the `play` button.
 
 4. For the NOAA Weather Radio I had to increase the `LNA` from 3.6 dB to 36 dB to hear the voice transmission.   
 
-5. You should see a signal peak near your center frequency (red line). However, depending on your reciever, you may find it is not completely centered on the peak. This is due to slight inaccuracies that can exist in your reciever. As frequency increase, you will notice this inaccuracy will also become more severe. You can tune the frequency by hovering over the red bar until you have a bi-directional horizontal arrow and then drag the center frequency until you get a clear signal. You can also use the frequency input text box or arrows, or click the numbers in the black box under `Reciever Options`. Notice the audio quality of the NOAA radio is significantly less that the FM radio, this is due to the reduced bandwidth.
+5. You should see a signal peak near your center frequency (red line). However, depending on your receiver, you may find it is not completely centered on the peak. This is due to slight inaccuracies that can exist in your receiver. As frequency increase, you will notice this inaccuracy will also become more severe. You can tune the frequency by hovering over the red bar until you have a bi-directional horizontal arrow and then drag the center frequency until you get a clear signal. You can also use the frequency input text box or arrows, or click the numbers in the black box under `Receiver Options`. Notice the audio quality of the NOAA radio is significantly less that the FM radio, this is due to the reduced bandwidth.
 
-6. Notice how much you have to move the frequency to get a clear signal. For example, using a cheaper dongle, I have to move my frequency -3.5 kHz. On my purpose-built dongle, I do not need to adjust. This will not be a static number that works for all frequencies, as it will increaes as frequency does. Negative imples less (left) of the center frequency and a positive number imples greater (right). Fortunately there is a correction method that does scales with the frequency called parts-per-million `ppm`. We will discuss how to find this correction number below.
+6. Notice how much you have to move the frequency to get a clear signal. For example, using a cheaper dongle, I have to move my frequency -3.5 kHz. On my purpose-built dongle, I do not need to adjust. This will not be a static number that works for all frequencies, as it will increase as frequency does. Negative implies less (left) of the center frequency and a positive number implies greater (right). Fortunately, there is a correction method that does scales with the frequency called parts-per-million `ppm`. We will discuss how to find this correction number below.
 
-7.  With this narrower signal you may run into a form of interference known as DC bias. This affects the reciever only at the center frequency (e.g. the frequency you input into GQRX). If your reception is poor, you may find that the DC bias drowns out the signal. If you are having trouble getting clear reception, try offsetting the center frequency 20 kHz or so, and then tuning to the channel by dragging the red bar back onto the signal. Also, you can investigate the `DC remove` option on the `input tab`. 
+7.  With this narrower signal you may run into a form of interference known as DC bias. This affects the receiver only at the center frequency (e.g. the frequency you input into GQRX). If your reception is poor, you may find that the DC bias drowns out the signal. If you are having trouble getting clear reception, try offsetting the center frequency 20 kHz or so, and then tuning to the channel by dragging the red bar back onto the signal. Also, you can investigate the `DC remove` option on the `input tab`.
 
  ![NOAA Tuning](/images/noaa-tuning.png)
 
@@ -256,16 +256,20 @@ If your signal is not well define from the noise floor you may need to adjust yo
 
 Next, we will search for the P25 control channel for Bloomington.
 
-1. Locate your P25 control channel by using the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) databse. The control channels are colored red. Search for bloomington and identify the control channel as `858.4875c` MHz. The channels in blue are alternate control channels, and the other channels are voice channels used by the trunked radio stations. This is a user updated database, so it may not be accurate. If the control channel does not work after following all instructions below, try the alternate control channels, or even the voice channels. I found that the Merer, WI P25 system was using the alternate control channel that was listed in the database.
+1. Locate your P25 control channel by using the [radioreference.com](https://www.radioreference.com/apps/db/?sid=8084) database. The control channels are colored red. Search for Bloomington and identify the control channel as `858.4875c` MHz. The channels in blue are alternate control channels, and the other channels are voice channels used by the trunked radio stations. This is a user updated database, so it may not be accurate. If the control channel does not work after following all instructions below, try the alternate control channels, or even the voice channels. I found that the Mercer, WI P25 system was using the alternate control channel that was listed in the database.
 
  ![Radio Reference](/images/radio-reference.png)
 
 
 2. Input the frequency as 858487.500 kHz
+
 3. Keep the mode on `Narrow FM`
-4. This channel is significantly harder to tune, as there is no voice audio to guide us. P25 is a digital broadcast, so the control channel is a consistent peak of what sounds like digital noise. See this [youtube video](https://www.youtube.com/watch?v=KtWhSuAL1_Q&t=5s) to get an idea of the sound we are looking for. Mine sounds similar to the video but with less of the screeching, chirping, and a slower paced rhtymic thudding, so do not be concerned if it only sounds similar, but not exact to the video.
-5. Also, at this higher frequency your reciver error will be amplified. I have to tune my cheap dongle approximately -23.1 kHz to center on the signal (corrected signal). This is quite far due, and in my case the corrected peak happens to be a slightly lower than the peak that appears at the center frequency. Do not be tricked if you have a strong signal at the center frequency but not the correct noise. Investigatge all peaks nearby. The peak at the center frequency can be caused by DC bias. Audio sounds better the closer it is to the center frequency, and conversely SDR do not handle audio at the edge of the sample range as well. However, there is some DC bias introduced at the center frequency, so it is best for us to tune to a center frequency that is close to, but not exactl the target frequency. We will handle this with an tuning offset later on. 
-6. Once you have identified the corrected signal return the offset to zero, thus returning to the center frequency, and use the `ppm`found on the `Input` tab to align the corrected signal onto the center frequency. This will be a number we use later. With my cheap dongle it is 28 ppm, and with my purpose-built dongle it is 0 ppm.  Jot down this number for use later. The sound may no longer be the same digital noise, that is okay, it is getting washed out by the DC bias at the center frequency.
+
+4. This channel is significantly harder to tune, as there is no voice audio to guide us. P25 is a digital broadcast, so the control channel is a consistent peak of what sounds like digital noise. See this [YouTube video](https://www.youtube.com/watch?v=KtWhSuAL1_Q&t=5s) to get an idea of the sound we are looking for. Mine sounds similar to the video but with less of the screeching, chirping, and a slower paced rhythmic thudding, so do not be concerned if it only sounds similar, but not exact to the video.
+
+5. Also, at this higher frequency your receiver error will be amplified. I have to tune my cheap dongle approximately -23.1 kHz to center on the signal (corrected signal). This is quite far due, and in my case the corrected peak happens to be a slightly lower than the peak that appears at the center frequency. Do not be tricked if you have a strong signal at the center frequency but not the correct noise. Investigate all peaks nearby. The peak at the center frequency can be caused by DC bias. Audio sounds better the closer it is to the center frequency, and conversely SDR do not handle audio at the edge of the sample range as well. However, there is some DC bias introduced at the center frequency, so it is best for us to tune to a center frequency that is close to, but not exactly the target frequency. We will handle this with an tuning offset later on.
+ 
+6. Once you have identified the corrected signal return the offset to zero, thus returning to the center frequency, and use the `ppm` found on the `Input` tab to align the corrected signal onto the center frequency. This will be a number we use later. With my cheap dongle it is 28 ppm, and with my purpose-built dongle it is 0 ppm.  Jot down this number for use later. The sound may no longer be the same digital noise, that is okay, it is getting washed out by the DC bias at the center frequency.
 
  ![P25 Tuning](/images/p25-tuning.png)
 
