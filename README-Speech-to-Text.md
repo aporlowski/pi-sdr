@@ -13,3 +13,21 @@ In this investigation we will investigate the ability of modern AI driven speech
 - Real-time and customized alerting to police and EMS activity in a users area; useful for micro-alerting and monitoring journalists.
 - A study of how police, EMS, and others use radio communiction to achieve thier goals
 
+We will record P25 radio transcriptions using our SDR radio, and then run the recodings against AI services to investigate the accuracy of these services.
+
+## Methodology
+
+- We will setup [trunk-recorder software](https://github.com/robotastic/trunk-recorder) to automate the recoding of P25 radio communications
+- Next we demonstrate transcription by measuring Amazon Transcribe transcription compared to human comprehension on ~10 minutes of radio broadcasts
+- Next we anaylze the transcription results to make generalizations, recommendations, and identify areas of further investigation
+- Finally we build a software technical demo capable of real-time P25 radio transcription
+
+## Software Technical Demo
+
+He we outline the processing of a real-time P25 transcription for a simple technical demonstration.
+
+Write software to automatically transcribe trunk-recorder recording outputs.
+    - Monitor trunk-recorder outputdirectoriesfor new wav filesb.
+    - Upload wav files to Amazon S3 bucket.
+    - Schedule Amazon TranscribeJobd.
+    - Fetch Amazon Transcribe Joband print result to console / output file inorder oftransmission 
