@@ -218,6 +218,24 @@ The following list of commands demonstrates how to operate your trunk-recorder c
 - **launch new state image** `sudo docker run -it   --privileged   -v /home/anthony/trunk-recorder:/app   -v /var/run/dbus:/var/run/dbus   -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket   trunk-recorder-sample`
 - **kill a specific container** `sudo docker kill CONTAINERID`
 
+### Create an AWS S3 bucket
+We assume you have an AWS account.
+
+We need to upload the `wav` files to to an AWS S3 bucket so that Amazon Transcribe can run a Transcription Job.
+
+### Upload `wav` files to S3 bucket
+
+### Schedule Amazon Transcribe Job
+
+## Analysis of transcription demo
+
+### General Performance Stats
+
+#### Difference in human vs AI transcription
+
+#### Identified Challenges
+
+
 
 ## Software Technical Demo
 
