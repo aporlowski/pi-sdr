@@ -209,7 +209,7 @@ With my cheap dongle, the channel can sometimes come and go.
 The following list of commands demonstrates how to operate your trunk-recorder container.
 - **get container ID** `sudo docker ps`
 - **second shell to running container** `sudo docker exec -it CONTAINERID bash`
-- **see recordings in container** `ls /home/anthony/trunk-recorder/*`
+- **see recordings in container** `ls -R /home/anthony/trunk-recorder/*`
 - **copy file from container to host working directory** `sudo docker cp CONTAINERID:/home/anthony/trunk-recorder/bloom/2021/7/25/21256-1627238771_851962500.wav ./`
 - **commit and save new state as new image** `sudo docker commit CONTAINERID trunk-recorder-sample`
 - **list available images** `sudo docker images`
