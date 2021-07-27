@@ -26,12 +26,6 @@ We will record P25 radio transcriptions using our SDR radio, and then run the re
 
 In this section we setup the [trunk-recorder software](https://github.com/robotastic/trunk-recorder) software to automate the recording of real-time P25 radio transmissions of the Indiana SAFE-T network from Bloomington, IN.
 
-### Setup trunk-recorder as a Docker container on Ubuntu
-
-A docker container povides a quick and easy method to install the trunk-recorder software if you do not need to modify its source code. 
-
-We assume your environment already has Docker installed. If not we suggest you look at [these installation instructions](https://docs.docker.com/engine/install/ubuntu/).
-
 ### Design your SDR radio system
 
 You may need multiple SDR dongles depending on the frequency ranges used in your local P25 radio system.
@@ -42,9 +36,35 @@ Bloomington uses these channels for it's P25 system:
 
 Bloomington's lowest frequency is 851.250 Mhz and the highest is 858.4875 (used as the control channel).
 
-The difference is 7.2375 Mhz. The RTL-SDR dongles used in our prior work can reliably sample approximately 2.4 Mhz of bandwidth. So to cover the entire spectrum used by Bloomington's P25 system we need 2-3 SDR dongles. The first can cover the highest two channels (857.4875, and 858.4875c), and the second could theoretically cover teh lowest four channels (851.250 Mhz, 851.9625, 852.400, 853.450a). However, SDRs do not work as well on channels at the edges of the sampled bandwith. As the difference in the lowest four sets is 2.2 Mhz, it may be more reliable to use the second for the lowest three channels () a third SDR specifically for the 853.450a channel, and 
+The difference is 7.2375 Mhz. The RTL-SDR dongles used in our prior work can reliably sample approximately 2.4 Mhz of bandwidth. So to cover the entire spectrum used by Bloomington's P25 system we need 2-3 SDR dongles. The first can cover the highest two channels (857.4875, and 858.4875c), and the second could theoretically cover the lowest four channels (851.250 Mhz, 851.9625, 852.400, 853.450a). However, SDRs do not work as well on channels at the edges of the sample range. As the difference in the lowest four sets is 2.2 Mhz, it may be more reliable to use the second for the lowest three channels (851.250 Mhz, 851.9625, 852.400) a third SDR specifically for the 853.450a channe.
+
+In my case I only have two SDRs, so I will use one for the high two channels, and a second for the lower three channels, and not cover the 853.450a channel. In my experience this channel is infrequently used for voice comms, probably becuase it is the alternate control channel. However, in peak traffic I have seen it used for voice transmissions, but at a significatnly lower rate than the other channels.
+
+### Set serial numbers on your SDR dongles for trunk-recorder to use
+
+I first set the SNs on my SDR dongles so I can specify trunk recorder to use a specific dongle for a certain coverage. This is because my dongles are not unique. I will use my cheap dongle to monitor the control channel 858.4875c and 857.4875, and my purpose built SDR dongle to monitor the lower three channels (851.250 Mhz, 851.9625, 852.400)
+
+I plug in only the cheap dongle, and I set the cheap dongle to be SN `00000001` with the following command:
+
+```
+rtl_eeprom -s 00000001
+```
+
+I plug in only the expensive dongle at set its serial number to be `0000002`
+
+```
+rtl_eeprom -s 00000002
+```
 
 #### Create a `config.json` file for your SDR radio system
+
+Now we create a config file as 
+
+### Setup trunk-recorder as a Docker container on Ubuntu
+
+A docker container povides a quick and easy method to install the trunk-recorder software if you do not need to modify its source code. 
+
+We assume your environment already has Docker installed. If not we suggest you look at [these installation instructions](https://docs.docker.com/engine/install/ubuntu/).
 
 ## Software Technical Demo
 
