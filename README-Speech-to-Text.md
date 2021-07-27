@@ -229,13 +229,15 @@ We need to upload the `wav` files to to an AWS S3 bucket so that Amazon Transcri
 
 ## Analysis of transcription demo
 
+### Description of experiment
+
 ### General Performance Stats
 
 #### Difference in human vs AI transcription
 
-#### Identified Challenges
+### Identified Challenges
 
-
+### Future Opportunities
 
 ## Software Technical Demo
 
