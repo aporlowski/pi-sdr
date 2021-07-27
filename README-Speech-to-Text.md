@@ -146,6 +146,13 @@ With our `config.json` already configured we are ready to launch the container.
 
 > Note: There is also an optional `talkgroup.csv` file that you can setup, but we have skipped that for this demo.
 
+#### Launch the Docker container
+
+With the following command. Notive the path to the location of the `config.json` file (`/home/anthony/trunk-recorder`). Substitute as necessary.
+
+```
+sudo dockerun -it --privileged -v /home/anthony/trunk-recorder:/app -v /var/run/dbus:/var/run/dbus -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket robotastic/trunk-recorder:latest
+```
 
 ## Software Technical Demo
 
