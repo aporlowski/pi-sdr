@@ -212,7 +212,8 @@ The following list of commands demonstrates how to operate your trunk-recorder c
 - **see recordings in container** `ls -R /home/anthony/trunk-recorder/*`
 - **copy file from container to host working directory** `sudo docker cp CONTAINERID:/home/anthony/trunk-recorder/bloom/2021/7/25/21256-1627238771_851962500.wav ./`
 - **copy all files from container to host working directory** `sudo docker cp -r CONTAINERID:/home/anthony/trunk-recorder/ ./`
-- **commit and save new state as new image** `sudo docker commit CONTAINERID trunk-recorder-sample`
+- **commit and save container state as new image** `sudo docker commit CONTAINERID trunk-recorder-sample`
+> Note if you close a container without commiting, that state is lost if not previoulsy copied.
 - **list available images** `sudo docker images`
 - **launch new state image** `sudo docker run -it   --privileged   -v /home/anthony/trunk-recorder:/app   -v /var/run/dbus:/var/run/dbus   -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket   trunk-recorder-sample`
 - **kill a specific container** `sudo docker kill CONTAINERID`
