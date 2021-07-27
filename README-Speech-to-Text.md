@@ -154,6 +154,67 @@ With the following command. Notive the path to the location of the `config.json`
 sudo dockerun -it --privileged -v /home/anthony/trunk-recorder:/app -v /var/run/dbus:/var/run/dbus -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket robotastic/trunk-recorder:latest
 ```
 
+Buried in the output you should find a line like hte one below that confirms you have tuned into the control channel:
+
+```
+[2021-07-27 15:23:09.061207] (info)   [bloom]	Decoding System ID 6BD WACN: BEE00 NAC: 6B1
+```
+
+When recording you will see output like the following:
+
+```
+[2021-07-27 15:23:10.853990] (info)   [bloom]	TG:      21519	Freq: 8.519625e+08	TG not in Talkgroup File 
+[2021-07-27 15:23:10.854071] (info)   	- Starting P25 Recorder Num [4]	TG:      21519	Freq: 8.519625e+08 	TDMA: false	Slot: 0	Mod: true
+[2021-07-27 15:23:10.854175] (info)   [bloom]	TG:      21519	Freq: 8.519625e+08	Starting Recorder on Src: rtl=00000002
+[2021-07-27 15:23:25.262988] (trace)   [bloom]	TG:      21519	Freq: 8.524000e+08	Update Retuning - New Freq: 8.524000e+08	Elapsed: 15s 	Since update: 2s
+[2021-07-27 15:23:39.010747] (trace)   [bloom]	TG:      21519	Freq: 8.524000e+08	Ending Recorded Call - Last Update: 4s	Call Elapsed: 29
+[2021-07-27 15:23:39.010963] (info)   	- Stopping P25 Recorder Num [4]	TG:      21519	Freq: 8.524000e+08 	TDMA: false	Slot: 0
+[2021-07-27 15:23:39.010985] (error)   wav error closing file
+[2021-07-27 15:23:39.010995] (info)   [bloom]	Deleting this call as it has a duration less than minimum duration of 0	TG:      21519	Freq: 8.524000e+08	Call Duration: 0s
+[2021-07-27 15:23:39.011025] (error)   Could not delete file /home/anthony/trunk-recorder/bloom/2021/7/27/21519-1627399390_851962500.wav
+[2021-07-27 15:23:39.456282] (info)   [bloom]	TG:      21519	Freq: 8.519625e+08	TG not in Talkgroup File 
+[2021-07-27 15:23:39.456407] (info)   	- Starting P25 Recorder Num [4]	TG:      21519	Freq: 8.519625e+08 	TDMA: false	Slot: 0	Mod: true
+[2021-07-27 15:23:39.456637] (info)   [bloom]	TG:      21519	Freq: 8.519625e+08	Starting Recorder on Src: rtl=00000002
+[2021-07-27 15:23:51.006459] (trace)   [bloom]	TG:      21519	Freq: 8.519625e+08	Ending Recorded Call - Last Update: 4s	Call Elapsed: 12
+[2021-07-27 15:23:51.006625] (info)   	- Stopping P25 Recorder Num [4]	TG:      21519	Freq: 8.519625e+08 	TDMA: false	Slot: 0
+[2021-07-27 15:23:51.006655] (error)   wav error closing file
+[2021-07-27 15:23:51.006666] (info)   [bloom]	Deleting this call as it has a duration less than minimum duration of 0	TG:      21519	Freq: 8.519625e+08	Call Duration: 0s
+[2021-07-27 15:23:51.006698] (error)   Could not delete file /home/anthony/trunk-recorder/bloom/2021/7/27/21519-1627399419_851962500.wav
+[2021-07-27 15:23:51.877223] (info)   [bloom]	TG:      21526	Freq: 8.524000e+08	TG not in Talkgroup File 
+[2021-07-27 15:23:51.877260] (info)   	- Starting P25 Recorder Num [4]	TG:      21526	Freq: 8.524000e+08 	TDMA: false	Slot: 0	Mod: true
+[2021-07-27 15:23:51.877314] (info)   [bloom]	TG:      21526	Freq: 8.524000e+08	Starting Recorder on Src: rtl=00000002
+[2021-07-27 15:23:58.729863] (info)   [bloom]	TG:      21519	Freq: 8.519625e+08	TG not in Talkgroup File 
+[2021-07-27 15:23:58.729985] (info)   	- Starting P25 Recorder Num [5]	TG:      21519	Freq: 8.519625e+08 	TDMA: false	Slot: 0	Mod: true
+[2021-07-27 15:23:58.730133] (info)   [bloom]	TG:      21519	Freq: 8.519625e+08	Starting Recorder on Src: rtl=00000002
+[2021-07-27 15:24:00.012538] (trace)   [bloom]	TG:      21526	Freq: 8.524000e+08	Ending Recorded Call - Last Update: 4s	Call Elapsed: 9
+[2021-07-27 15:24:00.012876] (info)   	- Stopping P25 Recorder Num [4]	TG:      21526	Freq: 8.524000e+08 	TDMA: false	Slot: 0
+```
+
+When the contol channel is lost you will see the following message:
+
+```
+[2021-07-27 15:28:31.009971] (info)   	 - System Source 0 - Min Freq: 8.573275e+08 Max Freq: 8.592475e+08
+[2021-07-27 15:28:31.010085] (error)   [bloom]	 Control Channel Message Decode Rate: 1/sec, count:  3
+[2021-07-27 15:28:31.242947] (error)   [bloom]	 process_data_unit timeout
+[2021-07-27 15:28:32.265007] (error)   [bloom]	 process_data_unit timeout
+[2021-07-27 15:28:33.287592] (error)   [bloom]	 process_data_unit timeout
+[2021-07-27 15:28:34.007134] (error)   [bloom] Retuning to Control Channel: 8.574875e+08
+```
+
+With my cheap dongle, the channel can sometimes come and go.
+
+
+### Operate trunk-recorder as a Docker container.
+
+The following list of commands demonstrates how to operate your trunk-recorder container.
+- **get container ID** `sudo docker ps`
+- **second shell to running container** `sudo docker exec -it CONTAINERID bash`
+- **see recordings in container** `ls /home/anthony/trunk-recorder/*`
+- **copy file from container to host working directory** `sudo docker cp CONTAINERID:/home/anthony/trunk-recorder/bloom/2021/7/25/21256-1627238771_851962500.wav ./`
+- **commit and save new state as new image** `sudo docker commit CONTAINERID trunk-recorder-sample`
+- **list available images** `sudo docker images`
+- **launch new state image** `sudo docker run -it   --privileged   -v /home/anthony/trunk-recorder:/app   -v /var/run/dbus:/var/run/dbus   -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket   trunk-recorder-sample`
+- **kill a specific container** `sudo docker kill CONTAINERID`
 
 
 ## Software Technical Demo
