@@ -56,15 +56,96 @@ I plug in only the expensive dongle at set its serial number to be `0000002`
 rtl_eeprom -s 00000002
 ```
 
-#### Create a `config.json` file for your SDR radio system
+### Create a `config.json` file for your SDR radio system
 
-Now we create a config file as 
+Now we create a config file as `~/trunk-recorder/config.json` with the following content:
+
+```
+{
+    "ver": 2,
+    "sources": [{
+        "center": 858287500,
+        "rate": 2048000,
+        "ppm": 28,
+        "gain": 36,
+        "debugRecorders": 0,
+        "digitalRecorders": 4,
+        "driver": "osmosdr",
+	"device": "rtl=00000001"
+    }, {
+        "center": 851825000,
+        "rate": 2048000,
+        "ppm": 0,
+        "gain": 36,
+        "debugRecorders": 0,
+        "digitalRecorders": 4,
+        "driver": "osmosdr",
+	"device": "rtl=00000002"
+    }],
+    "systems": [{
+        "control_channels": [858487500],
+        "type": "p25",
+        "shortName": "bloom",
+        "modulation": "qpsk"
+    }],
+    "captureDir": "/home/anthony/trunk-recorder/"
+}
+```
+
+The configuration contains two sources (dongles) and one system (the target P25 system).
+
+#### Sources
+
+For the first source I compute the center frequency (a frequency in the middle) by subtracting the target low channel from the target hight channel, dividing by two, and adding this value to the target low channel.
+
+First source: monitors (851.250 Mhz, 851.9625, 852.400)
+
+852.400 - 851.250 = 1.15 Mhz
+1.15 / 2 = 0.575 Mhz
+center frequency = 851.25- + 0.575 = 851.825 Mhz.
+
+Notice this center frequency should not be too close to any targeted channel. 851.9625 is only .1375 Mhz away from the center frequency. That should be okay for this dongle.
+
+Second source: monitors (857.4875, and 858.4875c).
+
+I simly set the center frequency 200 kHz lower than the control channel at 858.2875, as I wish to get the best reception on the control channel and still reach the low channel. As long as 1/2 the rate can reach the lower channel, we should still recieve it. The separation from the center frequency to the low channel is 0.8 Mhz, and 1/2 the sample rate is 1.024 Mhz. So it appears it may be close to the edge, but we will test and see.
+
+It is also important to ensure the sources do not overlap.
+
+First source range =  850.801 - 852.849 Mhz
+
+Second source range =  857.2635 - 859.31115
+
+The `rate`, `ppm`, and `gain` are all values carried over from [this](https://github.com/aporlowski/pi-sdr) tutorial.
+
+I am currently unsure on the effect of `debugRecorders`, `digitalRecorders`, and `driver` values, but these values work.
+
+`digitalRecorders` - sets the number os simultaneous transmissios allowed to be recorded by this source.
+`debugRecorders` - sets the number of raw input recorders for signal debugging
+`driver` - sets the GNU radio block used.
+
+The `device` value needs to be set to the dongle SNs set in the above section. This assigns that dongle as that source. For example, the cheap dongle `00000001` is supposed to monitor the control channel, so on the first source we assign `"rtl=00000001"` as the device (the `rtl=` is required).
+
+> Note see [this page](https://github.com/robotastic/trunk-recorder#configure)for a full description of configuration options
+
+#### system
+
+This configures the system we plan to monitor. Set the `control_channels`, `type`, `shortName` (an nickname id for the system), and the `modulation`.
+
+#### capture directory
+
+The `captureDir` is the directory within the Docker container that trunk-recorder will place the recorded `wav` files, and the metadata files (`.json`).
 
 ### Setup trunk-recorder as a Docker container on Ubuntu
 
 A docker container povides a quick and easy method to install the trunk-recorder software if you do not need to modify its source code. 
 
 We assume your environment already has Docker installed. If not we suggest you look at [these installation instructions](https://docs.docker.com/engine/install/ubuntu/).
+
+With our `config.json` already configured we are ready to launch the container.
+
+> Note: There is also an optional `talkgroup.csv` file that you can setup, but we have skipped that for this demo.
+
 
 ## Software Technical Demo
 
