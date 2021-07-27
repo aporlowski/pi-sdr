@@ -154,6 +154,8 @@ With the following command. Notive the path to the location of the `config.json`
 sudo dockerun -it --privileged -v /home/anthony/trunk-recorder:/app -v /var/run/dbus:/var/run/dbus -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket robotastic/trunk-recorder:latest
 ```
 
+
+
 ## Software Technical Demo
 
 He we outline the processing of real-time P25 transmissions for a simple transcription technical demonstration.
