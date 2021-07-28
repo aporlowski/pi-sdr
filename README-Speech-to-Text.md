@@ -2,24 +2,24 @@
 
 ## Introduction
 
-P25 is digital radio standard commonly used by emergency services and public service personnel (such as poice, EMS, department of transportation, DNR, etc.) for two-way radio communication. In previous work, we built [a software defined radio (SDR)](https://github.com/aporlowski/pi-sdr) using inexpensive SDR dongles and a Raspberry Pi to record these radio trasnmissions. 
+P25 is digital radio standard commonly used by emergency services and public service personnel (such as police, EMS, department of transportation, DNR, etc.) for two-way radio communication. In previous work, we built [a software defined radio (SDR)](https://github.com/aporlowski/pi-sdr) using inexpensive SDR dongles and a Raspberry Pi to record these radio transmissions. 
 
-In this investigation we will investigate the ability of modern AI driven speech-to-text services, such as those provided by cloud providers like Amazon Web Services, Google Cloud Platform, and Microsoft Azure, to transcribe P25 radio transmissions. The automated recording and transcription of radio communication could be beneficial for many usings including:
+In this investigation we will investigate the ability of modern AI driven speech-to-text services, such as those provided by cloud providers like Amazon Web Services, Google Cloud Platform, and Microsoft Azure, to transcribe P25 radio transmissions. The automated recording and transcription of radio communication could be beneficial for many users including:
 
 - A rich feed of data for Geospatial Information System and Situational Awareness Applications (like [ATAK](https://en.wikipedia.org/wiki/Android_Team_Awareness_Kit) [1]) when coupled with unit GPS tracking such as "[Blue Force Tracker](https://en.wikipedia.org/wiki/Blue_force_tracking) [2]". 
 - Access to P25 emergency communications for the hearing impaired
-- A reviewable tranmission log for radio users to review past discussions, such as a dispatcher trying to remember and address or license plate number
-- Investigation and review of emergency service personnel actions in incidients
+- A reviewable transmission log for radio users to review past discussions, such as a dispatcher trying to remember and address or license plate number
+- Investigation and review of emergency service personnel actions in incidents
 - Real-time and customized alerting to police and EMS activity in a users area; useful for micro-alerting and monitoring journalists.
-- A study of how police, EMS, and others use radio communiction to achieve thier goals
+- A study of how police, EMS, and others use radio communication to achieve their goals
 
-We will record P25 radio transcriptions using our SDR radio, and then run the recodings against AI services to investigate the accuracy of these services.
+We will record P25 radio transcriptions using our SDR radio, and then run the recordings against AI services to investigate the accuracy of these services.
 
 ## Methodology
 
 - We will setup [trunk-recorder software](https://github.com/robotastic/trunk-recorder) [3] to automate the recoding of P25 radio communications
-- Next, we demonstrate transcription by measuring Amazon Transcribe's transcription compared to human comprehension on ~10 minutes of trunk-recorder produced recordings
-- Next, we anaylze the transcription results to make generalizations, recommendations, and identify areas for further investigation
+- Next, we demonstrate transcription by measuring Amazon Transcriber’s transcription compared to human comprehension on ~10 minutes of trunk-recorder produced recordings
+- Next, we analyze the transcription results to make generalizations, recommendations, and identify areas for further investigation
 - Finally, we propose a software technical demo capable of real-time P25 radio transcription to a computer console or file.
 
 ## Setting Up Trunk Recorder
@@ -38,7 +38,7 @@ Bloomington's lowest frequency is 851.250 Mhz and the highest is 858.4875 (used 
 
 The difference is 7.2375 Mhz. The RTL-SDR dongles used in our prior work can reliably sample approximately 2.4 Mhz of bandwidth. So to cover the entire spectrum used by Bloomington's P25 system we need 2-3 SDR dongles. The first can cover the highest two channels (857.4875, and 858.4875c), and the second could theoretically cover the lowest four channels (851.250 Mhz, 851.9625, 852.400, 853.450a). However, SDRs do not work as well on channels at the edges of the sample range. As the difference in the lowest four sets is 2.2 Mhz, it may be more reliable to use the second for the lowest three channels (851.250 Mhz, 851.9625, 852.400) a third SDR specifically for the 853.450a channe.
 
-In my case I only have two SDRs, so I will use one for the high two channels, and a second for the lower three channels, and not cover the 853.450a channel. In my experience this channel is infrequently used for voice comms, probably becuase it is the alternate control channel. However, in peak traffic I have seen it used for voice transmissions, but at a significatnly lower rate than the other channels.
+In my case I only have two SDRs, so I will use one for the high two channels, and a second for the lower three channels, and not cover the 853.450a channel. In my experience this channel is infrequently used for voice comms, probably because it is the alternate control channel. However, in peak traffic I have seen it used for voice transmissions, but at a significantly lower rate than the other channels.
 
 ### Set serial numbers on your SDR dongles for trunk-recorder to use
 
@@ -96,7 +96,7 @@ The configuration contains two sources (dongles) and one system (the target P25 
 
 #### Sources
 
-For the first source I compute the center frequency (a frequency in the middle) by subtracting the target low channel from the target hight channel, dividing by two, and adding this value to the target low channel.
+For the first source I compute the center frequency (a frequency in the middle) by subtracting the target low channel from the target high channel, dividing by two, and adding this value to the target low channel.
 
 First source: monitors (851.250 Mhz, 851.9625, 852.400)
 
@@ -108,7 +108,7 @@ Notice this center frequency should not be too close to any targeted channel. 85
 
 Second source: monitors (857.4875, and 858.4875c).
 
-I simly set the center frequency 200 kHz lower than the control channel at 858.2875, as I wish to get the best reception on the control channel and still reach the low channel. As long as 1/2 the rate can reach the lower channel, we should still recieve it. The separation from the center frequency to the low channel is 0.8 Mhz, and 1/2 the sample rate is 1.024 Mhz. So it appears it may be close to the edge, but we will test and see.
+I simply set the center frequency 200 kHz lower than the control channel at 858.2875, as I wish to get the best reception on the control channel and still reach the low channel. As long as 1/2 the rate can reach the lower channel, we should still receive it. The separation from the center frequency to the low channel is 0.8 Mhz, and 1/2 the sample rate is 1.024 Mhz. So it appears it may be close to the edge, but we will test and see.
 
 It is also important to ensure the sources do not overlap.
 
@@ -120,7 +120,7 @@ The `rate`, `ppm`, and `gain` are all values carried over from [this](https://gi
 
 I am currently unsure on the effect of `debugRecorders`, `digitalRecorders`, and `driver` values, but these values work.
 
-`digitalRecorders` - sets the number os simultaneous transmissios allowed to be recorded by this source.
+`digitalRecorders` - sets the number of simultaneous transmissions allowed to be recorded by this source.
 `debugRecorders` - sets the number of raw input recorders for signal debugging
 `driver` - sets the GNU radio block used.
 
@@ -138,7 +138,7 @@ The `captureDir` is the directory within the Docker container that trunk-recorde
 
 ### Setup trunk-recorder as a Docker container on Ubuntu
 
-A docker container povides a quick and easy method to install the trunk-recorder software if you do not need to modify its source code. 
+A Docker container provides a quick and easy method to install the trunk-recorder software if you do not need to modify its source code. 
 
 We assume your environment already has Docker installed. If not we suggest you look at [these installation instructions](https://docs.docker.com/engine/install/ubuntu/) [5].
 
@@ -148,13 +148,13 @@ With our `config.json` already configured we are ready to launch the container.
 
 #### Launch the Docker container
 
-With the following command. Notive the path to the location of the `config.json` file (`/home/anthony/trunk-recorder`). Substitute as necessary.
+With the following command. Notice the path to the location of the `config.json` file (`/home/anthony/trunk-recorder`). Substitute as necessary.
 
 ```
 sudo dockerun -it --privileged -v /home/anthony/trunk-recorder:/app -v /var/run/dbus:/var/run/dbus -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket robotastic/trunk-recorder:latest
 ```
 
-Buried in the output you should find a line like hte one below that confirms you have tuned into the control channel:
+Buried in the output you should find a line like the one below that confirms you have tuned into the control channel:
 
 ```
 [2021-07-27 15:23:09.061207] (info)   [bloom]	Decoding System ID 6BD WACN: BEE00 NAC: 6B1
@@ -190,7 +190,7 @@ When recording you will see output like the following:
 [2021-07-27 15:24:00.012876] (info)   	- Stopping P25 Recorder Num [4]	TG:      21526	Freq: 8.524000e+08 	TDMA: false	Slot: 0
 ```
 
-When the contol channel is lost you will see the following message:
+When the control channel is lost you will see the following message:
 
 ```
 [2021-07-27 15:28:31.009971] (info)   	 - System Source 0 - Min Freq: 8.573275e+08 Max Freq: 8.592475e+08
@@ -213,7 +213,7 @@ The following list of commands demonstrates how to operate your trunk-recorder c
 - **copy file from container to host working directory** `sudo docker cp CONTAINERID:/home/anthony/trunk-recorder/bloom/2021/7/25/21256-1627238771_851962500.wav ./`
 - **copy all files from container to host working directory** `sudo docker cp -r CONTAINERID:/home/anthony/trunk-recorder/ ./`
 - **commit and save container state as new image** `sudo docker commit CONTAINERID trunk-recorder-sample`
-> Note if you close a container without commiting, that state is lost if not previoulsy copied.
+> Note if you close a container without committing, that state is lost if not previously copied.
 - **list available images** `sudo docker images`
 - **launch new state image** `sudo docker run -it   --privileged   -v /home/anthony/trunk-recorder:/app   -v /var/run/dbus:/var/run/dbus   -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket   trunk-recorder-sample`
 - **kill a specific container** `sudo docker kill CONTAINERID`
@@ -221,7 +221,7 @@ The following list of commands demonstrates how to operate your trunk-recorder c
 ### Create an AWS S3 bucket
 We assume you have an AWS account.
 
-We need to upload the `wav` files to to an AWS S3 bucket so that Amazon Transcribe can run a Transcription Job.
+We need to upload the `wav` files to an AWS S3 bucket so that Amazon Transcribe can run a Transcription Job.
 
 ![Create bucket](/images/create_bucket.png)
 
@@ -233,7 +233,7 @@ Copy the `wav` files from the trunk-recorder container, using `docker cp` (demoe
 
 ### Schedule Amazon Transcribe Job
 
-Schedule a Amazon Transcribe [6] job on those `wav` files. For this experiment I used all default optoins.
+Schedule a Amazon Transcribe [6] job on those `wav` files. For this experiment I used all default options.
 
 ![Schedule Job](/images/schedule_job.png)
 
@@ -249,7 +249,7 @@ Here we describe the results of our first experiment of using AI services to tra
 
 ### Description of experiment
 
-In this experiement we recorded and analyzed 50 messages of P25 radio transmissions using trunk-recorder as configured above. The caputre time was approximately 1 hour on 27 July 2021 between 11:30 and 12:30 EST. The raw `wav` files can be found [here](/data).
+In this experiment we recorded and analyzed 50 messages of P25 radio transmissions using trunk-recorder as configured above. The capture time was approximately 1 hour on 27 July 2021 between 11:30 and 12:30 EST. The raw `wav` files can be found [here](/data).
 
 We measured the word count and length(s) of the messages. We first transcribed the messages by ear, allowing unlimited replays. Next, we used Amazon Transcribe, an AI speech-to-text service, to transcribe the messages. We used all default settings on the Amazon Transcribe jobs.
 
@@ -260,16 +260,16 @@ Finally, we measured how many words from the Amazon Transcribe matched the human
 We used a pretty liberal ruleset while determining if the words in the transcriptions matched. The thought process behind this ruleset is that no meaning is lost by the rule, or that context-aware post-processing could correct the errors with no loss to the message meaning. The resulting measure is a `% match to human transcription`. Note, this does not always correspond to `% meaning retained`.
 
 1. Punctuation and capitalization were not considered 
-2. Mispellings are considered the same
+2. Misspellings are considered the same
 3. A number spelled out vs represented as a numeral is considered the same
 4. Contractions vs spelled out contractions are considered the same
 5. Colloquial speech vs regular grammar, for example "gonna" vs "going to", are considered the same.
 6. If the human transcription labeled the word GARBLED or INDISCERNABLE, that word did not count.
-7. An unplaceable fragment from the AI transcription was not counted
+7. An un-place-able fragment from the AI transcription was not counted
 8. Gaps in numbers were considered okay as long as no other added characters within or between.
 9. Conjoined numbers that should have had gaps were okay as long as there were no other added characters within or between.
 
-**INDISCERNABLE** Words are words that cannot be comprehended given all context cluse. For example, police jargon unfamiliar to the transcriber.
+**INDISCERNABLE** Words are words that cannot be comprehended given all context clues. For example, police jargon unfamiliar to the transcriber.
 
 **GARBLED** Words are unclear if a word was transmitted or some other radio noise.
 
@@ -282,7 +282,7 @@ An example transcription for message 6, which is close to the average accuracy a
 ```
 Human:
 
-Showing a 2010 grey toyata prius to a Edwin and Jeanne Marugo Cadenas out of Indy, showing expiring in 22 of INDISCERNABLE. Check that, it’s expired in July 21st 22 INDISCERNABLE. Be advised that 22 then its okay then. That’s afirmative, apologies. 621.
+Showing a 2010 grey toyata prius to a Edwin and Jeanne Marugo Cadenas out of Indy, showing expiring in 22 of INDISCERNABLE. Check that, it’s expired in July 21st 22 INDISCERNABLE. Be advised that 22 then its okay then. That’s affirmative, apologies. 621.
 
 AI:
 
@@ -311,9 +311,9 @@ Showing a 2010 gray Toyota Prius to Edwin and G. N. Morocco. Catania's Showing e
 - **Average Accuracy: 59.10 %**
 - Accuracy STD: 27.2
 
-The accuracy of the transcription (at an average of 59.1%, likely much lower for meaning retention) seems to be at a point where it is not immediately useful for real-world application. However, it shows enough promise that model improvments, such as custom vocabularies and custom training data should be considered.
+The accuracy of the transcription (at an average of 59.1%, likely much lower for meaning retention) seems to be at a point where it is not immediately useful for real-world application. However, it shows enough promise that model improvements, such as custom vocabularies and custom training data should be considered.
 
-Below we present a scatter plot that shows message word count vs transcription accuracy. There is a correlatoin between message length in word count to the accuracy of the transcription.
+Below we present a scatter plot that shows message word count vs transcription accuracy. There is a correlation between message length in word count to the accuracy of the transcription.
 
 ![Scatter Plot](/images/scatter_plot.PNG)
 
@@ -323,34 +323,34 @@ Below we present a bar plot of the message length by word count in quartiles vs 
 
 ### Analysis
 
-Here we present a list of thoughts and findings identified by this experiment that will need to be considered when desigining a future system for P25 radio transcription; in particular, within the context of the emergency services and public services sectors.
+Here we present a list of thoughts and findings identified by this experiment that will need to be considered when designing a future system for P25 radio transcription; in particular, within the context of the emergency services and public services sectors.
 
 #### Alphabet and Numeric Words
 
 - Great care needs to be given to numbers and whether they are spelled out or presented in number form. Different contexts, such as call signs, street numbers, house numbers, regular speech require different care. Numeric numbers are very common in the emergency service sector.
-- Letters such as "B" and "D", and numbers suchs as "15" and "16" often sound similar. Speaker protocol should be used to use word substitution of letters, and numbers should be repeated. The numbers should be repeated as well. Similarly, numbers and words can be confused such as "04" and "Oh for", the model should be context aware to account for the right usage.
+- Letters such as "B" and "D", and numbers such as "15" and "16" often sound similar. Speaker protocol should be used to use word substitution of letters, and numbers should be repeated. The numbers should be repeated as well. Similarly, numbers and words can be confused such as "04" and "Oh for", the model should be context aware to account for the right usage.
 
 #### Message Length
 
-- The AI transcription seems to work better on longer messages, up until a point around 33 words. Shorter messages contain more numeric words, such as station identifiers, that appear to be incorrect more often than regular words. Also, as the message gets longer, the effect of poor beginning of message and ending of message transcription are better amoritized over the length of the message. Longer messages may also be more likely to contain more rich data for automated SA, while shorter messages tend to be radio calling and acknowledgement, so while performance is not great overall, perhaps only good performance on longer messages is required for a useful input into a SA use case.
+- The AI transcription seems to work better on longer messages, up until a point around 33 words. Shorter messages contain more numeric words, such as station identifiers, that appear to be incorrect more often than regular words. Also, as the message gets longer, the effect of poor beginning of message and ending of message transcription are better amortized over the length of the message. Longer messages may also be more likely to contain more rich data for automated SA, while shorter messages tend to be radio calling and acknowledgement, so while performance is not great overall, perhaps only good performance on longer messages is required for a useful input into a SA use case.
 - Missing words seemed to be more common than inaccurate words. This needs to be formally measured.
 
 #### Emergency Service Context
 
-- Often times emergency personnel use word substutions, such as when describing a license plage number. For example, "900 robert King George” could be replaced with “900RKG”to make the output transcriptoin more usable in an automated system.
+- Often times emergency personnel use word substations, such as when describing a license plate number. For example, "900 robert King George” could be replaced with “900RKG”to make the output transcription more usable in an automated system.
 - The AI model needs to account for regional accents.
-- To be useful in a situational awareness use case, addresses are super important to transcribe correctly. The AI model may need to be influenced to correctly identify local street names and businesses over more common english words.
-- Emergency frequently use radio codes, such as "10-4" being an acknowledgement of a transmission. These radio codes, as they are numeric based, are suspect to higher inaccuracy. They will also reduce the availability of the transcribed data to be use for automated SA. For example, if a police officer calls in an accident using a radio code, it will more likely be mistranscribed and not be plotable on a GIS SA map. ICS recommends the use of plain language radio speak, and this recommendation may be best for the purpose of improving automated radio transcription as well. Analternative may be trying to use word based radio codes such as "Oscar Mike".
+- To be useful in a situational awareness use case, addresses are super important to transcribe correctly. The AI model may need to be influenced to correctly identify local street names and businesses over more common English words.
+- Emergency frequently use radio codes, such as "10-4" being an acknowledgement of a transmission. These radio codes, as they are numeric based, are suspect to higher inaccuracy. They will also reduce the availability of the transcribed data to be use for automated SA. For example, if a police officer calls in an accident using a radio code, it will more likely be mistranscribed and not be plottable on a GIS SA map. ICS recommends the use of plain language radio speak, and this recommendation may be best for the purpose of improving automated radio transcription as well. An alternative may be trying to use word based radio codes such as "Oscar Mike".
 
 #### Human vs AI Transcription Influences
-- Human transcribers are greatly benefited by context cluses, such as mishearing a phrase first, but then corrected it after hearing the same pharase used again later on in the message. The AI transcription model should have a similar correction mechanism.
+- Human transcribers are greatly benefited by context clues, such as mishearing a phrase first, but then corrected it after hearing the same phrase used again later on in the message. The AI transcription model should have a similar correction mechanism.
 - Colloquial speech needs to be allowed by the AI transcription model. For example, "Gonna" instead of "Going to".
-- Human transcribers may have a bias to susbstitue correct grammar or language. When comparing AI models to human transcription, lenancy should be permitted as long as the message meaning is not lost.
+- Human transcribers may have a bias to substitute correct grammar or language. When comparing AI models to human transcription, leniency should be permitted as long as the message meaning is not lost.
 
 #### Experiment Design
-- Human transcription is very time consuming and suspect to thier own bias (such as misspellings, and knowledge of the area, for example, road names).
-- Having a high accuracy (meaning close match to human transcription) does not always translate to the meaning of the message being retained. Some words are more important to transcribe correctly to maintain the meaning of the message, or prevent the corruption of the meaning of the message. This is one flaw in this experiment. We need to identify how to measure meaning retainment.
-- Amazon presents a confidence report for each word that was not considered in this experiement. In some cases it is likely better to have a INDISCERNABLE than a wrong word. We could replace a low confidence word with INDISCERNABLE to prevent message corruption (a changing of the meaning).
+- Human transcription is very time consuming and suspect to their own bias (such as misspellings, and knowledge of the area, for example, road names).
+- Having a high accuracy (meaning close match to human transcription) does not always translate to the meaning of the message being retained. Some words are more important to transcribe correctly to maintain the meaning of the message, or prevent the corruption of the meaning of the message. This is one flaw in this experiment. We need to identify how to measure meaning retainment. 
+- Amazon presents a confidence report for each word that was not considered in this experiment. In some cases it is likely better to have a INDISCERNABLE than a wrong word. We could replace a low confidence word with INDISCERNABLE to prevent message corruption (a changing of the meaning).
 - Manual transcription is a slow process, to continue future experiments we need to crowd source or incentivize multiple people to create a labeled dataset.
 
 
@@ -361,24 +361,24 @@ Here we present a list of thoughts and findings identified by this experiment th
 - GARBLED, SHORT transmission might have been an attempt at a station identification, such as when responding to a caller. These can likely be ignored.
 - SILENT, SHORT transmissions might be explained by radio miskeys, or filtered encrypted communications. These can likely be ignored.
 - There seems to have been one spurious retransmission in messages 19 and 36. We need to investigate if this is possibly caused by the P25 system or the trunk-recording software.
-- The recorded messages contain mixed conversations. This is because of limitations in the design of P25 and the recording software. P25 does not include a message ending signal and the same frequency is used across multiple talkgroups, so the recording software has to record 5 seconds after the last transmitted word at which point a new conversation may have been introduced. Perhaps using talkgroup identifiers (TGIDS) and AI speaker detection, we can create a better transcription of distict speakers and conversations.
-- We identified many transmiters that were consistently clearer than others. For example, most animal control related messages in this experiment showed high accuracy. This may be becuase the transmitters are vehicular or base station transmission instead of personal mobile transmission used by a emergency service worker.
+- The recorded messages contain mixed conversations. This is because of limitations in the design of P25 and the recording software. P25 does not include a message ending signal and the same frequency is used across multiple talkgroups, so the recording software has to record 5 seconds after the last transmitted word at which point a new conversation may have been introduced. Perhaps using talkgroup identifiers (TGIDS) and AI speaker detection, we can create a better transcription of distinct speakers and conversations.
+- We identified many transmitters that were consistently clearer than others. For example, most animal control related messages in this experiment showed high accuracy. This may be because the transmitters are vehicular or base station transmission instead of personal mobile transmission used by a emergency service worker.
 
 
 ### Future Opportunities
 
 Here we present some thoughts on future opportunities.
 
-- This experiement needs to be reconducted on a larger dataset.
-- Software needs to be implemented to make it easier to generate a larget dataset. The Openmhz.com software could be extended to allow users to transcribe radio transmissions. Incentivized users could then crowd source a larger dataset much faster than single human transcription.
+- This experiment needs to be reconducted on a larger dataset.
+- Software needs to be implemented to make it easier to generate a larger dataset. The Openmhz.com software could be extended to allow users to transcribe radio transmissions. Incentivized users could then crowd source a larger dataset much faster than single human transcription.
 - We should look into running this experiment with a better radio system (base station with good antenna location) to maximize reception. This may improve the clarity and correctability of some radio transmissions.
-- AWS Transcribe was used manually, via the web GUI, during this experiment. In the future a simple sofware component could be easily implemented to handle this automtically using the AWS API.
-- An algorithm needs to be implemented to conduct the word comparision as described in the rules above. It was done by-hand in this experiement.
+- AWS Transcribe was used manually, via the web GUI, during this experiment. In the future a simple software component could be easily implemented to handle this automatically using the AWS API.
+- An algorithm needs to be implemented to conduct the word comparision as described in the rules above. It was done by-hand in this experiment.
 - There may be an increase in accuracy if we run the sample multiple times through the same service, or make a composite of the sample as run through multiple AI speech-to-text services such as Google Cloud Platform or Microsoft Azure.
-- We need to write alogrithm to compare human vs AI with these rules specified above.
+- We need to write algorithm to compare human vs AI with these rules specified above.
 - We need to identify and measure the meaning retention of the transcribed message.
 - We should explore custom vocabularies and custom training data to try to increase the accuracy.
-- We need to measure the number of consistenyl accurage words before a mistake. There appears to be a fragmentation issue where large or key parts of messags can be lost. 
+- We need to measure the number of consistency accurate words before a mistake. There appears to be a fragmentation issue where large or key parts of messages can be lost. 
 
 #### Software Technical Demo
 
@@ -389,11 +389,11 @@ The technical demonstration will:
 - Monitor trunk-recorder output directories for new audio `wav` files.
 - Upload `wav` files to Amazon S3 bucket.
 - Schedule Amazon Transcribe Job on the uploaded file.
-- Fetch Amazon Transcribe Job and print result to console / output file inorder of transmission
+- Fetch Amazon Transcribe Job and print result to console / output file in order of transmission
 
 ## Conclusion
 
-In this investigation we conducted a simple, manual experiemnt to gather base accuracy numbers of a generic, AI driven speech-to-text model (Amazon Transcribe), which was used to transcribe P25 radio transmissions from the Bloomington, IN area emergency service and public service sectors. We identified that with a average accuracy of 59%, the generic model was not suitable for real-world use. However, we posit that it may be possible to improve those numbers through a series of model improvements, including custom vocabularies or custom training data. We also identify possible opportunities for improvement of the P25 protocol and the radio and software used to record the transmissions. Future work may look into improving this experiment by increasing the dataset, better automating of data set generation and experiment measuremen, testing existing model improvements, and measruing message meaning retention instead of word accuracy. 
+In this investigation we conducted a simple, manual experiment to gather base accuracy numbers of a generic, AI driven speech-to-text model (Amazon Transcribe), which was used to transcribe P25 radio transmissions from the Bloomington, IN area emergency service and public service sectors. We identified that with a average accuracy of 59%, the generic model was not suitable for real-world use. However, we posit that it may be possible to improve those numbers through a series of model improvements, including custom vocabularies or custom training data. We also identify possible opportunities for improvement of the P25 protocol and the radio and software used to record the transmissions. Future work may look into improving this experiment by increasing the dataset, better automating of data set generation and experiment measurement, testing existing model improvements, and measuring message meaning retention instead of word accuracy. 
 
 ## References
 
