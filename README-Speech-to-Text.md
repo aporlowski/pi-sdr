@@ -291,10 +291,11 @@ We used a pretty liberal ruleset while determining if the words in the transcrip
     - 25 - 50 percentile: 11 to 19
     - 50 - 75 percentile: 20 to 32
     - 75 - 100 percentile: 33 to 144 
-- Words, human transcribed: 1046
-- Words, AWS transcribed: 878 (~84 % of human value)
-- **Average Accuracy: 59.10**
-- 
+- Total Words Transcribed
+    - human transcribed: 1046
+    - AWS transcribed: 878 (~84 % of human value)
+- **Average Accuracy: 59.10 %**
+- Accuracy STD: 27.2
 
 
 ![Scatter Plot](/images/scatter_plot.PNG)
