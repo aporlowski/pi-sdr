@@ -251,7 +251,7 @@ View the results.
 
 ![Scatter Plot](/images/scatter_plot.PNG)
 
-![Bar Plot](/images/bar_plot.PNG)
+![Bar Plot](/images/bar_plot.png)
 
 #### Difference in human vs AI transcription
 
