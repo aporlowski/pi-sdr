@@ -273,7 +273,7 @@ We used a pretty liberal ruleset while determining if the words in the transcrip
 
 **GARBLED** Words are unclear if a word was transmitted or some other radio noise.
 
-### General Performance Stats
+### General Statisticss
 
 - Messages: 50
     - NO CONTENT: 8
