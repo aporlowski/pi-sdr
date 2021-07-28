@@ -30,4 +30,32 @@
 - list rtl devices `rtl_eeprom -d 0` `rtl_eeprom -d 1`
 - change rtl serial device `rtl_eeprom -s 00000001`
 
+## Analysis
+run AWS transcribe multiple times and average?
+
+measure number of consisten words before mistake (fragmentation)
+lot's of missing words
+
+
+gaps in numbers okay as long as no other additives really need alpha unit identifiers
+same with conjoined numbers that should have gaps
+
+if reception or error can be measured then those messages can be skipped
+
+beginnings and ends commonly wrong or missing
+
+sometimse having a high % match still losses too much meaning if wrong words are missing or wrong
+
+seems to have gotten a spurious retransmission is that P25 or the software?
+
+consistent good results with specific units (animal control), perhaps need to repeat this with a base station setup for reception?
+
+addresses are super important to get right
+
+regional accents
+
+future work: build custom model
+
+604.... Oh for.
+
 
