@@ -223,9 +223,25 @@ We assume you have an AWS account.
 
 We need to upload the `wav` files to to an AWS S3 bucket so that Amazon Transcribe can run a Transcription Job.
 
+![Create bucket](/images/create_bucket.png)
+
 ### Upload `wav` files to S3 bucket
 
+Copy the `wav` files from the trunk-recorder container, using `docker cp` (demoed above), and the upload them to your AWS S3 bucket.
+
+![Upload Files](/images/upload_files.png)
+
 ### Schedule Amazon Transcribe Job
+
+Schedule a Amazon Transcribe job on those `wav` files. For this experiment I used all default optoins.
+
+![Schedule Job](/images/schedule_job.png)
+
+### View the Job Result
+
+View the results.
+
+![View Job](/images/view_job.png)
 
 ## Analysis of transcription demo
 
