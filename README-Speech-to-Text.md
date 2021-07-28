@@ -233,7 +233,7 @@ Copy the `wav` files from the trunk-recorder container, using `docker cp` (demoe
 
 ### Schedule Amazon Transcribe Job
 
-Schedule a Amazon Transcribe [7] job on those `wav` files. For this experiment I used all default optoins.
+Schedule a Amazon Transcribe [6] job on those `wav` files. For this experiment I used all default optoins.
 
 ![Schedule Job](/images/schedule_job.png)
 
@@ -394,3 +394,17 @@ The technical demonstration will:
 ## Conclusion
 
 In this investigation we conducted a simple, manual experiemnt to gather base accuracy numbers of a generic, AI driven speech-to-text model (Amazon Transcribe), which was used to transcribe P25 radio transmissions from the Bloomington, IN area emergency service and public service sectors. We identified that with a average accuracy of 59%, the generic model was not suitable for real-world use. However, we posit that it may be possible to improve those numbers through a series of model improvements, including custom vocabularies or custom training data. We also identify possible opportunities for improvement of the P25 protocol and the radio and software used to record the transmissions. Future work may look into improving this experiment by increasing the dataset, better automating of data set generation and experiment measuremen, testing existing model improvements, and measruing message meaning retention instead of word accuracy. 
+
+## References
+
+[1] Contributors to Wikimedia projects. "Android Team Awareness Kit - Wikipedia." 28 May. 2021, en.wikipedia.org/w/index.php?title=Android_Team_Awareness_Kit&oldid=1025574480.
+
+[2] Contributors to Wikimedia projects. "Blue force tracking - Wikipedia." 23 Aug. 2020, en.wikipedia.org/w/index.php?title=Blue_force_tracking&oldid=974579679.
+
+[3] robotastic. "trunk-recorder." GitHub, 28 July 2021, github.com/robotastic/trunk-recorder.
+
+[4] Orlowski, Anthony. "pi-sdr." GitHub, 28 July 2021, github.com/aporlowski/pi-sdr.
+
+[5] "Install Docker Engine on Ubuntu." Docker Documentation, 26 July 2021, docs.docker.com/engine/install/ubuntu.
+
+[6] "Amazon Transcribe – Speech to Text - AWS." Amazon Web Services, Inc, 19 July 2021, aws.amazon.com/transcribe.
