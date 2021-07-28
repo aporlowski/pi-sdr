@@ -297,6 +297,8 @@ We used a pretty liberal ruleset while determining if the words in the transcrip
 - **Average Accuracy: 59.10 %**
 - Accuracy STD: 27.2
 
+The accuracy of the transcription (at an average of 59.1%, likely much lower for meaning retention) seems to be at a point where it is not immediately useful for real-world application. However, it shows enough promise that model improvments, such as custom vocabularies and custom training data should be considered.
+
 Below we present a scatter plot that shows message word count vs transcription accuracy. There is a correlatoin between message length in word count to the accuracy of the transcription.
 
 ![Scatter Plot](/images/scatter_plot.PNG)
