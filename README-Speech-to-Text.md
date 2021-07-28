@@ -249,6 +249,10 @@ View the results.
 
 ### General Performance Stats
 
+![Scatter Plot](/images/scatter_plot.PNG)
+
+![Bar Plot](/images/bar_plot.PNG)
+
 #### Difference in human vs AI transcription
 
 ### Identified Challenges
