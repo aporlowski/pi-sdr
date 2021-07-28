@@ -318,7 +318,8 @@ Here we present a list of thoughts and findings identified by this experiment th
 
 #### Message Length
 
-- The AI transcription seems to work better on longer messages, up until a point around 33 words. Shorter messages contain more numeric words, such as station identifiers, that appear to be incorrect more often than regular words. Also, as the message gets longer, the effect of poor beginning of message and ending of message transcription are better amoritized over the length of the message. Longer messages may also be more likely to contain more rich data for automated SA, while shorter messages tend to be radio calling and acknowledgement, so while performance is not great overall, perhaps only good performance on longer messages is required for a useful input into a SA use case. 
+- The AI transcription seems to work better on longer messages, up until a point around 33 words. Shorter messages contain more numeric words, such as station identifiers, that appear to be incorrect more often than regular words. Also, as the message gets longer, the effect of poor beginning of message and ending of message transcription are better amoritized over the length of the message. Longer messages may also be more likely to contain more rich data for automated SA, while shorter messages tend to be radio calling and acknowledgement, so while performance is not great overall, perhaps only good performance on longer messages is required for a useful input into a SA use case.
+- Missing words seemed to be more common than inaccurate words. This needs to be formally measured.
 
 #### Emergency Service Context
 
@@ -334,7 +335,6 @@ Here we present a list of thoughts and findings identified by this experiment th
 
 #### Experiment Design
 - Human transcription is very time consuming and suspect to thier own bias (such as misspellings, and knowledge of the area, for example, road names).
-- 
 - Having a high accuracy (meaning close match to human transcription) does not always translate to the meaning of the message being retained. Some words are more important to transcribe correctly to maintain the meaning of the message, or prevent the corruption of the meaning of the message. This is one flaw in this experiment. We need to identify how to measure meaning retainment.
 - Amazon presents a confidence report for each word that was not considered in this experiement. In some cases it is likely better to have a INDISCERNABLE than a wrong word. We could replace a low confidence word with INDISCERNABLE to prevent message corruption (a changing of the meaning).
 - Manual transcription is a slow process, to continue future experiments we need to crowd source or incentivize multiple people to create a labeled dataset.
@@ -353,7 +353,14 @@ Here we present a list of thoughts and findings identified by this experiment th
 
 ### Future Opportunities
 
-need to write alogrithm to compare human vs AI with these rules
+Here we present some thoughts on future opportunities.
+
+- This experiement needs to be reconducted on a larger dataset.
+- We should look into running this experiment with a better radio system (base station with good antenna location) to maximize reception. This may improve the clarity and correctability of some radio transmissions.
+- AWS Transcribe was used manually, via the web GUI, during this experiment. In the future a simple sofware component could be easily implemented to handle this automtically using the AWS API.
+- An algorithm needs to be implemented to conduct the word comparision as described in the rules above. It was done by-hand in this experiement.
+- There may be an increase in accuracy if we run the sample multiple times through the same service, or make a composite of the sample as run through multiple AI speech-to-text services
+- need to write alogrithm to compare human vs AI with these rules
 run AWS transcribe multiple times and average?
 base station setup for reception?
 longer experiment
