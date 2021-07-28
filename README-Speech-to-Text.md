@@ -278,8 +278,8 @@ We used a pretty liberal ruleset while determining if the words in the transcrip
 - Messages: 50
     - NO CONTENT: 8
         - SHORT, GARBLED: 5
-	- SHORT, SILENT: 2
-	- COMPLETELY INDISCERNABLE: 1
+        - SHORT, SILENT: 2
+        - COMPLETELY INDISCERNABLE: 1
     - WITH CONTENT: 48
 - Message Length
     - Transcribed Seconds: 500 (~8.33 min)
