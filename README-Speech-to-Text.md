@@ -324,28 +324,22 @@ Here we present a list of thoughts and findings identified by this experiment th
 - Amazon presents a confidence report for each word that was not considered in this experiement. In some cases it is likely better to have a INDISCERNABLE than a wrong word.
 - We identified many transmiters that were consistently clearer than others. For example, most animal control related messages in this experiment showed high accuracy. This may be becuase the transmitters are vehicular or base station transmission instead of personal mobile transmission used by a emergency service worker.
 - Emergency frequently use radio codes, such as "10-4" being an acknowledgement of a transmission. These radio codes, as they are numeric based, are suspect to higher inaccuracy. They will also reduce the availability of the transcribed data to be use for automated SA. For example, if a police officer calls in an accident using a radio code, it will more likely be mistranscribed and not be plotable on a GIS SA map. ICS recommends the use of plain language radio speak, and this recommendation may be best for the purpose of improving automated radio transcription as well. Analternative may be trying to use word based radio codes such as "Oscar Mike".
-
-
-
-mixed messages need to break messages up by tgid
-since there is no signal for end of message, it keeps recording for 5 seconds
-letters that sound the same (group this with others)
-run AWS transcribe multiple times and average?
-measure number of consisten words before mistake (fragmentation) lot's of missing words
-gaps in numbers okay as long as no other additives really need alpha unit identifiers same with conjoined numbers that should have gaps
-if reception or error can be measured then those messages can be skipped
-beginnings and ends commonly wrong or missing
-sometimse having a high % match still losses too much meaning if wrong words are missing or wrong
-seems to have gotten a spurious retransmission is that P25 or the software?
-consistent good results with specific units (animal control), perhaps need to repeat this with a base station setup for reception?
-addresses are super important to get right
-regional accents
-future work: build custom model
-604.... Oh for.
+- The recorded messages contain mixed conversations. This is because of limitations in the design of P25 and the recording software. P25 does not include a message ending signal and the same frequency is used across multiple talkgroups, so the recording software has to record 5 seconds after the last transmitted word at which point a new conversation may have been introduced. Perhaps using talkgroup identifiers (TGIDS) and AI speaker detection, we can create a better transcription of distict speakers and conversations.
+- Letters such as "B" and "D", and numbers suchs as "15" and "16" often sound similar. Speaker protocol should be used to use word substitution of letters, and numbers should be repeated. The numbers should be repeated as well. Similarly, numbers and words can be confused such as "04" and "Oh for", the model should be context aware to account for the right usage.
+- Having a high accuracy (meaning close match to human transcription) does not always translate to the meaning of the message being retained. Some words are more important to transcribe correctly to maintain the meaning of the message, or prevent the corruption of the meaning of the message. This is one flaw in this experiment. We need to identify how to measure meaning retainment.
+- There seems to have been one spurious retransmission in messages 19 and 36. We need to investigate if this is possibly caused by the P25 system or the trunk-recording software.
+- To be useful in a situational awareness use case, addresses are super important to transcribe correctly. The AI model may need to be influenced to correctly identify local street names and businesses over more common english words. 
+- The AI model needs to account for regional accents.
 
 ### Future Opportunities
 
 need to write alogrithm to compare human vs AI with these rules
+run AWS transcribe multiple times and average?
+base station setup for reception?
+longer experiment
+custom model
+
+measure number of consisten words before mistake (fragmentation) lot's of missing words
 
 ## Software Technical Demo
 
