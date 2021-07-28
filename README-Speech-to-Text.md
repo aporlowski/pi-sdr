@@ -275,6 +275,20 @@ We used a pretty liberal ruleset while determining if the words in the transcrip
 
 ### General Statistics
 
+Transcription results can be found [here](/experiment1.xlsx).
+
+An example transcription for message 6, which is close to the average accuracy at 58.14% is printed below:
+
+```
+Human:
+
+Showing a 2010 grey toyata prius to a Edwin and Jeanne Marugo Cadenas out of Indy, showing expiring in 22 of INDISCERNABLE. Check that, it’s expired in July 21st 22 INDISCERNABLE. Be advised that 22 then its okay then. That’s afirmative, apologies. 621.
+
+AI:
+
+Showing a 2010 gray Toyota Prius to Edwin and G. N. Morocco. Catania's Showing expiring 22 technologies. Check that it's expired in July. I think. Like 22 then. And it's uh it's okay then. That's affirmative. Apologies. 611
+```
+
 - Messages: 50
     - No Content: 8 (16%)
         - SHORT, GARBLED: 5
@@ -356,19 +370,17 @@ Here we present a list of thoughts and findings identified by this experiment th
 Here we present some thoughts on future opportunities.
 
 - This experiement needs to be reconducted on a larger dataset.
+- Software needs to be implemented to make it easier to generate a larget dataset. The Openmhz.com software could be extended to allow users to transcribe radio transmissions. Incentivized users could then crowd source a larger dataset much faster than single human transcription.
 - We should look into running this experiment with a better radio system (base station with good antenna location) to maximize reception. This may improve the clarity and correctability of some radio transmissions.
 - AWS Transcribe was used manually, via the web GUI, during this experiment. In the future a simple sofware component could be easily implemented to handle this automtically using the AWS API.
 - An algorithm needs to be implemented to conduct the word comparision as described in the rules above. It was done by-hand in this experiement.
-- There may be an increase in accuracy if we run the sample multiple times through the same service, or make a composite of the sample as run through multiple AI speech-to-text services
-- need to write alogrithm to compare human vs AI with these rules
-run AWS transcribe multiple times and average?
-base station setup for reception?
-longer experiment
-custom model
+- There may be an increase in accuracy if we run the sample multiple times through the same service, or make a composite of the sample as run through multiple AI speech-to-text services such as Google Cloud Platform or Microsoft Azure.
+- We need to write alogrithm to compare human vs AI with these rules specified above.
+- We need to identify and measure the meaning retention of the transcribed message.
+- We should explore custom vocabularies and custom training data to try to increase the accuracy.
+- We need to measure the number of consistenyl accurage words before a mistake. There appears to be a fragmentation issue where large or key parts of messags can be lost. 
 
-measure number of consisten words before mistake (fragmentation) lot's of missing words
-
-## Software Technical Demo
+#### Software Technical Demo
 
 He we outline the processing of real-time P25 transmissions for a simple transcription technical demonstration.
 
@@ -378,3 +390,7 @@ The technical demonstration will:
 - Upload `wav` files to Amazon S3 bucket.
 - Schedule Amazon Transcribe Job on the uploaded file.
 - Fetch Amazon Transcribe Job and print result to console / output file inorder of transmission
+
+## Conclusion
+
+In this investigation we conducted a simple, manual experiemnt to gather base accuracy numbers of a generic, AI driven speech-to-text model (Amazon Transcribe), which was used to transcribe P25 radio transmissions from the Bloomington, IN area emergency service and public service sectors. We identified that with a average accuracy of 59%, the generic model was not suitable for real-world use. However, we posit it may be possible to improve those numbers through a series of model improvements, including custom vocabularies or custom training data. We also identify possible opportunities for improvement of the P25 protocol and the radio and software used to record the transmissions. Future work may look into improving this experiment by increasing the dataset, better automating of data set generation and experiment measuremen, and trying existing model improvements. 
