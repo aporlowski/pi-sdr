@@ -259,10 +259,6 @@ Finally, we measured how many words from the Amazon Transcribe matched the human
 
 We used a pretty liberal ruleset while determining if the words in the transcriptions matched. The thought process behind this ruleset is that no meaning is lost by the rule, or that context-aware post-processing could correct the errors with no loss to the message meaning. The resulting measure is a `% match to human transcription`. Note, this does not always correspond to `% meaning retained`.
 
-**INDISCERNABLE** Words are words that cannot be comprehended given all context cluse. For example, police jargon unfamiliar to the transcriber.
-
-**GARBLED** Words are unclear if a word was transmitted or some other radio noise.
-
 1. Punctuation and capitalization were not considered 
 2. Mispellings are considered the same
 3. A number spelled out vs represented as a numeral is considered the same
@@ -273,7 +269,33 @@ We used a pretty liberal ruleset while determining if the words in the transcrip
 8. Gaps in numbers were considered okay as long as no other added characters within or between.
 9. Conjoined numbers that should have had gaps were okay as long as there were no other added characters within or between.
 
+**INDISCERNABLE** Words are words that cannot be comprehended given all context cluse. For example, police jargon unfamiliar to the transcriber.
+
+**GARBLED** Words are unclear if a word was transmitted or some other radio noise.
+
 ### General Performance Stats
+
+- Messages: 50
+    - NO CONTENT: 8
+        - SHORT, GARBLED: 5
+	- SHORT, SILENT: 2
+	- COMPLETELY INDISCERNABLE: 1
+    - WITH CONTENT: 48
+- Message Length
+    - Transcribed Seconds: 500 (~8.33 min)
+    - Average Length (s): 11.9
+    - Min Length (s): 1
+    - Max Length (s): 51
+- Message Word Count
+    - Bottom 25 percentile: <= 10
+    - 25 - 50 percentile: 11 to 19
+    - 50 - 75 percentile: 20 to 32
+    - 75 - 100 percentile: 33 to 144 
+- Words, human transcribed: 1046
+- Words, AWS transcribed: 878 (~84 % of human value)
+- **Average Accuracy: 59.10**
+- 
+
 
 ![Scatter Plot](/images/scatter_plot.PNG)
 
