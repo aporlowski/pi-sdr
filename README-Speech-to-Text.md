@@ -297,8 +297,11 @@ We used a pretty liberal ruleset while determining if the words in the transcrip
 - **Average Accuracy: 59.10 %**
 - Accuracy STD: 27.2
 
+Below we present a scatter plot that shows message word count vs transcription accuracy. There is a correlatoin between message length in word count to the accuracy of the transcription.
 
 ![Scatter Plot](/images/scatter_plot.PNG)
+
+Below we present a bar plot of the message length by word count in quartiles vs accuracy. We show that accuracy tends to increase as word count increases, however, messages in the top quartile (longer than 33 words) were more likely for large segments of the message to be missed by the AI transcription.
 
 ![Bar Plot](/images/bar_plot.png)
 
