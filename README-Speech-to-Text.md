@@ -312,7 +312,7 @@ Here we present a list of thoughts and findings identified by this experiment th
 #### Alphabet and Numeric Words
 
 - Great care needs to be given to numbers and whether they are spelled out or presented in number form. Different contexts, such as call signs, street numbers, house numbers, regular speech require different care. Numeric numbers are very common in the emergency service sector.
-- - Letters such as "B" and "D", and numbers suchs as "15" and "16" often sound similar. Speaker protocol should be used to use word substitution of letters, and numbers should be repeated. The numbers should be repeated as well. Similarly, numbers and words can be confused such as "04" and "Oh for", the model should be context aware to account for the right usage.
+- Letters such as "B" and "D", and numbers suchs as "15" and "16" often sound similar. Speaker protocol should be used to use word substitution of letters, and numbers should be repeated. The numbers should be repeated as well. Similarly, numbers and words can be confused such as "04" and "Oh for", the model should be context aware to account for the right usage.
 
 #### Message Length
 
@@ -323,7 +323,7 @@ Here we present a list of thoughts and findings identified by this experiment th
 - Often times emergency personnel use word substutions, such as when describing a license plage number. For example, "900 robert King George” could be replaced with “900RKG”to make the output transcriptoin more usable in an automated system.
 - The AI model needs to account for regional accents.
 - To be useful in a situational awareness use case, addresses are super important to transcribe correctly. The AI model may need to be influenced to correctly identify local street names and businesses over more common english words.
-- - Emergency frequently use radio codes, such as "10-4" being an acknowledgement of a transmission. These radio codes, as they are numeric based, are suspect to higher inaccuracy. They will also reduce the availability of the transcribed data to be use for automated SA. For example, if a police officer calls in an accident using a radio code, it will more likely be mistranscribed and not be plotable on a GIS SA map. ICS recommends the use of plain language radio speak, and this recommendation may be best for the purpose of improving automated radio transcription as well. Analternative may be trying to use word based radio codes such as "Oscar Mike".
+- Emergency frequently use radio codes, such as "10-4" being an acknowledgement of a transmission. These radio codes, as they are numeric based, are suspect to higher inaccuracy. They will also reduce the availability of the transcribed data to be use for automated SA. For example, if a police officer calls in an accident using a radio code, it will more likely be mistranscribed and not be plotable on a GIS SA map. ICS recommends the use of plain language radio speak, and this recommendation may be best for the purpose of improving automated radio transcription as well. Analternative may be trying to use word based radio codes such as "Oscar Mike".
 
 #### Human vs AI Transcription Influences
 - Human transcribers are greatly benefited by context cluses, such as mishearing a phrase first, but then corrected it after hearing the same pharase used again later on in the message. The AI transcription model should have a similar correction mechanism.
@@ -334,8 +334,7 @@ Here we present a list of thoughts and findings identified by this experiment th
 - Human transcription is very time consuming and suspect to thier own bias (such as misspellings, and knowledge of the area, for example, road names).
 - 
 - Having a high accuracy (meaning close match to human transcription) does not always translate to the meaning of the message being retained. Some words are more important to transcribe correctly to maintain the meaning of the message, or prevent the corruption of the meaning of the message. This is one flaw in this experiment. We need to identify how to measure meaning retainment.
-- - Amazon presents a confidence report for each word that was not considered in this experiement. In some cases it is likely better to have a INDISCERNABLE than a wrong word. We could replace a low confidence word with INDISCERNABLE to prevent message corruption (a changing of the meaning).
-- 
+- Amazon presents a confidence report for each word that was not considered in this experiement. In some cases it is likely better to have a INDISCERNABLE than a wrong word. We could replace a low confidence word with INDISCERNABLE to prevent message corruption (a changing of the meaning).
 - Manual transcription is a slow process, to continue future experiments we need to crowd source or incentivize multiple people to create a labeled dataset.
 
 
@@ -345,9 +344,9 @@ Here we present a list of thoughts and findings identified by this experiment th
 - Improvements in P25 may need to be sought out to improve the clarity of the beginning and end of transmissions. It is also possible that these are created by the recording software and can be fixed at that level.
 - GARBLED, SHORT transmission might have been an attempt at a station identification, such as when responding to a caller. These can likely be ignored.
 - SILENT, SHORT transmissions might be explained by radio miskeys, or filtered encrypted communications. These can likely be ignored.
-- - There seems to have been one spurious retransmission in messages 19 and 36. We need to investigate if this is possibly caused by the P25 system or the trunk-recording software.
-- - The recorded messages contain mixed conversations. This is because of limitations in the design of P25 and the recording software. P25 does not include a message ending signal and the same frequency is used across multiple talkgroups, so the recording software has to record 5 seconds after the last transmitted word at which point a new conversation may have been introduced. Perhaps using talkgroup identifiers (TGIDS) and AI speaker detection, we can create a better transcription of distict speakers and conversations.
-- - We identified many transmiters that were consistently clearer than others. For example, most animal control related messages in this experiment showed high accuracy. This may be becuase the transmitters are vehicular or base station transmission instead of personal mobile transmission used by a emergency service worker.
+- There seems to have been one spurious retransmission in messages 19 and 36. We need to investigate if this is possibly caused by the P25 system or the trunk-recording software.
+- The recorded messages contain mixed conversations. This is because of limitations in the design of P25 and the recording software. P25 does not include a message ending signal and the same frequency is used across multiple talkgroups, so the recording software has to record 5 seconds after the last transmitted word at which point a new conversation may have been introduced. Perhaps using talkgroup identifiers (TGIDS) and AI speaker detection, we can create a better transcription of distict speakers and conversations.
+- We identified many transmiters that were consistently clearer than others. For example, most animal control related messages in this experiment showed high accuracy. This may be becuase the transmitters are vehicular or base station transmission instead of personal mobile transmission used by a emergency service worker.
 
 
 ### Future Opportunities
