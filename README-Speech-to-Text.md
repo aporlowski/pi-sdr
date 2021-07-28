@@ -305,11 +305,48 @@ Below we present a bar plot of the message length by word count in quartiles vs 
 
 ![Bar Plot](/images/bar_plot.png)
 
-#### Difference in human vs AI transcription
+### Analysis
 
-### Identified Challenges
+Here we present a list of throughts and findings identified by this experiment that need to be considered when desigining a future system for P25 radio transcription. In particular, within the context of the emergency services and public services sectors.
+
+Humans will likely type numbers. AI transcribe might write them out.
+Robovoice on calls 80 and 96
+GARBLED, SHORT  might be bad station identification
+SILENT, SHORT might be miskey, or it may be filtered encrypted comms.
+replace word substitutions
+humans have to spell check
+beginning of recordings are most likey to be GARBLED.
+humans can use context clues "8th and Avens" to "8th and Adams since Adams used later on"
+colloquial speech like there's
+it works better on long transmissions.
+humans may substitute gramm or language
+protocol needs to be designed for short transmissions and start of transmissions to transcribe the beginning and short messages.
+manual transcription is a slow process, need to crowd source or incentivize multiple people
+play with the audio sampling rate (used low bandwith recommended 8000 Hz)
+play with confidence report
+base stations probably better
+radio codes probably not hte best. ICS recommends plain language
+longer transmissions might perform better, and are more likely the messages with more rich data for SA applications
+own human bias on transcription
+mixed messages need to break messages up by tgid
+since there is no signal for end of message, it keeps recording for 5 seconds
+letters that sound the same (group this with others)
+run AWS transcribe multiple times and average?
+measure number of consisten words before mistake (fragmentation) lot's of missing words
+gaps in numbers okay as long as no other additives really need alpha unit identifiers same with conjoined numbers that should have gaps
+if reception or error can be measured then those messages can be skipped
+beginnings and ends commonly wrong or missing
+sometimse having a high % match still losses too much meaning if wrong words are missing or wrong
+seems to have gotten a spurious retransmission is that P25 or the software?
+consistent good results with specific units (animal control), perhaps need to repeat this with a base station setup for reception?
+addresses are super important to get right
+regional accents
+future work: build custom model
+604.... Oh for.
 
 ### Future Opportunities
+
+need to write alogrithm to compare human vs AI with these rules
 
 ## Software Technical Demo
 
