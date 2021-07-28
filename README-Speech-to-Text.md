@@ -257,9 +257,10 @@ Finally, we measured how many words from the Amazon Transcribe matched the human
 
 ### Rules for Comparing Human and AI Transcription
 
-We used a pretty liberal ruleset while determining if the words in the transcriptions matched. The thought behind this ruleset is that no meaning is lost by the rule, or post-processing could correct the errors with no loss to the message meaning. The resulting measure is a `% match to human transcription`. Note, this does not always correspond to `% meaning retained`.
+We used a pretty liberal ruleset while determining if the words in the transcriptions matched. The thought process behind this ruleset is that no meaning is lost by the rule, or that context-aware post-processing could correct the errors with no loss to the message meaning. The resulting measure is a `% match to human transcription`. Note, this does not always correspond to `% meaning retained`.
 
 **INDISCERNABLE** Words are words that cannot be comprehended given all context cluse. For example, police jargon unfamiliar to the transcriber.
+
 **GARBLED** Words are unclear if a word was transmitted or some other radio noise.
 
 1. Punctuation and capitalization were not considered 
