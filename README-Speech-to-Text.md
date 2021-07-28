@@ -6,7 +6,7 @@ P25 is digital radio standard commonly used by emergency services and public ser
 
 In this investigation we will investigate the ability of modern AI driven speech-to-text services, such as those provided by cloud providers like Amazon Web Services, Google Cloud Platform, and Microsoft Azure, to transcribe P25 radio transmissions. The automated recording and transcription of radio communication could be beneficial for many usings including:
 
-- A rich feed of data for Geospatial Information System and Situational Awareness Applications (like [ATAK](https://en.wikipedia.org/wiki/Android_Team_Awareness_Kit)) when coupled with unit GPS tracking such as "[Blue Force Tracker](https://en.wikipedia.org/wiki/Blue_force_tracking)". 
+- A rich feed of data for Geospatial Information System and Situational Awareness Applications (like [ATAK](https://en.wikipedia.org/wiki/Android_Team_Awareness_Kit) [1]) when coupled with unit GPS tracking such as "[Blue Force Tracker](https://en.wikipedia.org/wiki/Blue_force_tracking) [2]". 
 - Access to P25 emergency communications for the hearing impaired
 - A reviewable tranmission log for radio users to review past discussions, such as a dispatcher trying to remember and address or license plate number
 - Investigation and review of emergency service personnel actions in incidients
@@ -17,7 +17,7 @@ We will record P25 radio transcriptions using our SDR radio, and then run the re
 
 ## Methodology
 
-- We will setup [trunk-recorder software](https://github.com/robotastic/trunk-recorder) to automate the recoding of P25 radio communications
+- We will setup [trunk-recorder software](https://github.com/robotastic/trunk-recorder) [3] to automate the recoding of P25 radio communications
 - Next, we demonstrate transcription by measuring Amazon Transcribe's transcription compared to human comprehension on ~10 minutes of trunk-recorder produced recordings
 - Next, we anaylze the transcription results to make generalizations, recommendations, and identify areas for further investigation
 - Finally, we propose a software technical demo capable of real-time P25 radio transcription to a computer console or file.
@@ -116,7 +116,7 @@ First source range =  850.801 - 852.849 Mhz
 
 Second source range =  857.2635 - 859.31115
 
-The `rate`, `ppm`, and `gain` are all values carried over from [this](https://github.com/aporlowski/pi-sdr) tutorial.
+The `rate`, `ppm`, and `gain` are all values carried over from [this](https://github.com/aporlowski/pi-sdr) [4] tutorial.
 
 I am currently unsure on the effect of `debugRecorders`, `digitalRecorders`, and `driver` values, but these values work.
 
@@ -140,7 +140,7 @@ The `captureDir` is the directory within the Docker container that trunk-recorde
 
 A docker container povides a quick and easy method to install the trunk-recorder software if you do not need to modify its source code. 
 
-We assume your environment already has Docker installed. If not we suggest you look at [these installation instructions](https://docs.docker.com/engine/install/ubuntu/).
+We assume your environment already has Docker installed. If not we suggest you look at [these installation instructions](https://docs.docker.com/engine/install/ubuntu/) [5].
 
 With our `config.json` already configured we are ready to launch the container.
 
@@ -233,7 +233,7 @@ Copy the `wav` files from the trunk-recorder container, using `docker cp` (demoe
 
 ### Schedule Amazon Transcribe Job
 
-Schedule a Amazon Transcribe job on those `wav` files. For this experiment I used all default optoins.
+Schedule a Amazon Transcribe [7] job on those `wav` files. For this experiment I used all default optoins.
 
 ![Schedule Job](/images/schedule_job.png)
 
