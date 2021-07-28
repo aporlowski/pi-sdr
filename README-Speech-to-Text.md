@@ -273,14 +273,14 @@ We used a pretty liberal ruleset while determining if the words in the transcrip
 
 **GARBLED** Words are unclear if a word was transmitted or some other radio noise.
 
-### General Statisticss
+### General Statistics
 
 - Messages: 50
-    - NO CONTENT: 8
+    - No Content: 8 (16%)
         - SHORT, GARBLED: 5
         - SHORT, SILENT: 2
         - COMPLETELY INDISCERNABLE: 1
-    - WITH CONTENT: 48
+    - With Content: 42 (84%)
 - Message Length
     - Transcribed Seconds: 500 (~8.33 min)
     - Average Length (s): 11.9
@@ -307,27 +307,26 @@ Below we present a bar plot of the message length by word count in quartiles vs 
 
 ### Analysis
 
-Here we present a list of throughts and findings identified by this experiment that need to be considered when desigining a future system for P25 radio transcription. In particular, within the context of the emergency services and public services sectors.
+Here we present a list of thoughts and findings identified by this experiment that will need to be considered when desigining a future system for P25 radio transcription; in particular, within the context of the emergency services and public services sectors.
 
-Humans will likely type numbers. AI transcribe might write them out.
-Robovoice on calls 80 and 96
-GARBLED, SHORT  might be bad station identification
-SILENT, SHORT might be miskey, or it may be filtered encrypted comms.
-replace word substitutions
-humans have to spell check
-beginning of recordings are most likey to be GARBLED.
-humans can use context clues "8th and Avens" to "8th and Adams since Adams used later on"
-colloquial speech like there's
-it works better on long transmissions.
-humans may substitute gramm or language
-protocol needs to be designed for short transmissions and start of transmissions to transcribe the beginning and short messages.
-manual transcription is a slow process, need to crowd source or incentivize multiple people
-play with the audio sampling rate (used low bandwith recommended 8000 Hz)
-play with confidence report
-base stations probably better
-radio codes probably not hte best. ICS recommends plain language
-longer transmissions might perform better, and are more likely the messages with more rich data for SA applications
-own human bias on transcription
+- Great care needs to be given to numbers and whether they are spelled out or presented in number form. Different contexts, such as call signs, street numbers, house numbers, regular speech require different care. Numeric numbers are very common in the emergency service sector.
+- GARBLED, SHORT transmission might have been an attempt at a station identification, such as when responding to a caller. These can likely be ignored.
+- SILENT, SHORT transmissions might be explained by radio miskeys, or filtered encrypted communications. These can likely be ignored.
+- Often times emergency personnel use word substutions, such as when describing a license plage number. For example, "900 robert King George” could be replaced with “900RKG”to make the output transcriptoin more usable in an automated system.
+- Human transcription is very time consuming and suspect to thier own bias (such as misspellings, and knowledge of the area, for example, road names).
+- It seems the beginning of recordings are most likely to be GARBLED. This is likely a result of the radio protocol design or user error (such as not waiting long enough after keying the radio to begin speaking). P25 may need to include future additions to address this.
+- Human transcribers are greatly benefited by context cluses, such as mishearing a phrase first, but then corrected it after hearing the same pharase used again later on in the message. The AI transcription model should have a similar correction mechanism.
+- Colloquial speech needs to be allowed by the AI transcription model. For example, "Gonna" instead of "Going to".
+- The AI transcription seems to work better on longer messages, up until a point around 33 words. Shorter messages contain more numeric words, such as station identifiers, that appear to be incorrect more often than regular words. Also, as the message gets longer, the effect of poor beginning of message and ending of message transcription are better amoritized over the length of the message. Longer messages may also be more likely to contain more rich data for automated SA, while shorter messages tend to be radio calling and acknowledgement, so while performance is not great overall, perhaps only good performance on longer messages is required for a useful input into a SA use case. 
+- Human transcribers may have a bias to susbstitue correct grammar or language. When comparing AI models to human transcription, lenancy should be permitted as long as the message meaning is not lost.
+- Improvements in P25 may need to be sought out to improve the clarity of the beginning and end of transmissions. It is also possible that these are created by the recording software and can be fixed at that level.
+- Manual transcription is a slow process, to continue future experiments we need to crowd source or incentivize multiple people to create a labeled dataset.
+- Amazon presents a confidence report for each word that was not considered in this experiement. In some cases it is likely better to have a INDISCERNABLE than a wrong word.
+- We identified many transmiters that were consistently clearer than others. For example, most animal control related messages in this experiment showed high accuracy. This may be becuase the transmitters are vehicular or base station transmission instead of personal mobile transmission used by a emergency service worker.
+- Emergency frequently use radio codes, such as "10-4" being an acknowledgement of a transmission. These radio codes, as they are numeric based, are suspect to higher inaccuracy. They will also reduce the availability of the transcribed data to be use for automated SA. For example, if a police officer calls in an accident using a radio code, it will more likely be mistranscribed and not be plotable on a GIS SA map. ICS recommends the use of plain language radio speak, and this recommendation may be best for the purpose of improving automated radio transcription as well. Analternative may be trying to use word based radio codes such as "Oscar Mike".
+
+
+
 mixed messages need to break messages up by tgid
 since there is no signal for end of message, it keeps recording for 5 seconds
 letters that sound the same (group this with others)
