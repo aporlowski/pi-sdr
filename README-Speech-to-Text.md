@@ -245,7 +245,32 @@ View the results.
 
 ## Analysis of transcription demo
 
+Here we describe the results of our first experiment of using AI services to transcribe P25 radio communications.
+
 ### Description of experiment
+
+In this experiement we recorded and analyzed 50 messages of P25 radio transmissions using trunk-recorder as configured above. The caputre time was approximately 1 hour on 27 July 2021 between 11:30 and 12:30 EST. The raw `wav` files can be found [here](/data).
+
+We measured the word count and length(s) of the messages. We first transcribed the messages by ear, allowing unlimited replays. Next, we used Amazon Transcribe, an AI speech-to-text service, to transcribe the messages. We used all default settings on the Amazon Transcribe jobs.
+
+Finally, we measured how many words from the Amazon Transcribe matched the human transcription which is computed as the percentage that we refer to as accuracy.
+
+### Rules for Comparing Human and AI Transcription
+
+We used a pretty liberal ruleset while determining if the words in the transcriptions matched. The thought behind this ruleset is that no meaning is lost by the rule, or post-processing could correct the errors with no loss to the message meaning. The resulting measure is a `% match to human transcription`. Note, this does not always correspond to `% meaning retained`.
+
+**INDISCERNABLE** Words are words that cannot be comprehended given all context cluse. For example, police jargon unfamiliar to the transcriber.
+**GARBLED** Words are unclear if a word was transmitted or some other radio noise.
+
+1. Punctuation and capitalization were not considered 
+2. Mispellings are considered the same
+3. A number spelled out vs represented as a numeral is considered the same
+4. Contractions vs spelled out contractions are considered the same
+5. Colloquial speech vs regular grammar, for example "gonna" vs "going to", are considered the same.
+6. If the human transcription labeled the word GARBLED or INDISCERNABLE, that word did not count.
+7. An unplaceable fragment from the AI transcription was not counted
+8. Gaps in numbers were considered okay as long as no other added characters within or between.
+9. Conjoined numbers that should have had gaps were okay as long as there were no other added characters within or between.
 
 ### General Performance Stats
 
